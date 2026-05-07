@@ -1,0 +1,25 @@
+site_name: Sorsa Ingestion Docs
+site_description: Cockroach-first Sorsa ingestion implementation documentation
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Quickstart: quickstart.md
+  - Architecture: architecture.md
+  - Data Model: data-model.md
+  - Pipeline Behavior: pipeline-behavior.md
+  - Operations Runbook: runbook.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - tables
+  - toc:
+      permalink: true
+

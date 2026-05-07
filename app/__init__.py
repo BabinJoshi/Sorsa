@@ -1,0 +1,2 @@
+"""Sorsa ingestion application package."""
+
