@@ -1,0 +1,2342 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Ingestion Pipeline - Sorsa Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mindshare-data-ingestion-pipeline" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Sorsa Docs" class="md-header__button md-logo" aria-label="Sorsa Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Sorsa Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ingestion Pipeline
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Sorsa Docs" class="md-nav__button md-logo" aria-label="Sorsa Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Sorsa Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ingestion Pipeline
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ingestion Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Architecture Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Architecture Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#technology-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technology Stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-level-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High-Level Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ingestion-trigger-scheduling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Ingestion Trigger &amp; Scheduling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Ingestion Trigger &amp; Scheduling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cron-schedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cron Schedule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task Chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-branching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Branching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sorsa-tweetscout-api-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Sorsa / TweetScout API Integration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Sorsa / TweetScout API Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-roots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Roots
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-search-tweets-keyword-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /search-tweets — Keyword Search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-comments-reply-thread-fetch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /comments — Reply Thread Fetch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-user-tweets-per-user-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /user-tweets — Per-User Timeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-score-idx_id-user-influence-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /score-id/{x_id} — User Influence Score
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-day-fetch-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3-Day Fetch Window
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-full-ingestion-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Full Ingestion Flow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Full Ingestion Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#concurrency-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concurrency Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-data-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Data Transformation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Data Transformation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sorsa-v3-field-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sorsa v3 Field Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raw-api-response-shape-sorsa-v3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw API Response Shape (Sorsa v3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformation-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transformation Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mindsharemindshare_post-schema-key-columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mindshare.mindshare_post Schema (Key Columns)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-error-handling-retry-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Error Handling &amp; Retry Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Error Handling &amp; Retry Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http-level-retries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP-Level Retries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pagination-level-retries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pagination-Level Retries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-level-retries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task-Level Retries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-post-ingestion-processing-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Post-Ingestion Processing Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-ai-analysis-sub-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. AI Analysis Sub-Pipelines
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. AI Analysis Sub-Pipelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-sentiment-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Sentiment Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-content-scoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Content Scoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-content-score-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Content Score Algorithm
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-s3-backfill-path-alternative-ingestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. S3 Backfill Path (Alternative Ingestion)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-configuration-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Configuration Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Configuration Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-keys-external-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Keys &amp; External Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Databases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS / S3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-flags_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-key-files-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Key Files Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-end-to-end-data-lifecycle-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. End-to-End Data Lifecycle Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Architecture Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Architecture Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#technology-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technology Stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-level-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High-Level Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ingestion-trigger-scheduling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Ingestion Trigger &amp; Scheduling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Ingestion Trigger &amp; Scheduling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cron-schedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cron Schedule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task Chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-branching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Branching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sorsa-tweetscout-api-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Sorsa / TweetScout API Integration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Sorsa / TweetScout API Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-roots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Roots
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-search-tweets-keyword-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /search-tweets — Keyword Search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-comments-reply-thread-fetch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /comments — Reply Thread Fetch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-user-tweets-per-user-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /user-tweets — Per-User Timeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-score-idx_id-user-influence-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /score-id/{x_id} — User Influence Score
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-day-fetch-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3-Day Fetch Window
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-full-ingestion-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Full Ingestion Flow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Full Ingestion Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#concurrency-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concurrency Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-data-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Data Transformation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Data Transformation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sorsa-v3-field-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sorsa v3 Field Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raw-api-response-shape-sorsa-v3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw API Response Shape (Sorsa v3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformation-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transformation Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mindsharemindshare_post-schema-key-columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mindshare.mindshare_post Schema (Key Columns)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-error-handling-retry-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Error Handling &amp; Retry Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Error Handling &amp; Retry Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http-level-retries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP-Level Retries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pagination-level-retries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pagination-Level Retries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-level-retries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task-Level Retries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-post-ingestion-processing-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Post-Ingestion Processing Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-ai-analysis-sub-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. AI Analysis Sub-Pipelines
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. AI Analysis Sub-Pipelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-sentiment-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Sentiment Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-content-scoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Content Scoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-content-score-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Content Score Algorithm
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-s3-backfill-path-alternative-ingestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. S3 Backfill Path (Alternative Ingestion)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-configuration-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Configuration Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Configuration Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-keys-external-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Keys &amp; External Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Databases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS / S3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-flags_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-key-files-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Key Files Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-end-to-end-data-lifecycle-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. End-to-End Data Lifecycle Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="mindshare-data-ingestion-pipeline">Mindshare Data Ingestion Pipeline<a class="headerlink" href="#mindshare-data-ingestion-pipeline" title="Permanent link">&para;</a></h1>
+<div class="admonition abstract">
+<p class="admonition-title">Document Scope</p>
+<p>This document covers the complete data ingestion pipeline for the Mindshare backend — from the daily scheduled trigger, through the Sorsa/TweetScout API calls that fetch the last 3 days of tweets, all the way to the final AI analysis and database state. Target audience: engineers onboarding to this codebase or debugging production data gaps.</p>
+</div>
+<hr />
+<h2 id="1-architecture-overview">1. Architecture Overview<a class="headerlink" href="#1-architecture-overview" title="Permanent link">&para;</a></h2>
+<p>The system is a <strong>tweet data processing and analysis pipeline</strong>. Every day it:</p>
+<ol>
+<li>Fetches raw tweets for every tracked crypto project via the Sorsa/TweetScout API (3-day rolling window)</li>
+<li>Stores raw and processed posts in PostgreSQL</li>
+<li>Refreshes analytical materialized views</li>
+<li>Recalculates time-decay mindshare scores</li>
+<li>Runs LLM-powered sentiment analysis and content scoring</li>
+</ol>
+<h3 id="technology-stack">Technology Stack<a class="headerlink" href="#technology-stack" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Technology</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Task Queue</td>
+<td><a href="https://huey.readthedocs.io/">Huey</a> + Redis</td>
+<td>Scheduling &amp; task distribution</td>
+</tr>
+<tr>
+<td>Primary DB</td>
+<td>PostgreSQL</td>
+<td>Permanent structured data</td>
+</tr>
+<tr>
+<td>Document Store</td>
+<td>MongoDB (Beanie)</td>
+<td>Raw tweet cache, score cache</td>
+</tr>
+<tr>
+<td>Data Lake</td>
+<td>AWS S3 (Parquet)</td>
+<td>Archive for replay/backfill</td>
+</tr>
+<tr>
+<td>Tweet Source</td>
+<td>Sorsa / TweetScout API v3</td>
+<td>Tweet search and user scores</td>
+</tr>
+<tr>
+<td>AI Analysis</td>
+<td>LiteLLM → OpenRouter → Grok-4.1-fast</td>
+<td>Sentiment &amp; content scoring</td>
+</tr>
+<tr>
+<td>Cache</td>
+<td>Redis</td>
+<td>Response caching &amp; rate limiting</td>
+</tr>
+</tbody>
+</table>
+<h3 id="high-level-architecture">High-Level Architecture<a class="headerlink" href="#high-level-architecture" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart TD
+    subgraph Trigger["⏰ Trigger Layer"]
+        CRON["Cron: daily 00:06 UTC"]
+        HUEY["Huey Redis Queue"]
+        SCHED["scheduler.py\nschedule_daily_update_mindshare_data()"]
+    end
+
+    subgraph Fetch["📥 Data Fetch Layer"]
+        WORKER["mindshare_data_worker.py\nupdate_mindshare_data()"]
+        SERVICE["mindshare/service.py\nupdate_tracked_projects_data(until_days=3)"]
+        SORSA["Sorsa / TweetScout API v3\n(search-tweets, comments, user-tweets)"]
+        SORSASCORE["Sorsa API v3\n(/score-id/{x_id})"]
+    end
+
+    subgraph Store["💾 Storage Layer"]
+        RAW["raw_data.raw_post\n(JSONB)"]
+        PG["mindshare.mindshare_post\n(PostgreSQL)"]
+        PGUSER["mindshare.mindshare_user\n(PostgreSQL)"]
+        MONGO["MongoDB: Tweets, TweetScoutScore"]
+    end
+
+    subgraph Compute["⚙️ Compute Layer"]
+        VIEWS["Materialized View Refresh\nanalytics.refresh_engagement_views_all()"]
+        DECAY["Decay Score Recalc\nmindshare_score.calculate_all_decay_scores()"]
+        SNAPS["Snapshot Views\nsnapshots.create_all_snapshots_views()"]
+    end
+
+    subgraph AI["🤖 AI Layer"]
+        SENTIMENT["Sentiment Analysis\nGrok-4.1-fast, batch=10"]
+        CONTENT["Content Scoring\nGrok-4.1-fast, batch=5, multimodal"]
+    end
+
+    subgraph Cache["🔄 Cache Layer"]
+        REDIS_CACHE["Redis Cache Invalidation\nget_v2_mindshare_leaderboard\nget_mindshare_leaderboard_snapshot_from_mv"]
+    end
+
+    CRON --&gt; SCHED --&gt; HUEY --&gt; WORKER
+    WORKER --&gt; SERVICE
+    SERVICE --&gt;|"POST /search-tweets"| SORSA
+    SERVICE --&gt;|"POST /comments"| SORSA
+    SERVICE --&gt;|"GET /score-id/{x_id}"| SORSASCORE
+    SORSA --&gt; RAW
+    RAW --&gt; PG
+    SORSASCORE --&gt; PGUSER
+    PG --&gt; VIEWS
+    VIEWS --&gt; DECAY --&gt; SNAPS
+    PG --&gt; SENTIMENT --&gt; PG
+    PG --&gt; CONTENT --&gt; PG
+    SNAPS --&gt; REDIS_CACHE
+    SERVICE --&gt; MONGO</code></pre>
+<hr />
+<h2 id="2-ingestion-trigger-scheduling">2. Ingestion Trigger &amp; Scheduling<a class="headerlink" href="#2-ingestion-trigger-scheduling" title="Permanent link">&para;</a></h2>
+<h3 id="cron-schedule">Cron Schedule<a class="headerlink" href="#cron-schedule" title="Permanent link">&para;</a></h3>
+<p>The entire pipeline is kicked off by a single Huey periodic task defined in <a href="../app/worker/scheduler.py"><code>app/worker/scheduler.py</code></a>:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@huey</span><span class="o">.</span><span class="n">periodic_task</span><span class="p">(</span>
+    <span class="n">crontab</span><span class="p">(</span><span class="n">minute</span><span class="o">=</span><span class="s2">&quot;06&quot;</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="s2">&quot;00&quot;</span><span class="p">)</span>  <span class="c1"># Daily at 00:06 UTC</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">schedule_daily_update_mindshare_data</span><span class="p">():</span>
+    <span class="n">tasks</span><span class="o">.</span><span class="n">daily_update_mindshare_data_task</span><span class="o">.</span><span class="n">call_local</span><span class="p">()</span>
+</code></pre></div>
+<p>Huey runs as a separate process (<code>huey_consumer.py</code>) with 4 threads, backed by Redis. Tasks survive worker restarts because they persist in the Redis queue.</p>
+<h3 id="task-chain">Task Chain<a class="headerlink" href="#task-chain" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Redis
+    participant Scheduler as scheduler.py
+    participant Tasks as tasks.py
+    participant Worker as mindshare_data_worker.py
+    participant Service as mindshare/service.py
+
+    Redis-&gt;&gt;Scheduler: Fire crontab(00:06 UTC)
+    Scheduler-&gt;&gt;Tasks: daily_update_mindshare_data_task.call_local()
+    note over Tasks: @huey.task(retries=1, retry_delay=60)
+    Tasks-&gt;&gt;Worker: update_mindshare_data()
+    Worker-&gt;&gt;Service: update_tracked_projects_data(until_days=3)
+    note over Service: Production: 3 days lookback&lt;br/&gt;Development: 0.01 days (≈14 min)</code></pre>
+<h3 id="environment-branching">Environment Branching<a class="headerlink" href="#environment-branching" title="Permanent link">&para;</a></h3>
+<p>The lookback window is environment-sensitive (<a href="../app/worker/mindshare_data_worker.py"><code>app/worker/mindshare_data_worker.py:386-391</code></a>):</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">CONFIG</span><span class="o">.</span><span class="n">ENABLE_TRACKED_PROJECTS_UPDATE</span> <span class="ow">and</span> <span class="n">CONFIG</span><span class="o">.</span><span class="n">ENVIRONMENT</span> <span class="o">==</span> <span class="n">Environments</span><span class="o">.</span><span class="n">DEVELOPMENT</span><span class="p">:</span>
+    <span class="k">await</span> <span class="n">update_tracked_projects_data</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>   <span class="c1"># ~14 minutes for fast local testing</span>
+<span class="k">elif</span> <span class="n">CONFIG</span><span class="o">.</span><span class="n">ENABLE_TRACKED_PROJECTS_UPDATE</span><span class="p">:</span>
+    <span class="k">await</span> <span class="n">update_tracked_projects_data</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>       <span class="c1"># 3 calendar days in production</span>
+</code></pre></div>
+<h3 id="feature-flags">Feature Flags<a class="headerlink" href="#feature-flags" title="Permanent link">&para;</a></h3>
+<p>All three major phases can be independently disabled:</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Default</th>
+<th>Effect when <code>False</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENABLE_TRACKED_PROJECTS_UPDATE</code></td>
+<td><code>True</code></td>
+<td>Skips all API calls and DB ingestion</td>
+</tr>
+<tr>
+<td><code>ENABLE_SENTIMENT_ANALYSIS</code></td>
+<td><code>True</code></td>
+<td>Skips LLM sentiment scoring</td>
+</tr>
+<tr>
+<td><code>ENABLE_RELEVANCY_SCORING</code></td>
+<td><code>True</code></td>
+<td>Skips LLM content scoring</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-sorsa-tweetscout-api-integration">3. Sorsa / TweetScout API Integration<a class="headerlink" href="#3-sorsa-tweetscout-api-integration" title="Permanent link">&para;</a></h2>
+<h3 id="api-roots">API Roots<a class="headerlink" href="#api-roots" title="Permanent link">&para;</a></h3>
+<p>Two base URLs are involved. Both authenticate with the same <code>TWEETSCOUT_API_KEY</code>, passed as the <code>ApiKey</code> HTTP header.</p>
+<table>
+<thead>
+<tr>
+<th>Config Key</th>
+<th>Base URL</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TWEETSCOUT_BASE_URL</code></td>
+<td>Configured externally</td>
+<td>Tweet search, replies, user-tweets</td>
+</tr>
+<tr>
+<td><code>SORSA_BASE_URL</code></td>
+<td><code>https://api.sorsa.io/v3</code></td>
+<td>User influence scores</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">v3 Migration</p>
+<p>The codebase migrated from TweetScout v2 to Sorsa v3 in April 2026 (commit <code>e46092d</code>). Many field names changed — see the <a href="#5-data-transformation">Data Transformation</a> section for the full mapping.</p>
+</div>
+<h3 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h3>
+<p>All tweet endpoints are implemented in <a href="../app/modules/tweetscout/third_party_tools/tweetscout_api.py"><code>app/modules/tweetscout/third_party_tools/tweetscout_api.py</code></a>.</p>
+<h4 id="post-search-tweets-keyword-search"><code>POST /search-tweets</code> — Keyword Search<a class="headerlink" href="#post-search-tweets-keyword-search" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_tweets_by_keyword</span><span class="p">(</span>
+    <span class="n">tweet_query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">cursor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">],</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]:</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>query</code></td>
+<td>string</td>
+<td>Project keyword (e.g. <code>"Acurast"</code>)</td>
+</tr>
+<tr>
+<td><code>order</code></td>
+<td>string</td>
+<td><code>"latest"</code> — newest first</td>
+</tr>
+<tr>
+<td><code>next_cursor</code></td>
+<td>string</td>
+<td>Pagination cursor (omitted on first page)</td>
+</tr>
+</tbody>
+</table>
+<p>Returns <code>(tweets[], next_cursor)</code>. Timeout: <strong>30 s</strong>.</p>
+<h4 id="post-comments-reply-thread-fetch"><code>POST /comments</code> — Reply Thread Fetch<a class="headerlink" href="#post-comments-reply-thread-fetch" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_tweetscouts_replies</span><span class="p">(</span>
+    <span class="n">tweet_query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tweet_link</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">cursor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">],</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]:</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tweet_link</code></td>
+<td>string</td>
+<td>Full URL of the parent tweet</td>
+</tr>
+<tr>
+<td><code>next_cursor</code></td>
+<td>string</td>
+<td>Pagination cursor</td>
+</tr>
+</tbody>
+</table>
+<p>Returns <code>(tweets[], next_cursor)</code>. Timeout: <strong>30 s</strong>.</p>
+<h4 id="post-user-tweets-per-user-timeline"><code>POST /user-tweets</code> — Per-User Timeline<a class="headerlink" href="#post-user-tweets-per-user-timeline" title="Permanent link">&para;</a></h4>
+<p>Used for syncing tracked project team members (KOLs). Timeout: <strong>30 s</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user_id</code></td>
+<td>string</td>
+<td>X user ID</td>
+</tr>
+<tr>
+<td><code>next_cursor</code></td>
+<td>string</td>
+<td>Pagination cursor</td>
+</tr>
+</tbody>
+</table>
+<h4 id="get-score-idx_id-user-influence-score"><code>GET /score-id/{x_id}</code> — User Influence Score<a class="headerlink" href="#get-score-idx_id-user-influence-score" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">request_tweetscout_profile</span><span class="p">(</span><span class="n">x_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">CONFIG</span><span class="o">.</span><span class="n">TWEETSCOUT_BASE_URL</span><span class="si">}</span><span class="s2">/score-id/</span><span class="si">{</span><span class="n">x_id</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>Returns user profile with Sorsa influence score. Timeout: <strong>90 s</strong>. Gracefully handles <code>"User not found"</code> and protected accounts by returning <code>score: 0</code>.</p>
+<h3 id="3-day-fetch-window">3-Day Fetch Window<a class="headerlink" href="#3-day-fetch-window" title="Permanent link">&para;</a></h3>
+<p>The cutoff date is computed in <a href="../app/modules/mindshare/service.py"><code>app/modules/mindshare/service.py:302</code></a>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">now_utc</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span>
+<span class="n">cutoff_date</span> <span class="o">=</span> <span class="n">now_utc</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">until_days</span><span class="p">)</span>   <span class="c1"># until_days=3 in prod</span>
+
+<span class="k">await</span> <span class="n">store_project_tweets_replies_and_users</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">cutoff_date</span><span class="p">,</span> <span class="n">now_utc</span><span class="p">)</span>
+</code></pre></div>
+<p>The API is paginated newest-first. The pagination loop reads cursor pages until the <strong>oldest tweet in a batch</strong> is older than <code>cutoff_date</code>. This guarantees all tweets within the window are captured even if the API returns them out of order.</p>
+<pre class="mermaid"><code>flowchart LR
+    A["now_utc"] --&gt;|"- 3 days"| B["cutoff_date"]
+    B --&gt; C{{"oldest tweet in page\n&lt; cutoff_date?"}}
+    C --&gt;|No| D["fetch next page"]
+    D --&gt; C
+    C --&gt;|Yes| E["stop pagination"]</code></pre>
+<hr />
+<h2 id="4-full-ingestion-flow">4. Full Ingestion Flow<a class="headerlink" href="#4-full-ingestion-flow" title="Permanent link">&para;</a></h2>
+<p>This sequence diagram shows one project's complete ingestion run from scheduler trigger to final database commit.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Sched as scheduler.py
+    participant Worker as update_mindshare_data()
+    participant Service as update_tracked_projects_data()
+    participant TSService as tweetscout_service.py
+    participant TSAPI as tweetscout_api.py (Sorsa)
+    participant PG as PostgreSQL
+    participant Mongo as MongoDB
+
+    Sched-&gt;&gt;Worker: daily trigger (00:06 UTC)
+    Worker-&gt;&gt;Service: update_tracked_projects_data(until_days=3)
+
+    note over Service: asyncio.Semaphore(2)&lt;br/&gt;max 2 projects concurrently
+
+    loop for each active project (keyword)
+        Service-&gt;&gt;TSService: store_project_tweets_replies_and_users(keyword, cutoff_date, now)
+
+        note over TSService: fetch_and_create_tweets_until()&lt;br/&gt;max 10 000 cursor iterations
+
+        loop cursor pagination
+            TSService-&gt;&gt;TSAPI: POST /search-tweets {query, order:"latest", next_cursor}
+            TSAPI--&gt;&gt;TSService: {tweets[], next_cursor}
+            TSService-&gt;&gt;PG: insert_raw_posts() → raw_data.raw_post (JSONB)
+            TSService-&gt;&gt;TSService: format_tweets() + filter_invalid_posts()
+            TSService-&gt;&gt;PG: upsert_mindshare_post() → mindshare.mindshare_post
+            TSService-&gt;&gt;TSService: check: oldest tweet &lt; cutoff_date?
+        end
+
+        loop for each tweet (replies)
+            TSService-&gt;&gt;TSAPI: POST /comments {tweet_link, next_cursor}
+            TSAPI--&gt;&gt;TSService: {tweets[], next_cursor}
+            TSService-&gt;&gt;PG: upsert replies → mindshare.mindshare_post
+        end
+
+        note over Service: fetch missing user scores
+        Service-&gt;&gt;TSAPI: GET /score-id/{x_id} (concurrency=5)
+        TSAPI--&gt;&gt;Service: {score, username, followers_count, ...}
+        Service-&gt;&gt;PG: upsert_mindshare_user()
+
+        Service-&gt;&gt;Service: update_avatar_and_username_until(days=4)
+        Service-&gt;&gt;Mongo: create_mindshare_snapshots() (6 time frames)
+    end
+
+    note over Service: sync tracked KOL users (0.1 day lookback)
+    Service-&gt;&gt;TSService: sync_multiple_users_background(user_id_list, limit=100)</code></pre>
+<h3 id="concurrency-model">Concurrency Model<a class="headerlink" href="#concurrency-model" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart TD
+    A["active_projects (all keywords)"]
+    A --&gt; B["asyncio.gather(*tasks)\nall projects start concurrently"]
+    B --&gt; C["asyncio.Semaphore(2)\nmax 2 running at once"]
+    C --&gt; D1["Project A: fetch_and_create_tweets_until"]
+    C --&gt; D2["Project B: fetch_and_create_tweets_until"]
+    C -.-&gt;|"waits for slot"| D3["Project C (queued)"]
+
+    D1 --&gt; E1["Score fetch\nSemaphore(5) parallel"]
+    D2 --&gt; E2["Score fetch\nSemaphore(5) parallel"]</code></pre>
+<hr />
+<h2 id="5-data-transformation">5. Data Transformation<a class="headerlink" href="#5-data-transformation" title="Permanent link">&para;</a></h2>
+<h3 id="sorsa-v3-field-mapping">Sorsa v3 Field Mapping<a class="headerlink" href="#sorsa-v3-field-mapping" title="Permanent link">&para;</a></h3>
+<p>The v3 API (Sorsa) changed many field names from the legacy TweetScout v2 format. The formatter in <a href="../app/modules/tweetscout/crud.py"><code>app/modules/tweetscout/crud.py</code></a> handles this:</p>
+<table>
+<thead>
+<tr>
+<th>v2 Field</th>
+<th>v3 Field (Sorsa)</th>
+<th>PostgreSQL Column</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id_str</code></td>
+<td><code>id</code></td>
+<td><code>post_id</code></td>
+</tr>
+<tr>
+<td><code>user.id_str</code></td>
+<td><code>user.id</code></td>
+<td><code>user_x_id</code></td>
+</tr>
+<tr>
+<td><code>user.screen_name</code></td>
+<td><code>user.username</code></td>
+<td><code>user_x_username</code></td>
+</tr>
+<tr>
+<td><code>user.name</code></td>
+<td><code>user.display_name</code></td>
+<td><code>user_x_display_name</code></td>
+</tr>
+<tr>
+<td><code>user.avatar</code></td>
+<td><code>user.profile_image_url</code></td>
+<td><code>user_x_avatar_url</code></td>
+</tr>
+<tr>
+<td><code>favorite_count</code></td>
+<td><code>likes_count</code></td>
+<td><code>favorite_count</code></td>
+</tr>
+<tr>
+<td><code>in_reply_to_status_id_str</code></td>
+<td><code>in_reply_to_tweet_id</code></td>
+<td><code>replied_post_id</code></td>
+</tr>
+<tr>
+<td><code>retweeted_status.id_str</code></td>
+<td><code>retweeted_status.id</code></td>
+<td><code>retweeted_post_id</code></td>
+</tr>
+<tr>
+<td><code>quoted_status.id_str</code></td>
+<td><code>quoted_status.id</code></td>
+<td><code>quoted_post_id</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="raw-api-response-shape-sorsa-v3">Raw API Response Shape (Sorsa v3)<a class="headerlink" href="#raw-api-response-shape-sorsa-v3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1234567890&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-05-07T10:30:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;full_text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tweet content here&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;reply_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;retweet_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;quote_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;likes_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;view_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;in_reply_to_tweet_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;9876543210&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;retweeted_status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;quoted_status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;entities&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;media&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;urls&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;user&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user_id_string&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;handle&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Full Name&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;profile_image_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://pbs.twimg.com/...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;followers_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="transformation-pipeline">Transformation Pipeline<a class="headerlink" href="#transformation-pipeline" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart LR
+    A["Sorsa API\nraw JSON response"] --&gt; B["insert_raw_posts()\n→ raw_data.raw_post\n(full JSONB blob)"]
+    B --&gt; C["format_tweets()\nAdds tweet_created_at,\ntweet_query fields"]
+    C --&gt; D["filter_invalid_posts()\nValidates against\nproject's keyword rules"]
+    D --&gt; E["upsert_mindshare_post()\n→ mindshare.mindshare_post\nON CONFLICT DO UPDATE"]
+    E --&gt; F["ensure_partition_exists()\nCreates per-project\nPG partition if needed"]</code></pre>
+<h3 id="mindsharemindshare_post-schema-key-columns"><code>mindshare.mindshare_post</code> Schema (Key Columns)<a class="headerlink" href="#mindsharemindshare_post-schema-key-columns" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Source</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>post_id</code></td>
+<td><code>tweet.id</code></td>
+<td>PK (with <code>post_created_at</code>)</td>
+</tr>
+<tr>
+<td><code>project_keyword</code></td>
+<td><code>tweet_query</code></td>
+<td>Partition key</td>
+</tr>
+<tr>
+<td><code>post_created_at</code></td>
+<td><code>tweet.created_at</code></td>
+<td>PK component</td>
+</tr>
+<tr>
+<td><code>full_text</code></td>
+<td><code>tweet.full_text</code></td>
+<td>Raw tweet text</td>
+</tr>
+<tr>
+<td><code>user_x_id</code></td>
+<td><code>tweet.user.id</code></td>
+<td>FK → <code>mindshare_user</code></td>
+</tr>
+<tr>
+<td><code>view_count</code></td>
+<td><code>tweet.view_count</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>favorite_count</code></td>
+<td><code>tweet.likes_count</code></td>
+<td>v3 rename</td>
+</tr>
+<tr>
+<td><code>retweet_count</code></td>
+<td><code>tweet.retweet_count</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>reply_count</code></td>
+<td><code>tweet.reply_count</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>entities</code></td>
+<td><code>tweet.entities</code></td>
+<td>JSONB, used for image extraction</td>
+</tr>
+<tr>
+<td><code>is_reply</code></td>
+<td>computed</td>
+<td><code>in_reply_to_tweet_id IS NOT NULL</code></td>
+</tr>
+<tr>
+<td><code>is_retweet</code></td>
+<td>computed</td>
+<td><code>retweeted_status IS NOT NULL</code></td>
+</tr>
+<tr>
+<td><code>sentiment_score</code></td>
+<td>LLM (post-ingestion)</td>
+<td>Filled by AI pipeline</td>
+</tr>
+<tr>
+<td><code>content_score</code></td>
+<td>LLM (post-ingestion)</td>
+<td>Filled by AI pipeline</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-error-handling-retry-strategy">6. Error Handling &amp; Retry Strategy<a class="headerlink" href="#6-error-handling-retry-strategy" title="Permanent link">&para;</a></h2>
+<h3 id="http-level-retries">HTTP-Level Retries<a class="headerlink" href="#http-level-retries" title="Permanent link">&para;</a></h3>
+<p>Implemented in <a href="../app/modules/tweetscout/third_party_tools/utils.py"><code>app/modules/tweetscout/third_party_tools/utils.py</code></a>:</p>
+<ul>
+<li><strong>Max retries</strong>: 3 attempts</li>
+<li><strong>Retry on</strong>: HTTP 5xx server errors only</li>
+<li><strong>No retry on</strong>: HTTP 4xx client errors (raised immediately as <code>HTTPErrorWithData</code>)</li>
+<li><strong>Retry delay</strong>: 2 seconds between attempts</li>
+</ul>
+<h3 id="pagination-level-retries">Pagination-Level Retries<a class="headerlink" href="#pagination-level-retries" title="Permanent link">&para;</a></h3>
+<p>Implemented in <a href="../app/modules/tweetscout/tweetscout_service.py"><code>app/modules/tweetscout/tweetscout_service.py:107-221</code></a>:</p>
+<pre class="mermaid"><code>flowchart TD
+    A["Call /search-tweets with cursor"] --&gt; B{{"Response OK?"}}
+    B --&gt;|Yes, got tweets| C{{"next_cursor empty?"}}
+    C --&gt;|No| D{{"oldest tweet &lt; cutoff_date?"}}
+    D --&gt;|No| A
+    D --&gt;|Yes| DONE["Stop — 3-day window reached"]
+    C --&gt;|Yes| E{{"cursor_retry_count &lt; 3?"}}
+    E --&gt;|Yes| F["sleep(3^n)\n3s → 9s → 27s\ncursor_retry_count++"]
+    F --&gt; A
+    E --&gt;|No| G["Stop — cursor exhausted"]
+    B --&gt;|HTTPErrorWithData| H["save_post_fetch_state(status=failed)"]
+    H --&gt; STOP["Break loop"]
+    B --&gt;|Unexpected error| I{{"unexpected_retry &lt; 3?"}}
+    I --&gt;|Yes| J["sleep(3^n), retry"]
+    J --&gt; A
+    I --&gt;|No| H</code></pre>
+<h3 id="task-level-retries">Task-Level Retries<a class="headerlink" href="#task-level-retries" title="Permanent link">&para;</a></h3>
+<p><code>daily_update_mindshare_data_task</code> is configured with <code>retries=1, retry_delay=60</code> in <a href="../app/worker/tasks.py"><code>app/worker/tasks.py</code></a> — the entire pipeline retries once after 60 seconds if it throws an unhandled exception.</p>
+<hr />
+<h2 id="7-post-ingestion-processing-pipeline">7. Post-Ingestion Processing Pipeline<a class="headerlink" href="#7-post-ingestion-processing-pipeline" title="Permanent link">&para;</a></h2>
+<p>After raw data is stored, <code>update_mindshare_data()</code> continues with four sequential compute steps before AI analysis:</p>
+<pre class="mermaid"><code>flowchart TD
+    INGEST["✅ Tweet ingestion complete\n(mindshare.mindshare_post populated)"]
+
+    INGEST --&gt; VIEWS["refresh_all_engagement_views()\nTransaction 1: analytics.refresh_engagement_views_all()\n  → mv_engagement_{keyword}\nTimeout: 30 min\n\nTransaction 2: mindshare_score.refresh_engagement_features_views_all()\n  → mv_engagement_features_{keyword}\nTimeout: 60 min"]
+
+    VIEWS --&gt; DECAY["calculate_decay_scores_all()\nPostgreSQL: mindshare_score.calculate_all_decay_scores()\nApplies time-decay weighting to engagement scores"]
+
+    DECAY --&gt; SNAPS["create_snapshot_for_projects_v2()\nPostgreSQL: snapshots.create_all_snapshots_views()\nCreates/refreshes 6 materialized views per project:\n  {keyword}_24hr, {keyword}_7d, {keyword}_30d\n  {keyword}_3m, {keyword}_6m, {keyword}_1yr"]
+
+    SNAPS --&gt; SENT{{"ENABLE_SENTIMENT_ANALYSIS?"}}
+    SENT --&gt;|True| SENTIMENT["process_tweets_sentiment_analysis()\nbatch_size=10, page_size=100"]
+    SENT --&gt;|False| CONTENT_GATE
+
+    SENTIMENT --&gt; CONTENT_GATE{{"ENABLE_RELEVANCY_SCORING?"}}
+    CONTENT_GATE --&gt;|True| CONTENT["process_tweets_content_scoring()\nbatch_size=5, page_size=100"]
+    CONTENT_GATE --&gt;|False| CACHE
+
+    CONTENT --&gt; CACHE["invalidate_all_fn_cache()\n• get_v2_mindshare_leaderboard\n• get_mindshare_leaderboard_snapshot_from_mv"]
+    SENTIMENT -.-&gt;|False branch| CACHE</code></pre>
+<hr />
+<h2 id="8-ai-analysis-sub-pipelines">8. AI Analysis Sub-Pipelines<a class="headerlink" href="#8-ai-analysis-sub-pipelines" title="Permanent link">&para;</a></h2>
+<h3 id="81-sentiment-analysis">8.1 Sentiment Analysis<a class="headerlink" href="#81-sentiment-analysis" title="Permanent link">&para;</a></h3>
+<p><strong>File</strong>: <a href="../app/worker/utils/mindshare_ai_score_worker.py"><code>app/worker/utils/mindshare_ai_score_worker.py</code></a></p>
+<p>Targets all posts where <code>sentiment_score IS NULL AND is_reply=False AND is_retweet=False</code>.</p>
+<pre class="mermaid"><code>flowchart TD
+    A["fetch_posts_without_sentiment(page_size=100)\nSELECT post_id, project_keyword,\npost_created_at, full_text\nFROM mindshare.mindshare_post\nWHERE sentiment_score IS NULL\n  AND is_reply=FALSE\n  AND is_retweet=FALSE"] --&gt; B["Build TweetData list\n(tweet_id, full_text only)"]
+    B --&gt; C["llm_service.analyze_sentiment_batch()\nModel: grok-4.1-fast via OpenRouter\nTemperature: 0.05\nbatch_size=10 tweets per LLM call"]
+    C --&gt; D["Returns SentimentResult[]\n(tweet_id, sentiment_label, sentiment_score)"]
+    D --&gt; E["bulk_update_sentiment_scores()\nSQL VALUES bulk UPDATE\n→ mindshare.mindshare_post\ncolumns: sentiment_score, sentiment_label"]
+    E --&gt; F{{"updated_count == 0?"}}
+    F --&gt;|No, more pages| A
+    F --&gt;|Yes, done| G["Return stats\n{total_processed, total_updated}"]</code></pre>
+<p><strong>Output labels</strong>: <code>positive</code>, <code>negative</code>, <code>neutral</code> with a confidence score <code>0.0–1.0</code>.</p>
+<h3 id="82-content-scoring">8.2 Content Scoring<a class="headerlink" href="#82-content-scoring" title="Permanent link">&para;</a></h3>
+<p><strong>File</strong>: <a href="../app/worker/utils/mindshare_ai_score_worker.py"><code>app/worker/utils/mindshare_ai_score_worker.py</code></a></p>
+<p>Targets all posts where <code>content_score IS NULL AND is_retweet=False AND is_reply=False</code>. Projects in the exclusion list (<code>IronAllies_</code>, <code>_technotainment</code>, <code>D3lMundos</code>, <code>Pact_Swap</code>, <code>Acurast</code>, <code>YOM_Official</code>) are skipped.</p>
+<pre class="mermaid"><code>flowchart TD
+    A["fetch_posts_without_content_score(page_size=100)\nGroups by project_keyword"] --&gt; B["extract_image_urls(entities)\nMax 2 photos per post"]
+    B --&gt; C["_validate_image_urls()\naiohttp HEAD requests, timeout=5s\nStrips broken URLs before LLM call"]
+    C --&gt; D["llm_service.score_content_batch()\nModel: grok-4.1-fast (multimodal)\nTemperature: 0.1, max_tokens=16384\nbatch_size=5, max_concurrency=7\nInjects project name, description, handle"]
+    D --&gt; E["Returns ContentSignalResult[]\n9 signals (0-100 scale)"]
+    E --&gt; F["compute_content_score()\n→ content_score float 0-100"]
+    F --&gt; G["bulk_upsert_content_scores()\nTransaction:\n  UPDATE mindshare.mindshare_post\n    SET content_score = ...\n  UPSERT mindshare.post_content_signal\n    (all 9 signals + reason)\n    ON CONFLICT DO UPDATE"]</code></pre>
+<h3 id="83-content-score-algorithm">8.3 Content Score Algorithm<a class="headerlink" href="#83-content-score-algorithm" title="Permanent link">&para;</a></h3>
+<p>Implemented in <a href="../app/worker/utils/content_score.py"><code>app/worker/utils/content_score.py</code></a>.</p>
+<p><strong>Inputs</strong> (all 0–100 unless noted):</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>relevance</code></td>
+<td>How directly the tweet discusses the project</td>
+</tr>
+<tr>
+<td><code>context_depth</code></td>
+<td>Informational or analytical substance</td>
+</tr>
+<tr>
+<td><code>meme_communication_value</code></td>
+<td>How well a meme communicates about the project</td>
+</tr>
+<tr>
+<td><code>visual_information_density</code></td>
+<td>Concrete project info in images</td>
+</tr>
+<tr>
+<td><code>human_signal</code></td>
+<td>Genuine expression vs. templated promotion</td>
+</tr>
+<tr>
+<td><code>project_mentions</code></td>
+<td>Count of crypto projects mentioned (raw count, not 0-100)</td>
+</tr>
+<tr>
+<td><code>mention_farming_risk</code></td>
+<td>Likelihood tweet exists purely to farm tags</td>
+</tr>
+<tr>
+<td><code>ai_generated_probability</code></td>
+<td>Likelihood text is AI-generated</td>
+</tr>
+<tr>
+<td><code>sentiment</code></td>
+<td>-1 to 1 (separate from scoring pipeline)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Algorithm (6 steps)</strong>:</p>
+<pre class="mermaid"><code>flowchart TD
+    S1["Step 1: Derive communication_value C\nC = clamp(max(context_depth, meme_comm_value)\n       + 0.25 × visual_info_density, 0, 100)"]
+    S2["Step 2: Hard Gate\nIF relevance &lt; 20 → content_score = 0"]
+    S3["Step 3: Quality score Q\nQ = 0.70 × C + 0.30 × human_signal"]
+    S4["Step 4: Relevance gate G\nG = Q × (relevance/100)^1.3"]
+    S5["Step 5: Conditional mentions penalty\nPenalizes heavy multi-tagging\nONLY when quality is low AND farming risk is high\nFloor: 0.65"]
+    S6a["Step 6a: Farming risk penalty\nActive above 30 risk score\nFloor multiplier: 0.20"]
+    S6b["Step 6b: AI generation penalty\n1 - (ai_probability / 300)\nFloor: 0.70"]
+    S7["Final: content_score = clamp(result, 0, 100)"]
+
+    S1 --&gt; S2 --&gt; S3 --&gt; S4 --&gt; S5 --&gt; S6a --&gt; S6b --&gt; S7</code></pre>
+<p><strong><code>post_content_signal</code> table</strong> stores all 9 raw signals plus the LLM's <code>reason</code> text, enabling score debugging and recomputation without re-calling the LLM.</p>
+<hr />
+<h2 id="9-s3-backfill-path-alternative-ingestion">9. S3 Backfill Path (Alternative Ingestion)<a class="headerlink" href="#9-s3-backfill-path-alternative-ingestion" title="Permanent link">&para;</a></h2>
+<p>In addition to the live API path, an alternative ingestion route reads historical data from S3 Parquet files.</p>
+<p><strong>File</strong>: <a href="../app/worker/athena_ingestion_worker.py"><code>app/worker/athena_ingestion_worker.py</code></a><br />
+<strong>Task</strong>: <code>s3_tweets_ingestion_task(user_id=None, fetch_all=False)</code> in <a href="../app/worker/tasks.py"><code>app/worker/tasks.py</code></a></p>
+<pre class="mermaid"><code>flowchart LR
+    S3["S3 Parquet files\nPrefixes:\n  tweetscout/\n  tweetscout_replies/\nPartitioned by:\n  user_id/year/month/day/"] --&gt; LIST["List files\n(filter by user_id,\ndate range)"]
+    LIST --&gt; READ["Read batches\n(500 rows via pyarrow)"]
+    READ --&gt; FMT["athena_to_postgres_formatter()\n→ NucleusPost\ncategorize_project_keywords()"]
+    FMT --&gt; PG1["UPSERT nucleus_post"]
+    FMT --&gt; PG2["UPSERT mindshare_post"]
+    FMT --&gt; PG3["UPSERT mindshare_user"]</code></pre>
+<p>This path is triggered manually or via <code>s3_tweets_ingestion_task</code> — it is <strong>not</strong> part of the daily scheduled run.</p>
+<hr />
+<h2 id="10-configuration-reference">10. Configuration Reference<a class="headerlink" href="#10-configuration-reference" title="Permanent link">&para;</a></h2>
+<p>All environment variables are defined in <a href="../app/config.py"><code>app/config.py</code></a> as a Pydantic <code>EnvConfig</code> model.</p>
+<h3 id="api-keys-external-services">API Keys &amp; External Services<a class="headerlink" href="#api-keys-external-services" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TWEETSCOUT_BASE_URL</code></td>
+<td>Yes</td>
+<td>Base URL for Sorsa/TweetScout tweet search endpoints</td>
+</tr>
+<tr>
+<td><code>TWEETSCOUT_API_KEY</code></td>
+<td>Yes</td>
+<td>API key for all TweetScout/Sorsa endpoints</td>
+</tr>
+<tr>
+<td><code>SORSA_BASE_URL</code></td>
+<td>Yes</td>
+<td><code>https://api.sorsa.io/v3</code> — Sorsa score endpoint base</td>
+</tr>
+<tr>
+<td><code>OPENROUTER_API_KEY</code></td>
+<td>Yes</td>
+<td>LiteLLM key for Grok-4.1-fast via OpenRouter</td>
+</tr>
+<tr>
+<td><code>COOKIE3_API_KEY</code></td>
+<td>No</td>
+<td>On-chain data provider</td>
+</tr>
+<tr>
+<td><code>SNAG_API_KEY</code></td>
+<td>No</td>
+<td>Loyalty platform sync</td>
+</tr>
+</tbody>
+</table>
+<h3 id="databases">Databases<a class="headerlink" href="#databases" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DATABASE_URL</code></td>
+<td>Yes</td>
+<td>MongoDB connection string</td>
+</tr>
+<tr>
+<td><code>POSTGRES_DATABASE_URL</code></td>
+<td>Yes</td>
+<td>PostgreSQL async connection string</td>
+</tr>
+<tr>
+<td><code>REDIS_URL</code></td>
+<td>Yes</td>
+<td>Redis URL for Huey task queue and response cache</td>
+</tr>
+<tr>
+<td><code>DATABASE_NAME</code></td>
+<td>Yes</td>
+<td>MongoDB database name</td>
+</tr>
+</tbody>
+</table>
+<h3 id="aws-s3">AWS / S3<a class="headerlink" href="#aws-s3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AWS_ACCESS_KEY_ID</code></td>
+<td>For S3</td>
+<td>AWS credentials</td>
+</tr>
+<tr>
+<td><code>AWS_SECRET_ACCESS_KEY</code></td>
+<td>For S3</td>
+<td>AWS credentials</td>
+</tr>
+<tr>
+<td><code>AWS_REGION</code></td>
+<td>For S3</td>
+<td>AWS region</td>
+</tr>
+<tr>
+<td><code>S3_BUCKET</code></td>
+<td>For S3</td>
+<td>General data lake bucket</td>
+</tr>
+<tr>
+<td><code>TWEETS_S3_BUCKET</code></td>
+<td>For S3</td>
+<td>Tweet archive bucket</td>
+</tr>
+</tbody>
+</table>
+<h3 id="feature-flags_1">Feature Flags<a class="headerlink" href="#feature-flags_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENABLE_TRACKED_PROJECTS_UPDATE</code></td>
+<td><code>True</code></td>
+<td>Enable live API ingestion</td>
+</tr>
+<tr>
+<td><code>ENABLE_SENTIMENT_ANALYSIS</code></td>
+<td><code>True</code></td>
+<td>Enable LLM sentiment scoring</td>
+</tr>
+<tr>
+<td><code>ENABLE_RELEVANCY_SCORING</code></td>
+<td><code>True</code></td>
+<td>Enable LLM content scoring</td>
+</tr>
+<tr>
+<td><code>ENVIRONMENT</code></td>
+<td><code>production</code></td>
+<td>Controls 3-day vs 0.01-day window</td>
+</tr>
+<tr>
+<td><code>RATE_LIMIT_EXEMPT_KEYS</code></td>
+<td><code>[]</code></td>
+<td>API keys exempt from rate limiting</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-key-files-reference">11. Key Files Reference<a class="headerlink" href="#11-key-files-reference" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+<th>Key Functions / Classes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../app/worker/scheduler.py"><code>app/worker/scheduler.py</code></a></td>
+<td>Cron schedule definition</td>
+<td><code>schedule_daily_update_mindshare_data()</code></td>
+</tr>
+<tr>
+<td><a href="../app/worker/tasks.py"><code>app/worker/tasks.py</code></a></td>
+<td>Huey task wrappers with retry config</td>
+<td><code>daily_update_mindshare_data_task()</code>, <code>s3_tweets_ingestion_task()</code></td>
+</tr>
+<tr>
+<td><a href="../app/worker/huey_config.py"><code>app/worker/huey_config.py</code></a></td>
+<td>Redis-backed Huey instance</td>
+<td><code>huey</code> (RedisHuey)</td>
+</tr>
+<tr>
+<td><a href="../app/worker/mindshare_data_worker.py"><code>app/worker/mindshare_data_worker.py</code></a></td>
+<td>Main pipeline orchestration</td>
+<td><code>update_mindshare_data()</code></td>
+</tr>
+<tr>
+<td><a href="../app/modules/mindshare/service.py"><code>app/modules/mindshare/service.py</code></a></td>
+<td>Project-level ingestion logic</td>
+<td><code>update_tracked_projects_data()</code>, <code>create_snapshot_for_projects_v2()</code></td>
+</tr>
+<tr>
+<td><a href="../app/modules/tweetscout/tweetscout_service.py"><code>app/modules/tweetscout/tweetscout_service.py</code></a></td>
+<td>Pagination loop, score concurrency</td>
+<td><code>fetch_and_create_tweets_until()</code>, <code>create_tweetscout_scores_in_parallel()</code></td>
+</tr>
+<tr>
+<td><a href="../app/modules/tweetscout/third_party_tools/tweetscout_api.py"><code>app/modules/tweetscout/third_party_tools/tweetscout_api.py</code></a></td>
+<td>Sorsa HTTP API client</td>
+<td><code>get_tweets_by_keyword()</code>, <code>get_tweetscouts_replies()</code>, <code>request_tweetscout_profile()</code></td>
+</tr>
+<tr>
+<td><a href="../app/modules/tweetscout/tweetscout.py"><code>app/modules/tweetscout/tweetscout.py</code></a></td>
+<td>Fetch → raw store → format → upsert</td>
+<td><code>fetch_and_create_tweetscout_tweets()</code>, <code>retry_fetch_tweets()</code></td>
+</tr>
+<tr>
+<td><a href="../app/modules/tweetscout/crud.py"><code>app/modules/tweetscout/crud.py</code></a></td>
+<td>PostgreSQL CRUD for posts/users</td>
+<td><code>upsert_mindshare_post()</code>, <code>insert_raw_posts()</code></td>
+</tr>
+<tr>
+<td><a href="../app/modules/mindshare_analytics/service.py"><code>app/modules/mindshare_analytics/service.py</code></a></td>
+<td>Materialized view refresh, decay scores</td>
+<td><code>refresh_all_engagement_views()</code>, <code>calculate_decay_scores_all()</code></td>
+</tr>
+<tr>
+<td><a href="../app/worker/utils/mindshare_ai_score_worker.py"><code>app/worker/utils/mindshare_ai_score_worker.py</code></a></td>
+<td>LLM sentiment &amp; content scoring workers</td>
+<td><code>process_tweets_sentiment_analysis()</code>, <code>process_tweets_content_scoring()</code></td>
+</tr>
+<tr>
+<td><a href="../app/worker/utils/llm_service.py"><code>app/worker/utils/llm_service.py</code></a></td>
+<td>LiteLLM integration</td>
+<td><code>LLMService</code>, <code>analyze_sentiment_batch()</code>, <code>score_content_batch()</code></td>
+</tr>
+<tr>
+<td><a href="../app/worker/utils/content_score.py"><code>app/worker/utils/content_score.py</code></a></td>
+<td>Deterministic score formula</td>
+<td><code>compute_content_score()</code>, <code>ContentScoreConfig</code></td>
+</tr>
+<tr>
+<td><a href="../app/worker/athena_ingestion_worker.py"><code>app/worker/athena_ingestion_worker.py</code></a></td>
+<td>S3 Parquet backfill path</td>
+<td><code>ingest_s3_tweets_data()</code></td>
+</tr>
+<tr>
+<td><a href="../app/config.py"><code>app/config.py</code></a></td>
+<td>All environment configuration</td>
+<td><code>EnvConfig</code>, <code>CONFIG</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="12-end-to-end-data-lifecycle-summary">12. End-to-End Data Lifecycle Summary<a class="headerlink" href="#12-end-to-end-data-lifecycle-summary" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>timeline
+    title Daily Pipeline Timeline (approximate, production)
+    00:06 : Cron fires
+           : Huey dequeues task
+    00:06 - ~02:00 : Live API ingestion per project
+                   : Sorsa /search-tweets (cursor pages until 3-day cutoff)
+                   : Sorsa /comments for reply threads
+                   : User score fetch via /score-id
+                   : raw_data.raw_post written
+                   : mindshare.mindshare_post upserted
+                   : MongoDB snapshots created
+    ~02:00 - ~04:00 : Engagement view refresh
+                    : mv_engagement_{keyword} refreshed
+                    : mv_engagement_features_{keyword} refreshed
+    ~04:00 : Decay score recalculation
+           : All project leaderboards updated
+           : Snapshot materialized views created
+    ~04:00 onwards : LLM Sentiment Analysis
+                   : Grok-4.1-fast, batch 10, paginated
+    Ongoing : LLM Content Scoring
+            : Grok-4.1-fast, batch 5, multimodal
+            : 9 signals → content_score
+    End : Redis cache invalidated
+        : Leaderboard APIs serve fresh data</code></pre>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">Debugging a Data Gap</p>
+<p>If a project's leaderboard looks stale:</p>
+<ol>
+<li>Check <code>raw_data.raw_post</code> for recent rows with that <code>project_keyword</code> — confirms whether the API call succeeded.</li>
+<li>Query <code>mindshare.mindshare_post WHERE project_keyword = '...' ORDER BY post_created_at DESC LIMIT 10</code> — confirms transform and upsert.</li>
+<li>Check <code>PostFetchState</code> in MongoDB for <code>fetch_status = 'failed'</code> — records cursor + timestamp of the last failed fetch.</li>
+<li>Verify <code>ENABLE_TRACKED_PROJECTS_UPDATE=True</code> in the running environment.</li>
+<li>Check Huey worker logs for <code>HTTPErrorWithData</code> or unexpected error messages around 00:06 UTC.</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

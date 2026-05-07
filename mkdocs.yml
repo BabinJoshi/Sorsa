@@ -1,0 +1,19 @@
+site_name: Sorsa Docs
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Ingestion Pipeline: ingestion-pipeline.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - tables
+  - toc:
+      permalink: true
