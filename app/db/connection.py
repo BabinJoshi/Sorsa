@@ -1,24 +1,22 @@
 from __future__ import annotations
 
-from sqlalchemy.ext.asyncio import (
-    AsyncEngine,
-    AsyncSession,
-    async_sessionmaker,
-    create_async_engine,
-)
+import asyncpg
 
 from app.config import Settings
 
 
-def build_engine(settings: Settings) -> AsyncEngine:
-    return create_async_engine(
-        settings.cockroach_database_url,
-        pool_pre_ping=True,
-        pool_size=20,
-        max_overflow=10,
+async def build_pool(settings: Settings) -> asyncpg.Pool:
+    """Create and return an asyncpg connection pool.
+
+    max_inactive_connection_lifetime recycles idle connections before
+    CockroachDB's session timeout closes them, preventing
+    'underlying connection is closed' errors during long runs.
+    """
+    pool = await asyncpg.create_pool(
+        settings.asyncpg_dsn,
+        min_size=2,
+        max_size=20,
+        max_inactive_connection_lifetime=300.0,  # recycle after 5 min idle
     )
-
-
-def build_session_maker(engine: AsyncEngine) -> async_sessionmaker[AsyncSession]:
-    return async_sessionmaker(bind=engine, expire_on_commit=False)
-
+    assert pool is not None
+    return pool

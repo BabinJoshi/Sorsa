@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -312,10 +312,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#high-level-flow" class="md-nav__link">
+  <a href="#system-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        High-level flow
+        System overview
       
     </span>
   </a>
@@ -323,22 +323,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#component-responsibilities" class="md-nav__link">
+  <a href="#module-by-module-breakdown" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Component responsibilities
+        Module-by-module breakdown
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Component responsibilities">
+    <nav class="md-nav" aria-label="Module-by-module breakdown">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#appconfigpy" class="md-nav__link">
+  <a href="#mainpy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        app/config.py
+        main.py
       
     </span>
   </a>
@@ -346,10 +346,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#appclientssorsa_clientpy" class="md-nav__link">
+  <a href="#appclipy-cli-entrypoint" class="md-nav__link">
     <span class="md-ellipsis">
       
-        app/clients/sorsa_client.py
+        app/cli.py — CLI entrypoint
       
     </span>
   </a>
@@ -357,10 +357,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#appdbrepositorypy" class="md-nav__link">
+  <a href="#appconfigpy-settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        app/db/repository.py
+        app/config.py — Settings
       
     </span>
   </a>
@@ -368,10 +368,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#apppipelinesearch_ingestorpy" class="md-nav__link">
+  <a href="#appmodelspy-shared-dataclasses" class="md-nav__link">
     <span class="md-ellipsis">
       
-        app/pipeline/search_ingestor.py
+        app/models.py — Shared dataclasses
       
     </span>
   </a>
@@ -379,10 +379,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#apppipelineaux_ingestorspy" class="md-nav__link">
+  <a href="#appclientssorsa_clientpy-http-client" class="md-nav__link">
     <span class="md-ellipsis">
       
-        app/pipeline/aux_ingestors.py
+        app/clients/sorsa_client.py — HTTP client
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="app/clients/sorsa_client.py — HTTP client">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perkeyratelimiter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PerKeyRateLimiter
       
     </span>
   </a>
@@ -390,10 +402,231 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#apppipelineorchestratorpy" class="md-nav__link">
+  <a href="#apikeystate" class="md-nav__link">
     <span class="md-ellipsis">
       
-        app/pipeline/orchestrator.py
+        ApiKeyState
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sorsaclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SorsaClient
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appdbconnectionpy-engine-factory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        app/db/connection.py — Engine factory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appdbrepositorypy-data-access-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        app/db/repository.py — Data access layer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="app/db/repository.py — Data access layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create_runproject_keyword-since-until-str" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_run(project_keyword, since, until) -&gt; str
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mark_run_finishedrun_id-status-errornone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mark_run_finished(run_id, status, error=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsert_post_rawrun_id-project_keyword-endpoint-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        upsert_post_raw(run_id, project_keyword, endpoint, payload)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsert_mindshare_postpayload-project_keyword-run_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        upsert_mindshare_post(payload, project_keyword, run_id)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsert_window_checkpointrun_id-project_keyword-window_id-endpoint-api_key_alias-next_cursor-status-error_messagenone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        upsert_window_checkpoint(run_id, project_keyword, window_id, endpoint, api_key_alias, next_cursor, status, error_message=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsert_user_scorex_id-username-display_name-avatar_url-followers_count-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        upsert_user_score(x_id, username, display_name, avatar_url, followers_count, score)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apppipelinesearch_ingestorpy-phase-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        app/pipeline/search_ingestor.py — Phase 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="app/pipeline/search_ingestor.py — Phase 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build_time_slicessince-until-slice_count-keys-listtimeslice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        build_time_slices(since, until, slice_count, keys) -&gt; list[TimeSlice]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searchingestoringest_72h-tuplesetstr-setstr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SearchIngestor.ingest_72h(...) -&gt; tuple[set[str], set[str]]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searchingestor_ingest_slice-tuplesetstr-setstr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SearchIngestor._ingest_slice(...) -&gt; tuple[set[str], set[str]]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apppipelineaux_ingestorspy-phases-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        app/pipeline/aux_ingestors.py — Phases 2–4
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="app/pipeline/aux_ingestors.py — Phases 2–4">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ingest_comments_for_postsposts-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ingest_comments_for_posts(posts, key, ...)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ingest_user_tweetsuser_ids-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ingest_user_tweets(user_ids, key, ...)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ingest_scoresuser_ids-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ingest_scores(user_ids, key, ...)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apppipelineorchestratorpy-top-level-coordinator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        app/pipeline/orchestrator.py — Top-level coordinator
       
     </span>
   </a>
@@ -406,10 +639,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#worker-portability-model" class="md-nav__link">
+  <a href="#dependency-injection-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Worker portability model
+        Dependency injection summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concurrency-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concurrency model
       
     </span>
   </a>
@@ -532,10 +776,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#high-level-flow" class="md-nav__link">
+  <a href="#system-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        High-level flow
+        System overview
       
     </span>
   </a>
@@ -543,22 +787,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#component-responsibilities" class="md-nav__link">
+  <a href="#module-by-module-breakdown" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Component responsibilities
+        Module-by-module breakdown
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Component responsibilities">
+    <nav class="md-nav" aria-label="Module-by-module breakdown">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#appconfigpy" class="md-nav__link">
+  <a href="#mainpy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        app/config.py
+        main.py
       
     </span>
   </a>
@@ -566,10 +810,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#appclientssorsa_clientpy" class="md-nav__link">
+  <a href="#appclipy-cli-entrypoint" class="md-nav__link">
     <span class="md-ellipsis">
       
-        app/clients/sorsa_client.py
+        app/cli.py — CLI entrypoint
       
     </span>
   </a>
@@ -577,10 +821,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#appdbrepositorypy" class="md-nav__link">
+  <a href="#appconfigpy-settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        app/db/repository.py
+        app/config.py — Settings
       
     </span>
   </a>
@@ -588,10 +832,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#apppipelinesearch_ingestorpy" class="md-nav__link">
+  <a href="#appmodelspy-shared-dataclasses" class="md-nav__link">
     <span class="md-ellipsis">
       
-        app/pipeline/search_ingestor.py
+        app/models.py — Shared dataclasses
       
     </span>
   </a>
@@ -599,10 +843,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#apppipelineaux_ingestorspy" class="md-nav__link">
+  <a href="#appclientssorsa_clientpy-http-client" class="md-nav__link">
     <span class="md-ellipsis">
       
-        app/pipeline/aux_ingestors.py
+        app/clients/sorsa_client.py — HTTP client
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="app/clients/sorsa_client.py — HTTP client">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perkeyratelimiter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PerKeyRateLimiter
       
     </span>
   </a>
@@ -610,10 +866,231 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#apppipelineorchestratorpy" class="md-nav__link">
+  <a href="#apikeystate" class="md-nav__link">
     <span class="md-ellipsis">
       
-        app/pipeline/orchestrator.py
+        ApiKeyState
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sorsaclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SorsaClient
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appdbconnectionpy-engine-factory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        app/db/connection.py — Engine factory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appdbrepositorypy-data-access-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        app/db/repository.py — Data access layer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="app/db/repository.py — Data access layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create_runproject_keyword-since-until-str" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_run(project_keyword, since, until) -&gt; str
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mark_run_finishedrun_id-status-errornone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mark_run_finished(run_id, status, error=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsert_post_rawrun_id-project_keyword-endpoint-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        upsert_post_raw(run_id, project_keyword, endpoint, payload)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsert_mindshare_postpayload-project_keyword-run_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        upsert_mindshare_post(payload, project_keyword, run_id)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsert_window_checkpointrun_id-project_keyword-window_id-endpoint-api_key_alias-next_cursor-status-error_messagenone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        upsert_window_checkpoint(run_id, project_keyword, window_id, endpoint, api_key_alias, next_cursor, status, error_message=None)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsert_user_scorex_id-username-display_name-avatar_url-followers_count-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        upsert_user_score(x_id, username, display_name, avatar_url, followers_count, score)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apppipelinesearch_ingestorpy-phase-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        app/pipeline/search_ingestor.py — Phase 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="app/pipeline/search_ingestor.py — Phase 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build_time_slicessince-until-slice_count-keys-listtimeslice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        build_time_slices(since, until, slice_count, keys) -&gt; list[TimeSlice]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searchingestoringest_72h-tuplesetstr-setstr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SearchIngestor.ingest_72h(...) -&gt; tuple[set[str], set[str]]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searchingestor_ingest_slice-tuplesetstr-setstr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SearchIngestor._ingest_slice(...) -&gt; tuple[set[str], set[str]]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apppipelineaux_ingestorspy-phases-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        app/pipeline/aux_ingestors.py — Phases 2–4
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="app/pipeline/aux_ingestors.py — Phases 2–4">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ingest_comments_for_postsposts-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ingest_comments_for_posts(posts, key, ...)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ingest_user_tweetsuser_ids-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ingest_user_tweets(user_ids, key, ...)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ingest_scoresuser_ids-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ingest_scores(user_ids, key, ...)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apppipelineorchestratorpy-top-level-coordinator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        app/pipeline/orchestrator.py — Top-level coordinator
       
     </span>
   </a>
@@ -626,10 +1103,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#worker-portability-model" class="md-nav__link">
+  <a href="#dependency-injection-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Worker portability model
+        Dependency injection summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concurrency-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concurrency model
       
     </span>
   </a>
@@ -654,67 +1142,453 @@
 
 
 <h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
-<h2 id="high-level-flow">High-level flow<a class="headerlink" href="#high-level-flow" title="Permanent link">&para;</a></h2>
+<p>This page documents every module in <code>app/</code>, its responsibilities, its internal design decisions, and how it connects to the rest of the system.</p>
+<hr />
+<h2 id="system-overview">System overview<a class="headerlink" href="#system-overview" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TD
-    localCli[LocalCLIOrWorkerEntry] --&gt; orchestrator[IngestionOrchestrator]
-    orchestrator --&gt; search[SearchIngestor72hSlices]
-    search --&gt; sorsaSearch[SorsaPOSTsearch-tweets]
-    search --&gt; repo[IngestionRepository]
-    repo --&gt; cockroach[CockroachDB]
+    entry["main.py\ncli.main()"]
+    config["app/config.py\nSettings"]
+    orch["app/pipeline/orchestrator.py\nIngestionOrchestrator"]
+    search["app/pipeline/search_ingestor.py\nSearchIngestor"]
+    aux["app/pipeline/aux_ingestors.py\nAuxiliaryIngestors"]
+    client["app/clients/sorsa_client.py\nSorsaClient + PerKeyRateLimiter"]
+    repo["app/db/repository.py\nIngestionRepository"]
+    conn["app/db/connection.py\nbuild_engine / build_session_maker"]
+    db[("CockroachDB\nmindshare + raw_data schemas")]
+    sorsa_api["Sorsa v3 API\nhttps://api.sorsa.io/v3"]
 
-    orchestrator --&gt; aux[AuxiliaryIngestors]
-    aux --&gt; comments[SorsaPOSTcomments]
-    aux --&gt; userTweets[SorsaPOSTuser-tweets]
-    aux --&gt; score[SorsaGETscore-id]
-    aux --&gt; repo</code></pre>
-<h2 id="component-responsibilities">Component responsibilities<a class="headerlink" href="#component-responsibilities" title="Permanent link">&para;</a></h2>
-<h3 id="appconfigpy"><code>app/config.py</code><a class="headerlink" href="#appconfigpy" title="Permanent link">&para;</a></h3>
+    entry --&gt; config
+    entry --&gt; orch
+    orch --&gt; search
+    orch --&gt; aux
+    orch --&gt; repo
+    search --&gt; client
+    search --&gt; repo
+    aux --&gt; client
+    aux --&gt; repo
+    repo --&gt; conn
+    conn --&gt; db
+    client --&gt; sorsa_api</code></pre>
+<hr />
+<h2 id="module-by-module-breakdown">Module-by-module breakdown<a class="headerlink" href="#module-by-module-breakdown" title="Permanent link">&para;</a></h2>
+<h3 id="mainpy"><code>main.py</code><a class="headerlink" href="#mainpy" title="Permanent link">&para;</a></h3>
+<p>The Python entry point. Contains only:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.cli</span><span class="w"> </span><span class="kn">import</span> <span class="n">main</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<p>No business logic. Exists purely to allow <code>python main.py</code> invocation from the repo root.</p>
+<hr />
+<h3 id="appclipy-cli-entrypoint"><code>app/cli.py</code> — CLI entrypoint<a class="headerlink" href="#appclipy-cli-entrypoint" title="Permanent link">&para;</a></h3>
+<p><strong>Responsibility:</strong> parse CLI arguments, bootstrap the runtime environment, drive the async orchestrator.</p>
+<p><strong>How it works:</strong></p>
+<ol>
+<li>Defines <code>main()</code> which creates an <code>argparse.ArgumentParser</code> with a single required argument: <code>--project-keyword</code>.</li>
+<li>Calls <code>asyncio.run(_run(keyword))</code> to enter the async event loop.</li>
+<li>Inside <code>_run</code>, calls <code>load_dotenv()</code> first — this reads <code>.env</code> from the working directory before <code>Settings</code> instantiation.</li>
+<li>Instantiates <code>Settings()</code> which binds all env vars via Pydantic-settings.</li>
+<li>Constructs <code>IngestionOrchestrator(settings)</code>.</li>
+<li>Awaits <code>orchestrator.run_project_ingestion(project_keyword)</code> — this is the entire pipeline.</li>
+<li>In a <code>finally</code> block, always calls <code>orchestrator.close()</code> to dispose the SQLAlchemy engine and release DB connections.</li>
+</ol>
+<p><strong>Worker portability:</strong> A background worker can skip the CLI layer entirely and call <code>IngestionOrchestrator.run_project_ingestion(keyword)</code> directly after constructing an orchestrator with a <code>Settings</code> instance. No CLI assumptions leak into the pipeline.</p>
+<hr />
+<h3 id="appconfigpy-settings"><code>app/config.py</code> — Settings<a class="headerlink" href="#appconfigpy-settings" title="Permanent link">&para;</a></h3>
+<p><strong>Responsibility:</strong> central, validated, typed configuration loaded from environment variables.</p>
+<p><strong>Implementation:</strong> extends <code>pydantic_settings.BaseSettings</code> with <code>SettingsConfigDict</code>:
+- <code>env_file = ".env"</code> — reads <code>.env</code> automatically (but <code>cli.py</code> calls <code>load_dotenv()</code> first for explicit control).
+- <code>env_file_encoding = "utf-8"</code>
+- <code>extra = "ignore"</code> — silently ignores unknown env vars.</p>
+<p><strong>Fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Env var</th>
+<th>Default</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cockroach_database_url</code></td>
+<td><code>COCKROACH_DATABASE_URL</code></td>
+<td>required</td>
+<td><code>str</code></td>
+</tr>
+<tr>
+<td><code>sorsa_base_url</code></td>
+<td><code>SORSA_BASE_URL</code></td>
+<td><code>https://api.sorsa.io/v3</code></td>
+<td><code>str</code></td>
+</tr>
+<tr>
+<td><code>sorsa_api_key</code></td>
+<td><code>SORSA_API_KEY</code></td>
+<td>required</td>
+<td><code>str</code></td>
+</tr>
+<tr>
+<td><code>sorsa_per_key_rps</code></td>
+<td><code>SORSA_PER_KEY_RPS</code></td>
+<td><code>20</code></td>
+<td><code>int</code></td>
+</tr>
+<tr>
+<td><code>search_slice_count</code></td>
+<td><code>SEARCH_SLICE_COUNT</code></td>
+<td><code>20</code></td>
+<td><code>int</code></td>
+</tr>
+<tr>
+<td><code>search_max_concurrency</code></td>
+<td><code>SEARCH_MAX_CONCURRENCY</code></td>
+<td><code>20</code></td>
+<td><code>int</code></td>
+</tr>
+<tr>
+<td><code>search_order</code></td>
+<td><code>SEARCH_ORDER</code></td>
+<td><code>"latest"</code></td>
+<td><code>str</code></td>
+</tr>
+<tr>
+<td><code>max_retries</code></td>
+<td><code>SORSA_MAX_RETRIES</code></td>
+<td><code>4</code></td>
+<td><code>int</code></td>
+</tr>
+<tr>
+<td><code>retry_429_sleep_seconds</code></td>
+<td><code>SORSA_RETRY_429_SLEEP_SECONDS</code></td>
+<td><code>1.0</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td><code>retry_5xx_sleep_seconds</code></td>
+<td><code>SORSA_RETRY_5XX_SLEEP_SECONDS</code></td>
+<td><code>2.0</code></td>
+<td><code>float</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>api_keys</code> property:</strong> returns <code>[self.sorsa_api_key.strip()]</code> — a single-element list. The orchestrator iterates this list using round-robin index assignment (<code>key_idx % len(keys)</code>), so the design is already multi-key capable; the config just doesn't expose comma-separated parsing yet.</p>
+<hr />
+<h3 id="appmodelspy-shared-dataclasses"><code>app/models.py</code> — Shared dataclasses<a class="headerlink" href="#appmodelspy-shared-dataclasses" title="Permanent link">&para;</a></h3>
+<p><strong><code>TimeSlice</code></strong> — frozen dataclass representing one time-window segment assigned to an API key:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>slice_id</code></td>
+<td><code>int</code></td>
+<td>1-based index</td>
+</tr>
+<tr>
+<td><code>since</code></td>
+<td><code>datetime</code></td>
+<td>Start of this slice (UTC)</td>
+</tr>
+<tr>
+<td><code>until</code></td>
+<td><code>datetime</code></td>
+<td>End of this slice (UTC)</td>
+</tr>
+<tr>
+<td><code>api_key_alias</code></td>
+<td><code>str</code></td>
+<td>Which key alias is assigned to this slice</td>
+</tr>
+</tbody>
+</table>
+<p>Used by <code>build_time_slices()</code> in <code>search_ingestor.py</code> and consumed by <code>SearchIngestor._ingest_slice()</code>.</p>
+<p><strong><code>IngestionContext</code></strong> — mutable dataclass holding run metadata (run_id, project_keyword, slice_id, endpoint, api_key_alias). Currently unused in running code — reserved for future structured context propagation.</p>
+<p><strong><code>JsonDict</code></strong> — type alias for <code>dict[str, Any]</code>.</p>
+<hr />
+<h3 id="appclientssorsa_clientpy-http-client"><code>app/clients/sorsa_client.py</code> — HTTP client<a class="headerlink" href="#appclientssorsa_clientpy-http-client" title="Permanent link">&para;</a></h3>
+<p><strong>Responsibility:</strong> all communication with the Sorsa v3 REST API — rate limiting, retrying, authentication.</p>
+<h4 id="perkeyratelimiter"><code>PerKeyRateLimiter</code><a class="headerlink" href="#perkeyratelimiter" title="Permanent link">&para;</a></h4>
+<p>Enforces a maximum of <strong><code>rps</code> requests per second</strong> per API key alias. The Sorsa API allows a flat <code>SORSA_PER_KEY_RPS</code> requests every second (default: 20).</p>
+<p>Implementation:
+- Maintains a <code>deque[float]</code> of event timestamps for each alias, keyed by <code>alias</code> string.
+- <code>acquire(alias)</code> is an async method that:
+  1. Locks (<code>asyncio.Lock</code>) and trims timestamps older than 1 second from the front of the deque.
+  2. If the deque length is below <code>rps</code>, appends the current monotonic time and returns — the request may proceed.
+  3. Otherwise calculates <code>sleep_for = 1.0 - (now - q[0])</code>, releases the lock, and sleeps until the oldest tracked request falls outside the 1-second window.
+  4. Loops until a slot is available.
+- The lock is released before sleeping so other coroutines are not blocked while waiting.
+- <code>rps</code> is floored to 1 via <code>max(1, rps)</code>.</p>
+<h4 id="apikeystate"><code>ApiKeyState</code><a class="headerlink" href="#apikeystate" title="Permanent link">&para;</a></h4>
+<p>A simple <code>@dataclass</code> holding <code>alias: str</code> and <code>api_key: str</code>. The alias is used for rate limiter keying and checkpoint labeling.</p>
+<h4 id="sorsaclient"><code>SorsaClient</code><a class="headerlink" href="#sorsaclient" title="Permanent link">&para;</a></h4>
+<p>Stateless HTTP call wrapper. Constructor receives the rate limiter (injected), base URL, timeout, and retry config.</p>
+<p><strong><code>_request(method, path, key_state, payload)</code></strong> — core request method:</p>
+<ol>
+<li>Calls <code>self._limiter.acquire(key_state.alias)</code> before every attempt (including retries).</li>
+<li>Opens a <strong>fresh <code>aiohttp.ClientSession</code> per request</strong> (not per client instance). This avoids connection reuse issues across concurrent coroutines.</li>
+<li>Sends <code>ApiKey: &lt;key&gt;</code> and <code>Accept: application/json</code> headers; adds <code>Content-Type: application/json</code> for POST.</li>
+<li>Parses response JSON with <code>content_type=None</code> to tolerate non-standard content-type headers.</li>
+<li>On success (2xx): returns the response dict (or <code>{}</code> if the body isn't a dict).</li>
+<li>On HTTP 429: sleeps <code>retry_429_sleep_seconds</code> and retries if attempts remain; raises <code>SorsaRateLimitError</code> on final attempt.</li>
+<li>On HTTP 5xx: sleeps <code>retry_5xx_sleep_seconds</code> and retries; raises <code>SorsaClientError</code> on final attempt.</li>
+<li>On <code>aiohttp.ClientError</code> or <code>asyncio.TimeoutError</code>: sleeps <code>retry_5xx_sleep_seconds</code> and retries; raises <code>SorsaClientError</code> on final attempt.</li>
+<li>Falls through to a terminal <code>raise SorsaClientError("request retries exhausted")</code> as a safety net.</li>
+</ol>
+<p><strong>Endpoint methods:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>HTTP</th>
+<th>Path</th>
+<th>Key params</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>search_tweets</code></td>
+<td>POST</td>
+<td><code>/search-tweets</code></td>
+<td><code>query</code> (includes <code>since:</code> / <code>until:</code> inline), <code>order</code>, optional <code>next_cursor</code></td>
+</tr>
+<tr>
+<td><code>comments</code></td>
+<td>POST</td>
+<td><code>/comments</code></td>
+<td><code>tweet_link</code> (post ID as string), optional <code>next_cursor</code></td>
+</tr>
+<tr>
+<td><code>user_tweets</code></td>
+<td>POST</td>
+<td><code>/user-tweets</code></td>
+<td><code>user_id</code>, optional <code>next_cursor</code></td>
+</tr>
+<tr>
+<td><code>score_id</code></td>
+<td>GET</td>
+<td><code>/score-id/{x_id}</code></td>
+<td>path param only</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>to_sorsa_date(dt)</code></strong> — utility function that formats a <code>datetime</code> into Sorsa's expected format: <code>YYYY-MM-DD_HH:MM:SS_UTC</code>. Called by <code>SearchIngestor._ingest_slice()</code> when constructing <code>since:</code> / <code>until:</code> query clauses.</p>
+<hr />
+<h3 id="appdbconnectionpy-engine-factory"><code>app/db/connection.py</code> — Engine factory<a class="headerlink" href="#appdbconnectionpy-engine-factory" title="Permanent link">&para;</a></h3>
+<p><strong>Responsibility:</strong> create the SQLAlchemy async engine and session factory.</p>
+<p><strong><code>build_engine(settings)</code>:</strong>
+- Calls <code>create_async_engine</code> with <code>pool_pre_ping=True</code>, <code>pool_size=20</code>, <code>max_overflow=10</code>.
+- <code>pool_pre_ping</code> ensures stale connections are detected and recycled before use.</p>
+<p><strong><code>build_session_maker(engine)</code>:</strong>
+- Returns an <code>async_sessionmaker[AsyncSession]</code> with <code>expire_on_commit=False</code>.
+- <code>expire_on_commit=False</code> prevents SQLAlchemy from expiring ORM objects after commit (important for async patterns where lazy loading doesn't work).</p>
+<p>Both are called once in <code>IngestionOrchestrator.__init__</code> and the session maker is shared across all repository calls for the lifetime of one run.</p>
+<hr />
+<h3 id="appdbrepositorypy-data-access-layer"><code>app/db/repository.py</code> — Data access layer<a class="headerlink" href="#appdbrepositorypy-data-access-layer" title="Permanent link">&para;</a></h3>
+<p><strong>Responsibility:</strong> all SQL. No business logic; takes validated Python values and executes the correct SQL statement.</p>
+<p>Every method opens a fresh <code>AsyncSession</code> using <code>async with self._session_maker() as session</code>, executes, commits, and closes. The session scope is per-operation (not per run).</p>
+<h4 id="create_runproject_keyword-since-until-str"><code>create_run(project_keyword, since, until) -&gt; str</code><a class="headerlink" href="#create_runproject_keyword-since-until-str" title="Permanent link">&para;</a></h4>
+<p>Generates a UUID (<code>str(uuid4())</code>), inserts a row into <code>mindshare.ingestion_run</code> with <code>run_status = 'running'</code> and returns the UUID. Called at the start of every <code>run_project_ingestion</code>.</p>
+<h4 id="mark_run_finishedrun_id-status-errornone"><code>mark_run_finished(run_id, status, error=None)</code><a class="headerlink" href="#mark_run_finishedrun_id-status-errornone" title="Permanent link">&para;</a></h4>
+<p>Updates <code>mindshare.ingestion_run</code> setting <code>run_status</code>, <code>error_summary</code>, and <code>finished_at = now()</code>. Called with <code>'completed'</code> on success or <code>'failed'</code> with the exception string on any uncaught error.</p>
+<h4 id="upsert_post_rawrun_id-project_keyword-endpoint-payload"><code>upsert_post_raw(run_id, project_keyword, endpoint, payload)</code><a class="headerlink" href="#upsert_post_rawrun_id-project_keyword-endpoint-payload" title="Permanent link">&para;</a></h4>
+<p>Inserts one row into <code>raw_data.raw_post_ingestion</code>. The conflict key is <code>(post_id, endpoint)</code>. On conflict, replaces <code>raw_json</code>, <code>fetched_at</code>, <code>project_keyword</code>, and <code>run_id</code>. Skips silently if <code>payload["id"]</code> is absent or empty.</p>
+<p>This table is a <strong>raw audit log</strong> — it preserves the last seen API payload for any post+endpoint combination, regardless of which project or run fetched it.</p>
+<h4 id="upsert_mindshare_postpayload-project_keyword-run_id"><code>upsert_mindshare_post(payload, project_keyword, run_id)</code><a class="headerlink" href="#upsert_mindshare_postpayload-project_keyword-run_id" title="Permanent link">&para;</a></h4>
+<p>The most complex method. Normalizes a raw tweet dict into <code>mindshare.mindshare_post</code>.</p>
+<p><strong>Field extraction from the raw payload:</strong></p>
+<table>
+<thead>
+<tr>
+<th>DB column</th>
+<th>Source in payload</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>post_id</code></td>
+<td><code>payload["id"]</code></td>
+</tr>
+<tr>
+<td><code>user_x_id</code></td>
+<td><code>payload["user"]["id"]</code></td>
+</tr>
+<tr>
+<td><code>project_keywords</code></td>
+<td><code>ARRAY[project_keyword]</code> (merged on conflict — see below)</td>
+</tr>
+<tr>
+<td><code>full_text</code></td>
+<td><code>payload["full_text"]</code></td>
+</tr>
+<tr>
+<td><code>retweeted_post_id</code></td>
+<td><code>payload["retweeted_status"]["id"]</code></td>
+</tr>
+<tr>
+<td><code>replied_post_id</code></td>
+<td><code>payload["in_reply_to_tweet_id"]</code></td>
+</tr>
+<tr>
+<td><code>quoted_post_id</code></td>
+<td><code>payload["quoted_status"]["id"]</code></td>
+</tr>
+<tr>
+<td><code>root_post_id</code></td>
+<td><code>payload["conversation_id_str"]</code></td>
+</tr>
+<tr>
+<td><code>view_count</code></td>
+<td><code>payload["view_count"]</code></td>
+</tr>
+<tr>
+<td><code>reply_count</code></td>
+<td><code>payload["reply_count"]</code></td>
+</tr>
+<tr>
+<td><code>retweet_count</code></td>
+<td><code>payload["retweet_count"]</code></td>
+</tr>
+<tr>
+<td><code>quote_count</code></td>
+<td><code>payload["quote_count"]</code></td>
+</tr>
+<tr>
+<td><code>favorite_count</code></td>
+<td><code>payload["likes_count"]</code></td>
+</tr>
+<tr>
+<td><code>entities</code></td>
+<td><code>payload["entities"]</code> (stored as JSONB)</td>
+</tr>
+<tr>
+<td><code>post_created_at</code></td>
+<td><code>payload["created_at"]</code></td>
+</tr>
+</tbody>
+</table>
+<p>Skips rows where <code>post_id</code>, <code>user_x_id</code>, or <code>created_at</code> are missing/empty.</p>
+<p><strong>Conflict resolution on <code>post_id</code>:</strong>
+- <code>project_keywords</code>: merged via <code>array_agg(DISTINCT k)</code> over <code>existing || incoming</code> — deduplicates, never loses a keyword.
+- <code>full_text</code>: only replaced if the incoming value is non-empty; preserves existing text otherwise.
+- All engagement counts: always overwritten with latest values.
+- <code>retweeted_post_id</code>, <code>replied_post_id</code>, <code>quoted_post_id</code>, <code>root_post_id</code>, <code>entities</code>: use <code>COALESCE(EXCLUDED, existing)</code> — keeps the first non-null value.
+- <code>last_seen_at</code>, <code>last_ingested_run_id</code>: always updated to reflect this run.</p>
+<h4 id="upsert_window_checkpointrun_id-project_keyword-window_id-endpoint-api_key_alias-next_cursor-status-error_messagenone"><code>upsert_window_checkpoint(run_id, project_keyword, window_id, endpoint, api_key_alias, next_cursor, status, error_message=None)</code><a class="headerlink" href="#upsert_window_checkpointrun_id-project_keyword-window_id-endpoint-api_key_alias-next_cursor-status-error_messagenone" title="Permanent link">&para;</a></h4>
+<p>Upserts into <code>mindshare.ingestion_window_checkpoint</code>. Conflict key is <code>(run_id, project_keyword, window_id, endpoint)</code>. On conflict, updates <code>api_key_alias</code>, <code>next_cursor</code>, <code>status</code>, <code>error_message</code>, and <code>updated_at</code>. This is called after every page fetch to maintain a recoverable cursor.</p>
+<h4 id="upsert_user_scorex_id-username-display_name-avatar_url-followers_count-score"><code>upsert_user_score(x_id, username, display_name, avatar_url, followers_count, score)</code><a class="headerlink" href="#upsert_user_scorex_id-username-display_name-avatar_url-followers_count-score" title="Permanent link">&para;</a></h4>
+<p>Upserts into <code>mindshare.mindshare_user</code>. Conflict key is <code>x_id</code>. On conflict, updates <code>x_username</code>, <code>display_name</code>, <code>score</code>, <code>avatar_url</code>, <code>followers_count</code>, <code>last_score_fetched_at</code>, and <code>updated_at</code> — using <code>COALESCE(NULLIF(EXCLUDED.field, ''), existing)</code> so empty strings don't clobber non-empty stored values.</p>
+<hr />
+<h3 id="apppipelinesearch_ingestorpy-phase-1"><code>app/pipeline/search_ingestor.py</code> — Phase 1<a class="headerlink" href="#apppipelinesearch_ingestorpy-phase-1" title="Permanent link">&para;</a></h3>
+<p><strong>Responsibility:</strong> ingest all tweets matching the keyword from the last 72 hours.</p>
+<h4 id="build_time_slicessince-until-slice_count-keys-listtimeslice"><code>build_time_slices(since, until, slice_count, keys) -&gt; list[TimeSlice]</code><a class="headerlink" href="#build_time_slicessince-until-slice_count-keys-listtimeslice" title="Permanent link">&para;</a></h4>
+<p>Module-level function. Divides <code>[since, until]</code> into <code>slice_count</code> equal sub-windows. Each slice is assigned an API key alias by round-robin: <code>keys[i % len(keys)].alias</code>. The last slice always ends exactly at <code>until</code> to avoid floating-point drift.</p>
+<p>Example with <code>slice_count=3</code> over 72 hours and one key:</p>
+<div class="highlight"><pre><span></span><code>slice_1: t+0h   → t+24h  (key_1)
+slice_2: t+24h  → t+48h  (key_1)
+slice_3: t+48h  → t+72h  (key_1)
+</code></pre></div>
+<h4 id="searchingestoringest_72h-tuplesetstr-setstr"><code>SearchIngestor.ingest_72h(...) -&gt; tuple[set[str], set[str]]</code><a class="headerlink" href="#searchingestoringest_72h-tuplesetstr-setstr" title="Permanent link">&para;</a></h4>
+<p>Returns <code>(all_post_ids, all_user_ids)</code> — the union of every post ID and user ID seen across all slices.</p>
+<ol>
+<li>Computes <code>until = now()</code>, <code>since = until - 72h</code>.</li>
+<li>Calls <code>build_time_slices()</code> to get the slice list.</li>
+<li>Builds a <code>key_map: {alias -&gt; ApiKeyState}</code> for O(1) lookup during slice execution.</li>
+<li>Computes <code>effective_concurrency = max(1, min(slice_count, max_concurrency, per_key_rps))</code>.</li>
+<li>Creates <code>asyncio.Semaphore(effective_concurrency)</code>.</li>
+<li>Launches all slice coroutines as tasks via <code>asyncio.gather(*tasks)</code>. Each coroutine acquires the semaphore before calling <code>_ingest_slice</code>.</li>
+<li>Merges results across all slices with <code>set.update()</code>.</li>
+</ol>
+<h4 id="searchingestor_ingest_slice-tuplesetstr-setstr"><code>SearchIngestor._ingest_slice(...) -&gt; tuple[set[str], set[str]]</code><a class="headerlink" href="#searchingestor_ingest_slice-tuplesetstr-setstr" title="Permanent link">&para;</a></h4>
+<p>Runs the paginated fetch loop for one time slice:</p>
+<ol>
+<li>Sets <code>window_id = f"slice_{slice_.slice_id}"</code>.</li>
+<li>Loops: calls <code>client.search_tweets()</code> with formatted since/until timestamps.</li>
+<li>For each tweet in <code>data["tweets"]</code>, extracts <code>post_id</code> and <code>user_id</code>, adds to local sets, and calls <code>repo.upsert_post_raw()</code> and <code>repo.upsert_mindshare_post()</code>.</li>
+<li>Reads <code>data.get("next_cursor")</code>. If present: calls <code>repo.upsert_window_checkpoint(status="running")</code> and loops. If absent: calls <code>repo.upsert_window_checkpoint(status="completed")</code> and returns.</li>
+<li>On any exception: calls <code>repo.upsert_window_checkpoint(status="failed", error_message=str(exc))</code> and re-raises. The semaphore is released when the coroutine exits, allowing another slice to start.</li>
+</ol>
+<hr />
+<h3 id="apppipelineaux_ingestorspy-phases-24"><code>app/pipeline/aux_ingestors.py</code> — Phases 2–4<a class="headerlink" href="#apppipelineaux_ingestorspy-phases-24" title="Permanent link">&para;</a></h3>
+<p><strong>Responsibility:</strong> sequential ingestion of comments, user timelines, and user scores for all IDs discovered in Phase 1.</p>
+<p>All three methods receive <code>run_id</code>, <code>project_keyword</code>, and <code>key: ApiKeyState</code> — they use only the first available key (passed by the orchestrator).</p>
+<h4 id="ingest_comments_for_postsposts-key"><code>ingest_comments_for_posts(posts, key, ...)</code><a class="headerlink" href="#ingest_comments_for_postsposts-key" title="Permanent link">&para;</a></h4>
+<p>For each <code>post_id</code> in <code>posts</code>:
+- <code>window_id = f"comments_{post_id}"</code>
+- Paginated loop: calls <code>client.comments(tweet_link=post_id, cursor=cursor)</code>.
+- Each returned tweet is upserted raw and normalized (same calls as the search phase).
+- Checkpoint written with <code>status="running"</code> (cursor present) or <code>"completed"</code> (no cursor).
+- On exception: checkpoint written with <code>status="failed"</code> and <code>error_message</code>; loop breaks (<code>continue</code> to next post rather than propagating). This means a single failed post doesn't abort the whole comments phase.</p>
+<h4 id="ingest_user_tweetsuser_ids-key"><code>ingest_user_tweets(user_ids, key, ...)</code><a class="headerlink" href="#ingest_user_tweetsuser_ids-key" title="Permanent link">&para;</a></h4>
+<p>Same pattern as comments but for user timelines:
+- <code>window_id = f"user_{user_id}"</code>
+- Calls <code>client.user_tweets(user_id=user_id, cursor=cursor)</code>.
+- Same raw + normalized upsert + checkpoint pattern.
+- Per-user errors are silently caught and checkpointed as <code>failed</code>; iteration continues.</p>
+<h4 id="ingest_scoresuser_ids-key"><code>ingest_scores(user_ids, key, ...)</code><a class="headerlink" href="#ingest_scoresuser_ids-key" title="Permanent link">&para;</a></h4>
+<p>Scores are not paginated — one GET per user:
+- <code>window_id = f"score_{user_id}"</code>
+- Calls <code>client.score_id(x_id=user_id)</code>.
+- Calls <code>repo.upsert_user_score()</code> with <code>username</code>, <code>display_name</code>, <code>profile_image_url</code>, <code>followers_count</code>, <code>score</code> extracted from the response.
+- Writes checkpoint with <code>status="completed"</code> or <code>"failed"</code>.
+- Per-user errors are caught (not re-raised) — other users are still scored.</p>
+<hr />
+<h3 id="apppipelineorchestratorpy-top-level-coordinator"><code>app/pipeline/orchestrator.py</code> — Top-level coordinator<a class="headerlink" href="#apppipelineorchestratorpy-top-level-coordinator" title="Permanent link">&para;</a></h3>
+<p><strong>Responsibility:</strong> wire all components together, control phase order, own the run lifecycle.</p>
+<p><strong><code>__init__(settings)</code>:</strong>
+- Creates engine and session maker via <code>connection.py</code>.
+- Creates <code>IngestionRepository</code>.
+- Creates <code>PerKeyRateLimiter(settings.sorsa_per_key_rps)</code>.
+- Creates <code>SorsaClient</code> with all retry/timeout/limiter config.
+- Creates <code>SearchIngestor(repo, client)</code> and <code>AuxiliaryIngestors(repo, client)</code>.</p>
+<p><strong><code>_api_keys()</code>:</strong>
+Converts <code>settings.api_keys</code> (a list of key strings) into <code>list[ApiKeyState]</code> with auto-generated aliases <code>key_1</code>, <code>key_2</code>, etc.</p>
+<p><strong><code>run_project_ingestion(project_keyword) -&gt; str</code>:</strong></p>
+<div class="highlight"><pre><span></span><code>now = datetime.now(UTC)
+since = now - 72h
+run_id = repo.create_run(...)
+try:
+    post_ids, user_ids = search_ingestor.ingest_72h(...)
+    first_key = api_keys()[0]
+    aux_ingestors.ingest_comments_for_posts(posts=post_ids, key=first_key, ...)
+    aux_ingestors.ingest_user_tweets(user_ids=user_ids, key=first_key, ...)
+    aux_ingestors.ingest_scores(user_ids=user_ids, key=first_key, ...)
+    repo.mark_run_finished(run_id, &quot;completed&quot;)
+    return run_id
+except Exception as exc:
+    repo.mark_run_finished(run_id, &quot;failed&quot;, str(exc))
+    raise
+</code></pre></div>
+<p>Any uncaught exception from <code>SearchIngestor</code> (which re-raises slice failures) will abort aux phases, mark the run <code>failed</code>, and propagate to the CLI which prints the traceback.</p>
+<p>Note: aux phase errors per-post/user are <strong>not</strong> re-raised (swallowed in <code>AuxiliaryIngestors</code>), so they don't abort the run.</p>
+<p><strong><code>close()</code>:</strong>
+Disposes the SQLAlchemy engine (closes all DB connections). Called in <code>cli.py</code>'s <code>finally</code> block.</p>
+<hr />
+<h2 id="dependency-injection-summary">Dependency injection summary<a class="headerlink" href="#dependency-injection-summary" title="Permanent link">&para;</a></h2>
+<p>All dependencies flow from <code>IngestionOrchestrator.__init__</code> downward — no singleton globals, no module-level state (except <code>asyncio.Lock</code> inside <code>PerKeyRateLimiter</code>, which is instance-scoped):</p>
+<div class="highlight"><pre><span></span><code>Settings
+  └── IngestionOrchestrator
+        ├── build_engine → AsyncEngine
+        │     └── build_session_maker → async_sessionmaker
+        │           └── IngestionRepository
+        ├── PerKeyRateLimiter
+        │     └── SorsaClient
+        ├── SearchIngestor(repo, client)
+        └── AuxiliaryIngestors(repo, client)
+</code></pre></div>
+<hr />
+<h2 id="concurrency-model">Concurrency model<a class="headerlink" href="#concurrency-model" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Loads all runtime settings via environment variables.</li>
-<li>Parses multiple API keys from a comma-separated input.</li>
+<li>Phase 1 (search) is <strong>concurrent</strong> — <code>asyncio.gather</code> runs all slice coroutines in the same event loop, bounded by a semaphore.</li>
+<li>Phases 2–4 (comments, user-tweets, scores) are <strong>sequential</strong> — each phase iterates its input set with a plain <code>for</code> loop and <code>await</code>.</li>
+<li>All I/O (HTTP and DB) is async throughout — no blocking calls on the event loop thread.</li>
+<li>The rate limiter uses a single <code>asyncio.Lock</code> to serialize timestamp deque updates; it does <strong>not</strong> block the event loop while sleeping (it <code>await asyncio.sleep()</code>s).</li>
 </ul>
-<h3 id="appclientssorsa_clientpy"><code>app/clients/sorsa_client.py</code><a class="headerlink" href="#appclientssorsa_clientpy" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Implements endpoint wrappers:</li>
-<li><code>search_tweets</code></li>
-<li><code>comments</code></li>
-<li><code>user_tweets</code></li>
-<li><code>score_id</code></li>
-<li>Enforces per-key rate control.</li>
-<li>Retries transient failures (<code>429</code>, <code>5xx</code>, network timeout).</li>
-</ul>
-<h3 id="appdbrepositorypy"><code>app/db/repository.py</code><a class="headerlink" href="#appdbrepositorypy" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Persists ingestion run lifecycle.</li>
-<li>Persists raw API payloads.</li>
-<li>Performs strict upsert into <code>mindshare_post</code>.</li>
-<li>Maintains endpoint/window checkpoints.</li>
-</ul>
-<h3 id="apppipelinesearch_ingestorpy"><code>app/pipeline/search_ingestor.py</code><a class="headerlink" href="#apppipelinesearch_ingestorpy" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Splits the last 72 hours into slices.</li>
-<li>Executes search ingestion concurrently by slice.</li>
-<li>Tracks cursor progress in checkpoints.</li>
-</ul>
-<h3 id="apppipelineaux_ingestorspy"><code>app/pipeline/aux_ingestors.py</code><a class="headerlink" href="#apppipelineaux_ingestorspy" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Ingests comments for discovered posts.</li>
-<li>Ingests user timelines for discovered users.</li>
-<li>Fetches and upserts user scores.</li>
-</ul>
-<h3 id="apppipelineorchestratorpy"><code>app/pipeline/orchestrator.py</code><a class="headerlink" href="#apppipelineorchestratorpy" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Creates run record.</li>
-<li>Runs search phase, then aux phases.</li>
-<li>Marks run completed/failed.</li>
-</ul>
-<h2 id="worker-portability-model">Worker portability model<a class="headerlink" href="#worker-portability-model" title="Permanent link">&para;</a></h2>
-<p>The local runner and future worker both call the same orchestrator API:</p>
-<ul>
-<li>local: <code>python main.py --project-keyword ...</code></li>
-<li>worker: invoke <code>IngestionOrchestrator.run_project_ingestion(...)</code> directly</li>
-</ul>
-<p>No ingestion logic is tied to local-only assumptions.</p>
 
 
 

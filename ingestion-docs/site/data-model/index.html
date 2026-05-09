@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -339,10 +339,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#design-principles" class="md-nav__link">
+  <a href="#schemas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Design principles
+        Schemas
       
     </span>
   </a>
@@ -350,16 +350,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-tables" class="md-nav__link">
+  <a href="#tables" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core tables
+        Tables
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Core tables">
+    <nav class="md-nav" aria-label="Tables">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mindsharemindshare_user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mindshare.mindshare_user
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#mindsharemindshare_post" class="md-nav__link">
@@ -411,24 +422,63 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#upsert-conflict-behavior" class="md-nav__link">
+  <a href="#upsert-conflict-behavior-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Upsert conflict behavior
+        Upsert conflict behavior summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Upsert conflict behavior summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mindshare_post-conflict-rules-full-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mindshare_post conflict rules (full detail)
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#merge-semantics-diagram" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#mindshare_user-conflict-rules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Merge semantics diagram
+        mindshare_user conflict rules
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raw_post_ingestion-conflict-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        raw_post_ingestion conflict rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ingestion_window_checkpoint-conflict-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ingestion_window_checkpoint conflict rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -521,10 +571,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#design-principles" class="md-nav__link">
+  <a href="#schemas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Design principles
+        Schemas
       
     </span>
   </a>
@@ -532,16 +582,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-tables" class="md-nav__link">
+  <a href="#tables" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core tables
+        Tables
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Core tables">
+    <nav class="md-nav" aria-label="Tables">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mindsharemindshare_user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mindshare.mindshare_user
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#mindsharemindshare_post" class="md-nav__link">
@@ -593,24 +654,63 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#upsert-conflict-behavior" class="md-nav__link">
+  <a href="#upsert-conflict-behavior-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Upsert conflict behavior
+        Upsert conflict behavior summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Upsert conflict behavior summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mindshare_post-conflict-rules-full-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mindshare_post conflict rules (full detail)
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#merge-semantics-diagram" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#mindshare_user-conflict-rules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Merge semantics diagram
+        mindshare_user conflict rules
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raw_post_ingestion-conflict-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        raw_post_ingestion conflict rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ingestion_window_checkpoint-conflict-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ingestion_window_checkpoint conflict rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -632,63 +732,522 @@
 
 
 <h1 id="data-model">Data Model<a class="headerlink" href="#data-model" title="Permanent link">&para;</a></h1>
-<p>This page documents ingestion-specific schema behavior in <code>ddl/ddl_mindshare_ingestion.sql</code>.</p>
-<h2 id="design-principles">Design principles<a class="headerlink" href="#design-principles" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Strict upsert-only writes.</li>
-<li>One logical tweet row per <code>post_id</code>.</li>
-<li>No duplicate tweet rows across projects.</li>
-<li><code>project_keywords</code> is merged as set-like array on conflict.</li>
-</ul>
-<h2 id="core-tables">Core tables<a class="headerlink" href="#core-tables" title="Permanent link">&para;</a></h2>
+<p>This page documents the full CockroachDB schema used by the ingestion pipeline. All DDL lives in <code>ddl/ddl_mindshare_ingestion.sql</code>.</p>
+<hr />
+<h2 id="schemas">Schemas<a class="headerlink" href="#schemas" title="Permanent link">&para;</a></h2>
+<p>Two schemas are created:</p>
+<table>
+<thead>
+<tr>
+<th>Schema</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mindshare</code></td>
+<td>Normalized production data — posts, users, run tracking, checkpoints</td>
+</tr>
+<tr>
+<td><code>raw_data</code></td>
+<td>Raw JSONB API payloads for debugging and replay</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">mindshare</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">raw_data</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h2 id="tables">Tables<a class="headerlink" href="#tables" title="Permanent link">&para;</a></h2>
+<h3 id="mindsharemindshare_user"><code>mindshare.mindshare_user</code><a class="headerlink" href="#mindsharemindshare_user" title="Permanent link">&para;</a></h3>
+<p>Stores one row per X/Twitter user, updated with their latest profile and influence score.</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">mindshare_user</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">x_id</span><span class="w">                  </span><span class="nb">INT8</span><span class="w">          </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">x_username</span><span class="w">            </span><span class="n">STRING</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w">   </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">display_name</span><span class="w">          </span><span class="n">STRING</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w">   </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">score</span><span class="w">                 </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">avatar_url</span><span class="w">            </span><span class="n">STRING</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="w">  </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">adjustment_config</span><span class="w">     </span><span class="n">JSONB</span><span class="w">         </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">followers_count</span><span class="w">       </span><span class="n">INT4</span><span class="w">          </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">verified</span><span class="w">              </span><span class="n">BOOL</span><span class="w">          </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">false</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w">            </span><span class="n">TIMESTAMPTZ</span><span class="w">   </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">current_timestamp</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w">            </span><span class="n">TIMESTAMPTZ</span><span class="w">   </span><span class="k">NULL</span><span class="w">     </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">current_timestamp</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">last_score_fetched_at</span><span class="w"> </span><span class="n">TIMESTAMPTZ</span><span class="w">   </span><span class="k">NULL</span><span class="w">     </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">current_timestamp</span><span class="p">()</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">idx_mindshare_user_x_username</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">mindshare_user</span><span class="w"> </span><span class="p">(</span><span class="n">x_username</span><span class="p">);</span>
+</code></pre></div>
+<p><strong>Column notes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x_id</code></td>
+<td>The numeric X/Twitter user ID (INT8). Primary key.</td>
+</tr>
+<tr>
+<td><code>x_username</code></td>
+<td>Twitter handle without <code>@</code>.</td>
+</tr>
+<tr>
+<td><code>score</code></td>
+<td>Influence score from <code>/score-id/{x_id}</code>. Stored as <code>DECIMAL(10,2)</code>.</td>
+</tr>
+<tr>
+<td><code>adjustment_config</code></td>
+<td>Initialized to <code>{"default": 1}</code> on insert. Not written by the ingestion pipeline beyond that default.</td>
+</tr>
+<tr>
+<td><code>verified</code></td>
+<td>Inserted as <code>false</code>; not populated from API data in current implementation.</td>
+</tr>
+<tr>
+<td><code>last_score_fetched_at</code></td>
+<td>Updated every time <code>upsert_user_score</code> runs for this user.</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td>Updated on every upsert conflict.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Populated by:</strong> <code>IngestionRepository.upsert_user_score()</code>, called from <code>AuxiliaryIngestors.ingest_scores()</code>.</p>
+<hr />
 <h3 id="mindsharemindshare_post"><code>mindshare.mindshare_post</code><a class="headerlink" href="#mindsharemindshare_post" title="Permanent link">&para;</a></h3>
-<p>Purpose:</p>
-<ul>
-<li>normalized tweet storage with one-row-per-<code>post_id</code>.</li>
-</ul>
-<p>Important fields:</p>
-<ul>
-<li><code>post_id</code> (PK)</li>
-<li><code>user_x_id</code></li>
-<li><code>project_keywords</code> (<code>TEXT[]</code>)</li>
-<li>engagement counts</li>
-<li>relationship ids (<code>retweeted_post_id</code>, <code>replied_post_id</code>, etc.)</li>
-<li><code>post_created_at</code></li>
-<li>ingestion metadata (<code>last_ingested_run_id</code>, <code>last_seen_at</code>)</li>
-</ul>
+<p>The core normalized post table. One row per tweet, shared across all projects.</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">mindshare_post</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="c1">-- Core IDs</span>
+<span class="w">    </span><span class="n">post_id</span><span class="w">               </span><span class="nb">INT8</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">user_x_id</span><span class="w">             </span><span class="nb">INT8</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">-- Source flags (not populated by ingestion pipeline)</span>
+<span class="w">    </span><span class="n">source_m</span><span class="w">              </span><span class="n">BOOL</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">false</span><span class="p">,</span>
+<span class="w">    </span><span class="n">source_n</span><span class="w">              </span><span class="n">BOOL</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">false</span><span class="p">,</span>
+<span class="w">    </span><span class="n">source_u</span><span class="w">              </span><span class="n">BOOL</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">false</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">-- Cross-project keyword set</span>
+<span class="w">    </span><span class="n">project_keywords</span><span class="w">      </span><span class="nb">TEXT</span><span class="p">[]</span><span class="w">      </span><span class="k">NULL</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">-- Content</span>
+<span class="w">    </span><span class="n">full_text</span><span class="w">             </span><span class="nb">TEXT</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">-- Thread relationships</span>
+<span class="w">    </span><span class="n">retweeted_post_id</span><span class="w">     </span><span class="nb">INT8</span><span class="w">        </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">replied_post_id</span><span class="w">       </span><span class="nb">INT8</span><span class="w">        </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">quoted_post_id</span><span class="w">        </span><span class="nb">INT8</span><span class="w">        </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">root_post_id</span><span class="w">          </span><span class="nb">INT8</span><span class="w">        </span><span class="k">NULL</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">-- Computed type flags (generated columns, stored)</span>
+<span class="w">    </span><span class="n">is_retweet</span><span class="w">  </span><span class="n">BOOL</span><span class="w"> </span><span class="k">GENERATED</span><span class="w"> </span><span class="n">ALWAYS</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">retweeted_post_id</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">)</span><span class="w"> </span><span class="n">STORED</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">is_reply</span><span class="w">    </span><span class="n">BOOL</span><span class="w"> </span><span class="k">GENERATED</span><span class="w"> </span><span class="n">ALWAYS</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">replied_post_id</span><span class="w">   </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">)</span><span class="w"> </span><span class="n">STORED</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">is_quote</span><span class="w">    </span><span class="n">BOOL</span><span class="w"> </span><span class="k">GENERATED</span><span class="w"> </span><span class="n">ALWAYS</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">quoted_post_id</span><span class="w">    </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">)</span><span class="w"> </span><span class="n">STORED</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">is_post</span><span class="w">     </span><span class="n">BOOL</span><span class="w"> </span><span class="k">GENERATED</span><span class="w"> </span><span class="n">ALWAYS</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                    </span><span class="n">retweeted_post_id</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
+<span class="w">                    </span><span class="k">AND</span><span class="w"> </span><span class="n">replied_post_id</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
+<span class="w">                    </span><span class="k">AND</span><span class="w"> </span><span class="n">quoted_post_id</span><span class="w">  </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
+<span class="w">                </span><span class="p">)</span><span class="w"> </span><span class="n">STORED</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">-- Engagement metrics</span>
+<span class="w">    </span><span class="n">view_count</span><span class="w">            </span><span class="n">INT4</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">reply_count</span><span class="w">           </span><span class="n">INT4</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">retweet_count</span><span class="w">         </span><span class="n">INT4</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">quote_count</span><span class="w">           </span><span class="n">INT4</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">favorite_count</span><span class="w">        </span><span class="n">INT4</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">-- Raw entities (hashtags, mentions, URLs, etc.)</span>
+<span class="w">    </span><span class="n">entities</span><span class="w">              </span><span class="n">JSONB</span><span class="w">       </span><span class="k">NULL</span><span class="p">,</span>
+
+<span class="w">    </span><span class="c1">-- Timestamps</span>
+<span class="w">    </span><span class="n">post_created_at</span><span class="w">       </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w">            </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">current_timestamp</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w">            </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NULL</span><span class="w">     </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">current_timestamp</span><span class="p">(),</span>
+
+<span class="w">    </span><span class="c1">-- Ingestion tracking</span>
+<span class="w">    </span><span class="n">last_ingested_run_id</span><span class="w">  </span><span class="n">UUID</span><span class="w">        </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">last_seen_at</span><span class="w">          </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NULL</span><span class="w">     </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">current_timestamp</span><span class="p">()</span>
+<span class="p">);</span>
+</code></pre></div>
+<p><strong>Indexes:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">idx_mindshare_post_created_at</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">mindshare_post</span><span class="w"> </span><span class="p">(</span><span class="n">post_created_at</span><span class="w"> </span><span class="k">DESC</span><span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">idx_mindshare_post_user_x_id</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">mindshare_post</span><span class="w"> </span><span class="p">(</span><span class="n">user_x_id</span><span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="n">INVERTED</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">idx_mindshare_post_project_keywords</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">mindshare_post</span><span class="w"> </span><span class="p">(</span><span class="n">project_keywords</span><span class="p">);</span>
+</code></pre></div>
+<p>The inverted index on <code>project_keywords</code> enables efficient array containment queries such as <code>WHERE 'Acurast' = ANY(project_keywords)</code>.</p>
+<p><strong>Generated columns:</strong></p>
+<p><code>is_retweet</code>, <code>is_reply</code>, <code>is_quote</code>, <code>is_post</code> are <code>GENERATED ALWAYS AS ... STORED</code> columns — CockroachDB computes and stores them automatically. They can be used in filters and indexes without extra application logic.</p>
+<p><strong>Column-to-API-field mapping</strong> (how <code>upsert_mindshare_post</code> populates this table):</p>
+<table>
+<thead>
+<tr>
+<th>DB column</th>
+<th>Extracted from raw payload</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>post_id</code></td>
+<td><code>payload["id"]</code> cast to INT8</td>
+</tr>
+<tr>
+<td><code>user_x_id</code></td>
+<td><code>payload["user"]["id"]</code> cast to INT8</td>
+</tr>
+<tr>
+<td><code>project_keywords</code></td>
+<td><code>ARRAY[project_keyword]</code> — merged on conflict</td>
+</tr>
+<tr>
+<td><code>full_text</code></td>
+<td><code>payload["full_text"]</code></td>
+</tr>
+<tr>
+<td><code>retweeted_post_id</code></td>
+<td><code>payload["retweeted_status"]["id"]</code> (NULLIF empty string)</td>
+</tr>
+<tr>
+<td><code>replied_post_id</code></td>
+<td><code>payload["in_reply_to_tweet_id"]</code> (NULLIF empty string)</td>
+</tr>
+<tr>
+<td><code>quoted_post_id</code></td>
+<td><code>payload["quoted_status"]["id"]</code> (NULLIF empty string)</td>
+</tr>
+<tr>
+<td><code>root_post_id</code></td>
+<td><code>payload["conversation_id_str"]</code> (NULLIF empty string)</td>
+</tr>
+<tr>
+<td><code>view_count</code></td>
+<td><code>payload["view_count"]</code></td>
+</tr>
+<tr>
+<td><code>reply_count</code></td>
+<td><code>payload["reply_count"]</code></td>
+</tr>
+<tr>
+<td><code>retweet_count</code></td>
+<td><code>payload["retweet_count"]</code></td>
+</tr>
+<tr>
+<td><code>quote_count</code></td>
+<td><code>payload["quote_count"]</code></td>
+</tr>
+<tr>
+<td><code>favorite_count</code></td>
+<td><code>payload["likes_count"]</code></td>
+</tr>
+<tr>
+<td><code>entities</code></td>
+<td><code>payload["entities"]</code> as JSONB</td>
+</tr>
+<tr>
+<td><code>post_created_at</code></td>
+<td><code>payload["created_at"]</code> cast to TIMESTAMPTZ</td>
+</tr>
+<tr>
+<td><code>last_ingested_run_id</code></td>
+<td><code>run_id</code> (the current run UUID)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Populated by:</strong> <code>IngestionRepository.upsert_mindshare_post()</code>, called for every tweet in search, comments, and user-tweets phases.</p>
+<hr />
 <h3 id="raw_dataraw_post_ingestion"><code>raw_data.raw_post_ingestion</code><a class="headerlink" href="#raw_dataraw_post_ingestion" title="Permanent link">&para;</a></h3>
-<p>Purpose:</p>
-<ul>
-<li>raw endpoint payload storage for replay/debugging.</li>
-</ul>
-<p>Uniqueness:</p>
-<ul>
-<li>primary key <code>(post_id, endpoint)</code></li>
-</ul>
+<p>Debug and replay store. Preserves the last raw API payload for every <code>(post_id, endpoint)</code> pair.</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">raw_data</span><span class="p">.</span><span class="n">raw_post_ingestion</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">run_id</span><span class="w">          </span><span class="n">UUID</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">project_keyword</span><span class="w"> </span><span class="nb">TEXT</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">endpoint</span><span class="w">        </span><span class="nb">TEXT</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">post_id</span><span class="w">         </span><span class="nb">TEXT</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">raw_json</span><span class="w">        </span><span class="n">JSONB</span><span class="w">       </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fetched_at</span><span class="w">      </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">current_timestamp</span><span class="p">(),</span>
+<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">post_id</span><span class="p">,</span><span class="w"> </span><span class="n">endpoint</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">idx_raw_post_ingestion_run</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">raw_data</span><span class="p">.</span><span class="n">raw_post_ingestion</span><span class="w"> </span><span class="p">(</span><span class="n">run_id</span><span class="p">,</span><span class="w"> </span><span class="n">endpoint</span><span class="p">,</span><span class="w"> </span><span class="n">fetched_at</span><span class="w"> </span><span class="k">DESC</span><span class="p">);</span>
+</code></pre></div>
+<p><strong>Design notes:</strong>
+- Primary key <code>(post_id, endpoint)</code> — a post can appear from multiple endpoints (e.g., once from <code>/search-tweets</code> and once from <code>/comments</code>). Each endpoint gets its own row.
+- <code>post_id</code> is stored as <code>TEXT</code> (not INT8) to accommodate any format returned by the API.
+- On conflict, <code>raw_json</code>, <code>fetched_at</code>, <code>project_keyword</code>, and <code>run_id</code> are overwritten with the most recent fetch.</p>
+<p><strong>Populated by:</strong> <code>IngestionRepository.upsert_post_raw()</code>, called for every tweet in search, comments, and user-tweets phases, before the normalized upsert.</p>
+<hr />
 <h3 id="mindshareingestion_run"><code>mindshare.ingestion_run</code><a class="headerlink" href="#mindshareingestion_run" title="Permanent link">&para;</a></h3>
-<p>Purpose:</p>
-<ul>
-<li>one row per ingestion trigger with status and timing.</li>
-</ul>
+<p>One row per pipeline execution. Tracks run lifecycle.</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">ingestion_run</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">run_id</span><span class="w">          </span><span class="n">UUID</span><span class="w">        </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">project_keyword</span><span class="w"> </span><span class="nb">TEXT</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">since_ts</span><span class="w">        </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">until_ts</span><span class="w">        </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">run_status</span><span class="w">      </span><span class="nb">TEXT</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">error_summary</span><span class="w">   </span><span class="nb">TEXT</span><span class="w">        </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">started_at</span><span class="w">      </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">current_timestamp</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">finished_at</span><span class="w">     </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NULL</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">idx_ingestion_run_status</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">ingestion_run</span><span class="w"> </span><span class="p">(</span><span class="n">run_status</span><span class="p">,</span><span class="w"> </span><span class="n">started_at</span><span class="w"> </span><span class="k">DESC</span><span class="p">);</span>
+</code></pre></div>
+<p><strong>Lifecycle states for <code>run_status</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Set when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>'running'</code></td>
+<td>On <code>create_run()</code> — immediately at pipeline start</td>
+</tr>
+<tr>
+<td><code>'completed'</code></td>
+<td>On <code>mark_run_finished(status='completed')</code> — after all phases succeed</td>
+</tr>
+<tr>
+<td><code>'failed'</code></td>
+<td>On <code>mark_run_finished(status='failed', error=...)</code> — if any phase raises an uncaught exception</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Populated by:</strong> <code>IngestionRepository.create_run()</code> and <code>IngestionRepository.mark_run_finished()</code>.</p>
+<hr />
 <h3 id="mindshareingestion_window_checkpoint"><code>mindshare.ingestion_window_checkpoint</code><a class="headerlink" href="#mindshareingestion_window_checkpoint" title="Permanent link">&para;</a></h3>
-<p>Purpose:</p>
-<ul>
-<li>checkpoint cursor/state for endpoint windows and slices.</li>
-</ul>
-<h2 id="upsert-conflict-behavior">Upsert conflict behavior<a class="headerlink" href="#upsert-conflict-behavior" title="Permanent link">&para;</a></h2>
-<p>For <code>mindshare_post</code> on <code>post_id</code> conflict:</p>
-<ul>
-<li>merge <code>project_keywords</code> with existing keywords</li>
-<li>update engagement counts from latest payload</li>
-<li>keep non-empty <code>full_text</code></li>
-<li>refresh <code>last_seen_at</code> and <code>last_ingested_run_id</code></li>
-</ul>
-<h2 id="merge-semantics-diagram">Merge semantics diagram<a class="headerlink" href="#merge-semantics-diagram" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Missing from DDL file</p>
+<p>This table is written to by <code>IngestionRepository.upsert_window_checkpoint()</code> but is <strong>not</strong> defined in <code>ddl/ddl_mindshare_ingestion.sql</code>. You must create it manually.</p>
+</div>
+<p>Recommended DDL:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">ingestion_window_checkpoint</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">run_id</span><span class="w">          </span><span class="n">UUID</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">project_keyword</span><span class="w"> </span><span class="nb">TEXT</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">window_id</span><span class="w">       </span><span class="nb">TEXT</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">endpoint</span><span class="w">        </span><span class="nb">TEXT</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">api_key_alias</span><span class="w">   </span><span class="nb">TEXT</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">next_cursor</span><span class="w">     </span><span class="nb">TEXT</span><span class="w">        </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">status</span><span class="w">          </span><span class="nb">TEXT</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">error_message</span><span class="w">   </span><span class="nb">TEXT</span><span class="w">        </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w">      </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">current_timestamp</span><span class="p">(),</span>
+<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">run_id</span><span class="p">,</span><span class="w"> </span><span class="n">project_keyword</span><span class="p">,</span><span class="w"> </span><span class="n">window_id</span><span class="p">,</span><span class="w"> </span><span class="n">endpoint</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">idx_ingestion_window_checkpoint_status</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">ingestion_window_checkpoint</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">updated_at</span><span class="w"> </span><span class="k">DESC</span><span class="p">);</span>
+</code></pre></div>
+<p><strong>Column notes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>run_id</code></td>
+<td>Links to <code>mindshare.ingestion_run.run_id</code></td>
+</tr>
+<tr>
+<td><code>project_keyword</code></td>
+<td>The keyword being ingested</td>
+</tr>
+<tr>
+<td><code>window_id</code></td>
+<td>Identifies the specific paginated window — format varies by phase (see below)</td>
+</tr>
+<tr>
+<td><code>endpoint</code></td>
+<td>API endpoint path: <code>/search-tweets</code>, <code>/comments</code>, <code>/user-tweets</code>, <code>/score-id</code></td>
+</tr>
+<tr>
+<td><code>api_key_alias</code></td>
+<td>Which key alias (<code>key_1</code>, etc.) was used for this window</td>
+</tr>
+<tr>
+<td><code>next_cursor</code></td>
+<td>The cursor value to resume pagination from; <code>NULL</code> when the window is complete</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>'running'</code>, <code>'completed'</code>, or <code>'failed'</code></td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td>Exception message on failure; <code>NULL</code> otherwise</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>window_id</code> naming conventions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Search slice</td>
+<td><code>slice_{slice_id}</code></td>
+<td><code>slice_3</code></td>
+</tr>
+<tr>
+<td>Comments per post</td>
+<td><code>comments_{post_id}</code></td>
+<td><code>comments_1234567890</code></td>
+</tr>
+<tr>
+<td>User timeline</td>
+<td><code>user_{user_id}</code></td>
+<td><code>user_9876543210</code></td>
+</tr>
+<tr>
+<td>Score fetch</td>
+<td><code>score_{user_id}</code></td>
+<td><code>score_9876543210</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="upsert-conflict-behavior-summary">Upsert conflict behavior summary<a class="headerlink" href="#upsert-conflict-behavior-summary" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart LR
-    incoming[IncomingTweetpost_id123keywordB] --&gt; conflict{post_idExists}
-    conflict --&gt;|No| insert[InsertNewRowproject_keywordsB]
-    conflict --&gt;|Yes| merge[MergeKeywordsAndUpdateMutableFields]
-    merge --&gt; result[SingleRowpost_id123keywordsAplusB]</code></pre>
+    incoming["Incoming tweet\n(post_id=123, keyword=B)"]
+    check{post_id exists\nin mindshare_post?}
+    insert["INSERT new row\nproject_keywords = ['B']"]
+    merge["ON CONFLICT DO UPDATE:\n- keywords merged: ['A','B']\n- engagement counts refreshed\n- full_text preserved if non-empty\n- relationship IDs coalesced\n- last_seen_at = now()"]
+    result["Single row\npost_id=123\nproject_keywords=['A','B']"]
+
+    incoming --&gt; check
+    check --&gt;|No| insert --&gt; result
+    check --&gt;|Yes| merge --&gt; result</code></pre>
+<h3 id="mindshare_post-conflict-rules-full-detail"><code>mindshare_post</code> conflict rules (full detail)<a class="headerlink" href="#mindshare_post-conflict-rules-full-detail" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>On conflict behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>project_keywords</code></td>
+<td><code>array_agg(DISTINCT k)</code> over <code>existing \|\| incoming</code> — deduplicates, set-union semantics</td>
+</tr>
+<tr>
+<td><code>full_text</code></td>
+<td>Replace only if incoming is non-empty; keep existing if incoming is empty string</td>
+</tr>
+<tr>
+<td><code>user_x_id</code></td>
+<td>Always overwritten with incoming value</td>
+</tr>
+<tr>
+<td><code>retweeted_post_id</code></td>
+<td><code>COALESCE(incoming, existing)</code> — keeps first non-null</td>
+</tr>
+<tr>
+<td><code>replied_post_id</code></td>
+<td><code>COALESCE(incoming, existing)</code></td>
+</tr>
+<tr>
+<td><code>quoted_post_id</code></td>
+<td><code>COALESCE(incoming, existing)</code></td>
+</tr>
+<tr>
+<td><code>root_post_id</code></td>
+<td><code>COALESCE(incoming, existing)</code></td>
+</tr>
+<tr>
+<td><code>view_count</code></td>
+<td>Always overwritten</td>
+</tr>
+<tr>
+<td><code>reply_count</code></td>
+<td>Always overwritten</td>
+</tr>
+<tr>
+<td><code>retweet_count</code></td>
+<td>Always overwritten</td>
+</tr>
+<tr>
+<td><code>quote_count</code></td>
+<td>Always overwritten</td>
+</tr>
+<tr>
+<td><code>favorite_count</code></td>
+<td>Always overwritten</td>
+</tr>
+<tr>
+<td><code>entities</code></td>
+<td><code>COALESCE(incoming, existing)</code></td>
+</tr>
+<tr>
+<td><code>last_ingested_run_id</code></td>
+<td>Always overwritten</td>
+</tr>
+<tr>
+<td><code>last_seen_at</code></td>
+<td>Always set to <code>now()</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="mindshare_user-conflict-rules"><code>mindshare_user</code> conflict rules<a class="headerlink" href="#mindshare_user-conflict-rules" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>On conflict behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x_username</code></td>
+<td><code>COALESCE(NULLIF(incoming, ''), existing)</code> — keeps existing if incoming is empty</td>
+</tr>
+<tr>
+<td><code>display_name</code></td>
+<td>Same pattern</td>
+</tr>
+<tr>
+<td><code>score</code></td>
+<td><code>COALESCE(incoming, existing)</code></td>
+</tr>
+<tr>
+<td><code>avatar_url</code></td>
+<td><code>COALESCE(NULLIF(incoming, ''), existing)</code></td>
+</tr>
+<tr>
+<td><code>followers_count</code></td>
+<td><code>COALESCE(incoming, existing)</code></td>
+</tr>
+<tr>
+<td><code>last_score_fetched_at</code></td>
+<td>Always set to <code>now()</code></td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td>Always set to <code>now()</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="raw_post_ingestion-conflict-rules"><code>raw_post_ingestion</code> conflict rules<a class="headerlink" href="#raw_post_ingestion-conflict-rules" title="Permanent link">&para;</a></h3>
+<p>All mutable fields (<code>raw_json</code>, <code>fetched_at</code>, <code>project_keyword</code>, <code>run_id</code>) are always overwritten — last write wins.</p>
+<h3 id="ingestion_window_checkpoint-conflict-rules"><code>ingestion_window_checkpoint</code> conflict rules<a class="headerlink" href="#ingestion_window_checkpoint-conflict-rules" title="Permanent link">&para;</a></h3>
+<p><code>api_key_alias</code>, <code>next_cursor</code>, <code>status</code>, <code>error_message</code>, <code>updated_at</code> are always overwritten — the latest page fetch state replaces the previous.</p>
 
 
 

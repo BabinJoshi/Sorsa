@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -296,10 +296,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#environment-variables" class="md-nav__link">
+  <a href="#1-install-dependencies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Environment variables
+        1. Install dependencies
       
     </span>
   </a>
@@ -307,10 +307,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-dependencies" class="md-nav__link">
+  <a href="#2-apply-the-database-schema" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Install dependencies
+        2. Apply the database schema
       
     </span>
   </a>
@@ -318,10 +318,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#apply-ingestion-ddl" class="md-nav__link">
+  <a href="#3-configure-environment-variables" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Apply ingestion DDL
+        3. Configure environment variables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Configure environment variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-tuning-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional tuning variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-effective-concurrency-is-computed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How effective concurrency is computed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-run-the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Run the pipeline
       
     </span>
   </a>
@@ -329,10 +379,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#run-locally" class="md-nav__link">
+  <a href="#5-verify-the-run" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Run locally
+        5. Verify the run
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-env-loading-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How .env loading works
       
     </span>
   </a>
@@ -493,10 +554,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#environment-variables" class="md-nav__link">
+  <a href="#1-install-dependencies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Environment variables
+        1. Install dependencies
       
     </span>
   </a>
@@ -504,10 +565,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-dependencies" class="md-nav__link">
+  <a href="#2-apply-the-database-schema" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Install dependencies
+        2. Apply the database schema
       
     </span>
   </a>
@@ -515,10 +576,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#apply-ingestion-ddl" class="md-nav__link">
+  <a href="#3-configure-environment-variables" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Apply ingestion DDL
+        3. Configure environment variables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Configure environment variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-tuning-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional tuning variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-effective-concurrency-is-computed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How effective concurrency is computed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-run-the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Run the pipeline
       
     </span>
   </a>
@@ -526,10 +637,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#run-locally" class="md-nav__link">
+  <a href="#5-verify-the-run" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Run locally
+        5. Verify the run
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-env-loading-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How .env loading works
       
     </span>
   </a>
@@ -554,47 +676,218 @@
 
 
 <h1 id="quickstart">Quickstart<a class="headerlink" href="#quickstart" title="Permanent link">&para;</a></h1>
+<p>This page walks through everything needed to configure and run the ingestion pipeline from a clean checkout.</p>
+<hr />
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Python 3.12+</li>
-<li>CockroachDB instance reachable through <code>postgresql+asyncpg</code> SQLAlchemy URL</li>
-<li>One or more Sorsa API keys</li>
+<li><strong>Python 3.12</strong> (see <code>.python-version</code> in the repo root — enforced by pyenv if present)</li>
+<li><strong>CockroachDB</strong> instance reachable over a <code>postgresql+asyncpg://</code> SQLAlchemy URL</li>
+<li>A <strong>Sorsa v3 API key</strong></li>
 </ul>
-<h2 id="environment-variables">Environment variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h2>
-<p>Required:</p>
-<ul>
-<li><code>COCKROACH_DATABASE_URL</code></li>
-<li><code>SORSA_API_KEYS</code> (comma separated)</li>
-</ul>
-<p>Optional tuning:</p>
-<ul>
-<li><code>SORSA_BASE_URL</code> (default: <code>https://api.sorsa.io/v3</code>)</li>
-<li><code>SORSA_PER_KEY_RPS</code> (default: <code>20</code>)</li>
-<li><code>SEARCH_SLICE_COUNT</code> (default: <code>20</code>)</li>
-<li><code>SEARCH_ORDER</code> (default: <code>latest</code>)</li>
-<li><code>SORSA_MAX_RETRIES</code> (default: <code>4</code>)</li>
-<li><code>SORSA_RETRY_429_SLEEP_SECONDS</code> (default: <code>1.0</code>)</li>
-<li><code>SORSA_RETRY_5XX_SLEEP_SECONDS</code> (default: <code>2.0</code>)</li>
-</ul>
-<h2 id="install-dependencies">Install dependencies<a class="headerlink" href="#install-dependencies" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>Sorsa
-pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+<hr />
+<h2 id="1-install-dependencies">1. Install dependencies<a class="headerlink" href="#1-install-dependencies" title="Permanent link">&para;</a></h2>
+<p>From the repository root:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
 </code></pre></div>
-<h2 id="apply-ingestion-ddl">Apply ingestion DDL<a class="headerlink" href="#apply-ingestion-ddl" title="Permanent link">&para;</a></h2>
-<p>Use:</p>
-<ul>
-<li><code>ddl/ddl_mindshare_ingestion.sql</code></li>
-</ul>
-<p>Do not edit/replace:</p>
-<ul>
-<li><code>Mindshare DDL/ddl mindshare.sql</code></li>
-</ul>
-<h2 id="run-locally">Run locally<a class="headerlink" href="#run-locally" title="Permanent link">&para;</a></h2>
+<p>Dependencies declared in <code>pyproject.toml</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aiohttp&gt;=3.12.0</code></td>
+<td>Async HTTP client used by <code>SorsaClient</code></td>
+</tr>
+<tr>
+<td><code>asyncpg&gt;=0.30.0</code></td>
+<td>Async PostgreSQL driver used by SQLAlchemy</td>
+</tr>
+<tr>
+<td><code>python-dotenv&gt;=1.1.0</code></td>
+<td>Loads <code>.env</code> file before <code>Settings</code> is instantiated</td>
+</tr>
+<tr>
+<td><code>pydantic&gt;=2.11.0</code></td>
+<td>Data validation for <code>Settings</code> and dataclasses</td>
+</tr>
+<tr>
+<td><code>pydantic-settings&gt;=2.10.0</code></td>
+<td>Env-var binding for <code>Settings</code></td>
+</tr>
+<tr>
+<td><code>sqlalchemy&gt;=2.0.0</code></td>
+<td>Async engine and session management</td>
+</tr>
+</tbody>
+</table>
+<p>Optional — for building these docs:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[docs]&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="2-apply-the-database-schema">2. Apply the database schema<a class="headerlink" href="#2-apply-the-database-schema" title="Permanent link">&para;</a></h2>
+<p>Run the ingestion DDL against your CockroachDB cluster. The file is idempotent (<code>IF NOT EXISTS</code> guards on every object):</p>
+<div class="highlight"><pre><span></span><code>cockroach<span class="w"> </span>sql<span class="w"> </span>--url<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$COCKROACH_DATABASE_URL</span><span class="s2">&quot;</span><span class="w"> </span>&lt;<span class="w"> </span>ddl/ddl_mindshare_ingestion.sql
+</code></pre></div>
+<p>Or paste the contents of <code>ddl/ddl_mindshare_ingestion.sql</code> directly into your preferred SQL client.</p>
+<div class="admonition warning">
+<p class="admonition-title">Missing checkpoint table</p>
+<p><code>ingestion_window_checkpoint</code> is written to by the repository but is <strong>not</strong> defined in <code>ddl/ddl_mindshare_ingestion.sql</code>. You must create this table manually before running the pipeline. See the <a href="../data-model/#mindshareingestion_window_checkpoint">Data Model</a> page for the full DDL.</p>
+</div>
+<p>Do <strong>not</strong> edit or replace <code>Mindshare DDL/ddl mindshare.sql</code> — that file is intentionally preserved as the legacy reference copy.</p>
+<hr />
+<h2 id="3-configure-environment-variables">3. Configure environment variables<a class="headerlink" href="#3-configure-environment-variables" title="Permanent link">&para;</a></h2>
+<p>Copy the example file and fill in your values:</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
+</code></pre></div>
+<h3 id="required-variables">Required variables<a class="headerlink" href="#required-variables" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>COCKROACH_DATABASE_URL</code></td>
+<td>SQLAlchemy async URL: <code>postgresql+asyncpg://USER:PASS@HOST:26257/DB?sslmode=require</code></td>
+</tr>
+<tr>
+<td><code>SORSA_API_KEY</code></td>
+<td>Your Sorsa v3 API key</td>
+</tr>
+</tbody>
+</table>
+<h3 id="optional-tuning-variables">Optional tuning variables<a class="headerlink" href="#optional-tuning-variables" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SORSA_BASE_URL</code></td>
+<td><code>https://api.sorsa.io/v3</code></td>
+<td>Sorsa API base URL</td>
+</tr>
+<tr>
+<td><code>SORSA_PER_KEY_RPS</code></td>
+<td><code>20</code></td>
+<td>Maximum requests per second for the API key</td>
+</tr>
+<tr>
+<td><code>SEARCH_SLICE_COUNT</code></td>
+<td><code>20</code></td>
+<td>How many time slices the 72-hour window is divided into</td>
+</tr>
+<tr>
+<td><code>SEARCH_MAX_CONCURRENCY</code></td>
+<td><code>20</code></td>
+<td>Upper bound on concurrent slice worker tasks</td>
+</tr>
+<tr>
+<td><code>SEARCH_ORDER</code></td>
+<td><code>latest</code></td>
+<td>Tweet sort order passed to <code>/search-tweets</code></td>
+</tr>
+<tr>
+<td><code>SORSA_MAX_RETRIES</code></td>
+<td><code>4</code></td>
+<td>Maximum retry attempts per HTTP request</td>
+</tr>
+<tr>
+<td><code>SORSA_RETRY_429_SLEEP_SECONDS</code></td>
+<td><code>1.0</code></td>
+<td>Sleep duration between retries on HTTP 429</td>
+</tr>
+<tr>
+<td><code>SORSA_RETRY_5XX_SLEEP_SECONDS</code></td>
+<td><code>2.0</code></td>
+<td>Sleep duration between retries on HTTP 5xx or network error</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-effective-concurrency-is-computed">How effective concurrency is computed<a class="headerlink" href="#how-effective-concurrency-is-computed" title="Permanent link">&para;</a></h3>
+<p>The pipeline caps concurrent slice workers at:</p>
+<div class="highlight"><pre><span></span><code>effective_concurrency = min(SEARCH_SLICE_COUNT, SEARCH_MAX_CONCURRENCY, SORSA_PER_KEY_RPS)
+</code></pre></div>
+<p>This is enforced via a <code>asyncio.Semaphore</code> in <code>SearchIngestor.ingest_72h</code>. Examples:</p>
+<table>
+<thead>
+<tr>
+<th><code>SEARCH_SLICE_COUNT</code></th>
+<th><code>SEARCH_MAX_CONCURRENCY</code></th>
+<th><code>SORSA_PER_KEY_RPS</code></th>
+<th>Effective concurrency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>20</td>
+<td>20</td>
+<td>10</td>
+</tr>
+<tr>
+<td>20</td>
+<td>20</td>
+<td>20</td>
+<td>20</td>
+</tr>
+<tr>
+<td>20</td>
+<td>5</td>
+<td>20</td>
+<td>5</td>
+</tr>
+<tr>
+<td>20</td>
+<td>20</td>
+<td>8</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-run-the-pipeline">4. Run the pipeline<a class="headerlink" href="#4-run-the-pipeline" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>python<span class="w"> </span>main.py<span class="w"> </span>--project-keyword<span class="w"> </span>&lt;keyword&gt;
 </code></pre></div>
 <p>Example:</p>
 <div class="highlight"><pre><span></span><code>python<span class="w"> </span>main.py<span class="w"> </span>--project-keyword<span class="w"> </span>Acurast
 </code></pre></div>
+<p>On success, the CLI prints:</p>
+<div class="highlight"><pre><span></span><code>Ingestion completed. run_id=&lt;uuid&gt;
+</code></pre></div>
+<p>The <code>run_id</code> corresponds to a row in <code>mindshare.ingestion_run</code> and can be used to query checkpoints and raw data.</p>
+<hr />
+<h2 id="5-verify-the-run">5. Verify the run<a class="headerlink" href="#5-verify-the-run" title="Permanent link">&para;</a></h2>
+<p>Check the run record:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">run_id</span><span class="p">,</span><span class="w"> </span><span class="n">project_keyword</span><span class="p">,</span><span class="w"> </span><span class="n">run_status</span><span class="p">,</span><span class="w"> </span><span class="n">started_at</span><span class="p">,</span><span class="w"> </span><span class="n">finished_at</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">ingestion_run</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">started_at</span><span class="w"> </span><span class="k">DESC</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+</code></pre></div>
+<p>Check ingested posts:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="n">project_keywords</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">mindshare_post</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">project_keywords</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h2 id="how-env-loading-works">How <code>.env</code> loading works<a class="headerlink" href="#how-env-loading-works" title="Permanent link">&para;</a></h2>
+<p><code>app/cli.py</code> calls <code>load_dotenv()</code> explicitly before instantiating <code>Settings</code>. This means:</p>
+<ul>
+<li>A <code>.env</code> file at the working directory will always be picked up.</li>
+<li>The <code>Settings</code> class (Pydantic settings) will then override with any actual environment variables that are already set, per standard Pydantic-settings precedence.</li>
+<li>The <code>extra = "ignore"</code> setting means unknown variables in <code>.env</code> are silently ignored.</li>
+</ul>
 
 
 

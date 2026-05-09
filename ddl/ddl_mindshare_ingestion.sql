@@ -4,7 +4,6 @@
 --   Mindshare DDL/ddl mindshare.sql
 
 CREATE SCHEMA IF NOT EXISTS mindshare;
-CREATE SCHEMA IF NOT EXISTS raw_data;
 
 -- mindshare.mindshare_user definition
 --
@@ -91,26 +90,6 @@ CREATE INDEX IF NOT EXISTS idx_mindshare_post_user_x_id
     ON mindshare.mindshare_post (user_x_id);
 CREATE INVERTED INDEX IF NOT EXISTS idx_mindshare_post_project_keywords
     ON mindshare.mindshare_post (project_keywords);
-
--- raw_data.raw_post_ingestion definition
---
--- Raw payload storage used only for ingestion/debug/replay.
---
--- Drop table
---
--- DROP TABLE raw_data.raw_post_ingestion;
-CREATE TABLE IF NOT EXISTS raw_data.raw_post_ingestion (
-    run_id UUID NOT NULL,
-    project_keyword TEXT NOT NULL,
-    endpoint TEXT NOT NULL,
-    post_id TEXT NOT NULL,
-    raw_json JSONB NOT NULL,
-    fetched_at TIMESTAMPTZ NOT NULL DEFAULT current_timestamp(),
-    PRIMARY KEY (post_id, endpoint)
-);
-
-CREATE INDEX IF NOT EXISTS idx_raw_post_ingestion_run
-    ON raw_data.raw_post_ingestion (run_id, endpoint, fetched_at DESC);
 
 -- mindshare.ingestion_run definition
 --

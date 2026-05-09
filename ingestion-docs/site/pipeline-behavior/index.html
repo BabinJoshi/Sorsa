@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -366,10 +366,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-search-phase-search-tweets" class="md-nav__link">
+  <a href="#full-execution-sequence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1) Search phase (/search-tweets)
+        Full execution sequence
       
     </span>
   </a>
@@ -377,10 +377,93 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-comments-phase-comments" class="md-nav__link">
+  <a href="#phase-1-search-search-tweets" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2) Comments phase (/comments)
+        Phase 1 — Search (/search-tweets)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 1 — Search (/search-tweets)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#time-window-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time window setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-slicing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time slicing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concurrency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concurrency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-slice-pagination-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-slice pagination loop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-query-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search query format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-2-comments-comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2 — Comments (/comments)
       
     </span>
   </a>
@@ -388,10 +471,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-user-timeline-phase-user-tweets" class="md-nav__link">
+  <a href="#phase-3-user-timelines-user-tweets" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3) User timeline phase (/user-tweets)
+        Phase 3 — User timelines (/user-tweets)
       
     </span>
   </a>
@@ -399,10 +482,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-score-phase-score-idx-id" class="md-nav__link">
+  <a href="#phase-4-user-scores-score-idx_id" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4) Score phase (/score-id/{x-id})
+        Phase 4 — User scores (/score-id/{x_id})
       
     </span>
   </a>
@@ -418,13 +501,74 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Retry and rate-limit strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rate limiting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retry-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retry logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-propagation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error propagation summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#sequence" class="md-nav__link">
+  <a href="#checkpoint-lifecycle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Sequence
+        Checkpoint lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-flow-per-tweet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data flow per tweet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-outcome-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run outcome states
       
     </span>
   </a>
@@ -493,10 +637,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-search-phase-search-tweets" class="md-nav__link">
+  <a href="#full-execution-sequence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1) Search phase (/search-tweets)
+        Full execution sequence
       
     </span>
   </a>
@@ -504,10 +648,93 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-comments-phase-comments" class="md-nav__link">
+  <a href="#phase-1-search-search-tweets" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2) Comments phase (/comments)
+        Phase 1 — Search (/search-tweets)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 1 — Search (/search-tweets)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#time-window-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time window setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-slicing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time slicing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concurrency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concurrency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-slice-pagination-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-slice pagination loop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-query-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search query format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-2-comments-comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2 — Comments (/comments)
       
     </span>
   </a>
@@ -515,10 +742,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-user-timeline-phase-user-tweets" class="md-nav__link">
+  <a href="#phase-3-user-timelines-user-tweets" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3) User timeline phase (/user-tweets)
+        Phase 3 — User timelines (/user-tweets)
       
     </span>
   </a>
@@ -526,10 +753,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-score-phase-score-idx-id" class="md-nav__link">
+  <a href="#phase-4-user-scores-score-idx_id" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4) Score phase (/score-id/{x-id})
+        Phase 4 — User scores (/score-id/{x_id})
       
     </span>
   </a>
@@ -545,13 +772,74 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Retry and rate-limit strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rate limiting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retry-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retry logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-propagation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error propagation summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#sequence" class="md-nav__link">
+  <a href="#checkpoint-lifecycle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Sequence
+        Checkpoint lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-flow-per-tweet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data flow per tweet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-outcome-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run outcome states
       
     </span>
   </a>
@@ -576,78 +864,311 @@
 
 
 <h1 id="pipeline-behavior">Pipeline Behavior<a class="headerlink" href="#pipeline-behavior" title="Permanent link">&para;</a></h1>
-<h2 id="1-search-phase-search-tweets">1) Search phase (<code>/search-tweets</code>)<a class="headerlink" href="#1-search-phase-search-tweets" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Compute <code>until = now_utc</code> and <code>since = now_utc - 72h</code>.</li>
-<li>Split time range into configured slices.</li>
-<li>Assign slices to API-key aliases.</li>
-<li>For each slice:</li>
-<li>fetch pages using <code>next_cursor</code></li>
-<li>persist raw rows</li>
-<li>upsert normalized rows</li>
-<li>update checkpoint status (<code>running</code> -&gt; <code>completed</code>)</li>
-</ul>
-<h2 id="2-comments-phase-comments">2) Comments phase (<code>/comments</code>)<a class="headerlink" href="#2-comments-phase-comments" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Iterate discovered post IDs from search phase.</li>
-<li>Fetch and ingest paginated comments.</li>
-<li>Write endpoint checkpoint per post window.</li>
-</ul>
-<h2 id="3-user-timeline-phase-user-tweets">3) User timeline phase (<code>/user-tweets</code>)<a class="headerlink" href="#3-user-timeline-phase-user-tweets" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Iterate discovered user IDs from search phase.</li>
-<li>Fetch and ingest paginated user timeline tweets.</li>
-<li>Write endpoint checkpoint per user window.</li>
-</ul>
-<h2 id="4-score-phase-score-idx-id">4) Score phase (<code>/score-id/{x-id}</code>)<a class="headerlink" href="#4-score-phase-score-idx-id" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Iterate discovered user IDs.</li>
-<li>Fetch score payload and upsert <code>mindshare_user</code>.</li>
-<li>Write endpoint checkpoint per user.</li>
-</ul>
-<h2 id="retry-and-rate-limit-strategy">Retry and rate-limit strategy<a class="headerlink" href="#retry-and-rate-limit-strategy" title="Permanent link">&para;</a></h2>
-<p>Applied in <code>SorsaClient</code>:</p>
-<ul>
-<li>per-key RPS limiter</li>
-<li>retries for:</li>
-<li><code>429</code></li>
-<li><code>5xx</code></li>
-<li>network/timeout</li>
-<li>fail-fast for non-retryable client errors after response handling</li>
-</ul>
-<h2 id="sequence">Sequence<a class="headerlink" href="#sequence" title="Permanent link">&para;</a></h2>
+<p>This page documents the exact execution flow of the ingestion pipeline, phase by phase, from entry point to database commit.</p>
+<hr />
+<h2 id="full-execution-sequence">Full execution sequence<a class="headerlink" href="#full-execution-sequence" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>sequenceDiagram
-    participant Trigger as Runner
-    participant Orch as Orchestrator
+    participant CLI as cli.py
+    participant Orch as IngestionOrchestrator
+    participant Repo as IngestionRepository
+    participant DB as CockroachDB
     participant Search as SearchIngestor
     participant Aux as AuxiliaryIngestors
-    participant Repo as Repository
-    participant DB as CockroachDB
-    participant API as SorsaAPI
+    participant API as Sorsa v3 API
 
-    Trigger-&gt;&gt;Orch: run_project_ingestion(keyword)
-    Orch-&gt;&gt;Repo: create_run()
-    Repo-&gt;&gt;DB: INSERT ingestion_run
+    CLI-&gt;&gt;Orch: run_project_ingestion(keyword)
+    Orch-&gt;&gt;Repo: create_run(keyword, since, until)
+    Repo-&gt;&gt;DB: INSERT ingestion_run (status=running)
+    DB--&gt;&gt;Repo: run_id (UUID)
+    Repo--&gt;&gt;Orch: run_id
 
-    Orch-&gt;&gt;Search: ingest_72h()
-    Search-&gt;&gt;API: POST /search-tweets (paged)
-    Search-&gt;&gt;Repo: upsert raw + normalized + checkpoint
-    Repo-&gt;&gt;DB: UPSERT
+    Orch-&gt;&gt;Search: ingest_72h(run_id, keyword, keys, ...)
+    Note over Search: Builds N time slices, launches N async tasks
 
-    Orch-&gt;&gt;Aux: ingest_comments_for_posts()
-    Aux-&gt;&gt;API: POST /comments (paged)
-    Aux-&gt;&gt;Repo: upsert raw + normalized + checkpoint
+    par Concurrent slice workers (bounded by semaphore)
+        Search-&gt;&gt;API: POST /search-tweets (slice_1, page_1)
+        API--&gt;&gt;Search: {tweets: [...], next_cursor: "abc"}
+        Search-&gt;&gt;Repo: upsert_post_raw × len(tweets)
+        Search-&gt;&gt;Repo: upsert_mindshare_post × len(tweets)
+        Search-&gt;&gt;Repo: upsert_window_checkpoint (status=running, cursor=abc)
+        Search-&gt;&gt;API: POST /search-tweets (slice_1, page_2, cursor=abc)
+        API--&gt;&gt;Search: {tweets: [...], next_cursor: null}
+        Search-&gt;&gt;Repo: upsert_post_raw × len(tweets)
+        Search-&gt;&gt;Repo: upsert_mindshare_post × len(tweets)
+        Search-&gt;&gt;Repo: upsert_window_checkpoint (status=completed)
+    end
 
-    Orch-&gt;&gt;Aux: ingest_user_tweets()
-    Aux-&gt;&gt;API: POST /user-tweets (paged)
-    Aux-&gt;&gt;Repo: upsert raw + normalized + checkpoint
+    Search--&gt;&gt;Orch: (post_ids: set, user_ids: set)
 
-    Orch-&gt;&gt;Aux: ingest_scores()
-    Aux-&gt;&gt;API: GET /score-id/{x-id}
-    Aux-&gt;&gt;Repo: upsert user + checkpoint
+    loop For each post_id in post_ids
+        Orch-&gt;&gt;Aux: ingest_comments_for_posts(post_id)
+        Aux-&gt;&gt;API: POST /comments (post_id, page_1)
+        API--&gt;&gt;Aux: {tweets: [...], next_cursor: ...}
+        Aux-&gt;&gt;Repo: upsert_post_raw + upsert_mindshare_post
+        Aux-&gt;&gt;Repo: upsert_window_checkpoint
+        Note over Aux: Paginate until next_cursor is null
+    end
 
-    Orch-&gt;&gt;Repo: mark_run_finished(completed)
-    Repo-&gt;&gt;DB: UPDATE ingestion_run</code></pre>
+    loop For each user_id in user_ids
+        Orch-&gt;&gt;Aux: ingest_user_tweets(user_id)
+        Aux-&gt;&gt;API: POST /user-tweets (user_id, page_1)
+        API--&gt;&gt;Aux: {tweets: [...], next_cursor: ...}
+        Aux-&gt;&gt;Repo: upsert_post_raw + upsert_mindshare_post
+        Aux-&gt;&gt;Repo: upsert_window_checkpoint
+        Note over Aux: Paginate until next_cursor is null
+    end
+
+    loop For each user_id in user_ids
+        Orch-&gt;&gt;Aux: ingest_scores(user_id)
+        Aux-&gt;&gt;API: GET /score-id/{user_id}
+        API--&gt;&gt;Aux: {score, username, display_name, ...}
+        Aux-&gt;&gt;Repo: upsert_user_score
+        Aux-&gt;&gt;Repo: upsert_window_checkpoint (status=completed)
+    end
+
+    Orch-&gt;&gt;Repo: mark_run_finished(run_id, "completed")
+    Repo-&gt;&gt;DB: UPDATE ingestion_run SET run_status='completed', finished_at=now()</code></pre>
+<hr />
+<h2 id="phase-1-search-search-tweets">Phase 1 — Search (<code>/search-tweets</code>)<a class="headerlink" href="#phase-1-search-search-tweets" title="Permanent link">&para;</a></h2>
+<h3 id="time-window-setup">Time window setup<a class="headerlink" href="#time-window-setup" title="Permanent link">&para;</a></h3>
+<p>Every run computes a fresh 72-hour window anchored to the moment of execution:</p>
+<div class="highlight"><pre><span></span><code><span class="n">until</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span>
+<span class="n">since</span> <span class="o">=</span> <span class="n">until</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">72</span><span class="p">)</span>
+</code></pre></div>
+<p>Both <code>SearchIngestor.ingest_72h</code> and <code>IngestionOrchestrator.run_project_ingestion</code> compute this window independently — they are consistent because both use <code>now()</code> at call time and 72h is the fixed offset.</p>
+<h3 id="time-slicing">Time slicing<a class="headerlink" href="#time-slicing" title="Permanent link">&para;</a></h3>
+<p><code>build_time_slices(since, until, slice_count, keys)</code> divides the 72-hour window into <code>SEARCH_SLICE_COUNT</code> equal-width sub-windows:</p>
+<div class="highlight"><pre><span></span><code><span class="n">step</span> <span class="o">=</span> <span class="n">total_seconds</span> <span class="o">/</span> <span class="n">slice_count</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">slice_count</span><span class="p">):</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">since</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">i</span> <span class="o">*</span> <span class="n">step</span><span class="p">)</span>
+    <span class="n">end</span>   <span class="o">=</span> <span class="n">since</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">step</span><span class="p">)</span>  <span class="c1"># last slice always ends at `until`</span>
+    <span class="n">key_alias</span> <span class="o">=</span> <span class="n">keys</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)]</span><span class="o">.</span><span class="n">alias</span>
+</code></pre></div>
+<p>Each <code>TimeSlice</code> carries its <code>slice_id</code> (1-based), <code>since</code>, <code>until</code>, and the assigned <code>api_key_alias</code>.</p>
+<p>With the default <code>SEARCH_SLICE_COUNT=20</code> over 72 hours, each slice covers exactly 3.6 hours (216 minutes).</p>
+<h3 id="concurrency">Concurrency<a class="headerlink" href="#concurrency" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">effective_concurrency</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">slice_count</span><span class="p">,</span> <span class="n">max_concurrency</span><span class="p">,</span> <span class="n">per_key_rps</span><span class="p">))</span>
+<span class="n">sem</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Semaphore</span><span class="p">(</span><span class="n">effective_concurrency</span><span class="p">)</span>
+</code></pre></div>
+<p>All <code>slice_count</code> coroutines are created immediately via <code>asyncio.gather(*tasks)</code>. Each coroutine acquires the semaphore at the start of <code>_ingest_slice</code> — so at most <code>effective_concurrency</code> slices run at the same time. Completed slices release the semaphore, allowing waiting slices to start.</p>
+<h3 id="per-slice-pagination-loop">Per-slice pagination loop<a class="headerlink" href="#per-slice-pagination-loop" title="Permanent link">&para;</a></h3>
+<p>For each slice, <code>_ingest_slice</code> runs:</p>
+<div class="highlight"><pre><span></span><code>cursor = None
+window_id = f&quot;slice_{slice_id}&quot;
+loop:
+  data = POST /search-tweets (query, since, until, cursor, order)
+  for tweet in data[&quot;tweets&quot;]:
+    upsert_post_raw(endpoint=&quot;/search-tweets&quot;, payload=tweet)
+    upsert_mindshare_post(payload=tweet)
+    collect post_id, user_id into local sets
+  cursor = data.get(&quot;next_cursor&quot;)
+  if cursor:
+    upsert_window_checkpoint(status=&quot;running&quot;, next_cursor=cursor)
+    continue
+  else:
+    upsert_window_checkpoint(status=&quot;completed&quot;, next_cursor=None)
+    return (post_ids, user_ids)
+</code></pre></div>
+<p>On exception at any point:
+<div class="highlight"><pre><span></span><code>upsert_window_checkpoint(status=&quot;failed&quot;, error_message=str(exc))
+raise  ← propagates to asyncio.gather, which fails the whole search phase
+</code></pre></div></p>
+<h3 id="search-query-format">Search query format<a class="headerlink" href="#search-query-format" title="Permanent link">&para;</a></h3>
+<p>The query sent to the API is:</p>
+<div class="highlight"><pre><span></span><code>{project_keyword} since:{YYYY-MM-DD_HH:MM:SS_UTC} until:{YYYY-MM-DD_HH:MM:SS_UTC}
+</code></pre></div>
+<p>The <code>to_sorsa_date(dt)</code> helper in <code>sorsa_client.py</code> formats the datetime into this string.</p>
+<h3 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h3>
+<p><code>ingest_72h</code> returns <code>(all_post_ids: set[str], all_user_ids: set[str])</code> — the union of all IDs across all slices, deduplicated. These sets drive Phases 2–4.</p>
+<hr />
+<h2 id="phase-2-comments-comments">Phase 2 — Comments (<code>/comments</code>)<a class="headerlink" href="#phase-2-comments-comments" title="Permanent link">&para;</a></h2>
+<p><code>AuxiliaryIngestors.ingest_comments_for_posts(posts, key, ...)</code> iterates over every <code>post_id</code> discovered in Phase 1.</p>
+<p>For each post:</p>
+<div class="highlight"><pre><span></span><code>window_id = f&quot;comments_{post_id}&quot;
+cursor = None
+loop:
+  data = POST /comments (tweet_link=post_id, next_cursor=cursor)
+  for tweet in data[&quot;tweets&quot;]:
+    upsert_post_raw(endpoint=&quot;/comments&quot;, payload=tweet)
+    upsert_mindshare_post(payload=tweet, project_keyword=keyword)
+  cursor = data.get(&quot;next_cursor&quot;)
+  upsert_window_checkpoint(status=&quot;running&quot;|&quot;completed&quot;, next_cursor=cursor)
+  if not cursor: break
+</code></pre></div>
+<p>On exception:
+<div class="highlight"><pre><span></span><code>upsert_window_checkpoint(status=&quot;failed&quot;, error_message=str(exc))
+break  ← moves to next post (does not propagate)
+</code></pre></div></p>
+<p>Important: exceptions are <strong>caught and swallowed</strong> at the per-post level. A failure on one post's comments does not abort Phase 2 or the run. The failure is recorded in the checkpoint table.</p>
+<p>Comments discovered here are inserted into <code>mindshare_post</code> under the same <code>project_keyword</code> as the search. This means a comment thread post can be associated with the keyword even if it wasn't returned by the search query directly.</p>
+<hr />
+<h2 id="phase-3-user-timelines-user-tweets">Phase 3 — User timelines (<code>/user-tweets</code>)<a class="headerlink" href="#phase-3-user-timelines-user-tweets" title="Permanent link">&para;</a></h2>
+<p><code>AuxiliaryIngestors.ingest_user_tweets(user_ids, key, ...)</code> iterates over every <code>user_id</code> discovered in Phase 1.</p>
+<p>For each user:</p>
+<div class="highlight"><pre><span></span><code>window_id = f&quot;user_{user_id}&quot;
+cursor = None
+loop:
+  data = POST /user-tweets (user_id=user_id, next_cursor=cursor)
+  for tweet in data[&quot;tweets&quot;]:
+    upsert_post_raw(endpoint=&quot;/user-tweets&quot;, payload=tweet)
+    upsert_mindshare_post(payload=tweet, project_keyword=keyword)
+  cursor = data.get(&quot;next_cursor&quot;)
+  upsert_window_checkpoint(status=&quot;running&quot;|&quot;completed&quot;, next_cursor=cursor)
+  if not cursor: break
+</code></pre></div>
+<p>On exception: checkpoint written as <code>failed</code>, loop breaks to next user.</p>
+<p>User timeline tweets are also upserted into <code>mindshare_post</code> under the project keyword. This may associate unrelated tweets from a user's timeline with the project — this is intentional for mindshare tracking.</p>
+<hr />
+<h2 id="phase-4-user-scores-score-idx_id">Phase 4 — User scores (<code>/score-id/{x_id}</code>)<a class="headerlink" href="#phase-4-user-scores-score-idx_id" title="Permanent link">&para;</a></h2>
+<p><code>AuxiliaryIngestors.ingest_scores(user_ids, key, ...)</code> iterates over every <code>user_id</code> discovered in Phase 1.</p>
+<p>For each user:</p>
+<div class="highlight"><pre><span></span><code>window_id = f&quot;score_{user_id}&quot;
+data = GET /score-id/{user_id}
+upsert_user_score(
+    x_id=user_id,
+    username=data[&quot;username&quot;],
+    display_name=data[&quot;display_name&quot;],
+    avatar_url=data[&quot;profile_image_url&quot;],
+    followers_count=data[&quot;followers_count&quot;],
+    score=data[&quot;score&quot;]
+)
+upsert_window_checkpoint(status=&quot;completed&quot;)
+</code></pre></div>
+<p>On exception: checkpoint written as <code>failed</code>, continues to next user. Scores are not paginated — one HTTP call per user.</p>
+<hr />
+<h2 id="retry-and-rate-limit-strategy">Retry and rate-limit strategy<a class="headerlink" href="#retry-and-rate-limit-strategy" title="Permanent link">&para;</a></h2>
+<p>All HTTP calls flow through <code>SorsaClient._request()</code>.</p>
+<h3 id="rate-limiting">Rate limiting<a class="headerlink" href="#rate-limiting" title="Permanent link">&para;</a></h3>
+<p>The <code>PerKeyRateLimiter</code> enforces a flat limit of <strong><code>SORSA_PER_KEY_RPS</code> requests per second</strong> per API key alias (default: 20 req/s):</p>
+<ul>
+<li>Maintains a <code>deque[float]</code> of request timestamps per alias.</li>
+<li>Every call to <code>acquire(alias)</code> checks: if fewer than <code>rps</code> requests were made in the last 1 second, record the timestamp and allow the request. Otherwise, sleep until the oldest tracked request is more than 1 second old, then retry.</li>
+<li>The lock is released before sleeping so other coroutines are not blocked.</li>
+<li><code>acquire()</code> is called before <strong>every retry attempt</strong>, not just the first — the per-second cap applies uniformly regardless of attempt count.</li>
+</ul>
+<h3 id="retry-logic">Retry logic<a class="headerlink" href="#retry-logic" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Error type</th>
+<th>Retry condition</th>
+<th>Sleep before retry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP 429</td>
+<td>If <code>attempt &lt; max_retries</code></td>
+<td><code>retry_429_sleep_seconds</code> (default: 1.0s)</td>
+</tr>
+<tr>
+<td>HTTP 5xx</td>
+<td>If <code>attempt &lt; max_retries</code></td>
+<td><code>retry_5xx_sleep_seconds</code> (default: 2.0s)</td>
+</tr>
+<tr>
+<td><code>aiohttp.ClientError</code> / <code>asyncio.TimeoutError</code></td>
+<td>If <code>attempt &lt; max_retries</code></td>
+<td><code>retry_5xx_sleep_seconds</code></td>
+</tr>
+<tr>
+<td>HTTP 429 on final attempt</td>
+<td>—</td>
+<td>Raises <code>SorsaRateLimitError</code></td>
+</tr>
+<tr>
+<td>Any other error after retries</td>
+<td>—</td>
+<td>Raises <code>SorsaClientError</code></td>
+</tr>
+</tbody>
+</table>
+<p>The client timeout is set to 60 seconds (<code>aiohttp.ClientTimeout(total=60)</code>) in the orchestrator.</p>
+<h3 id="error-propagation-summary">Error propagation summary<a class="headerlink" href="#error-propagation-summary" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Error source</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Search slice (any page)</td>
+<td>Re-raised → propagates through <code>asyncio.gather</code> → aborts search phase → marks run <code>failed</code></td>
+</tr>
+<tr>
+<td>Comments per post</td>
+<td>Swallowed → next post starts; run continues</td>
+</tr>
+<tr>
+<td>User timeline per user</td>
+<td>Swallowed → next user starts; run continues</td>
+</tr>
+<tr>
+<td>Score per user</td>
+<td>Swallowed → next user starts; run continues</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="checkpoint-lifecycle">Checkpoint lifecycle<a class="headerlink" href="#checkpoint-lifecycle" title="Permanent link">&para;</a></h2>
+<p>Checkpoints allow visibility into the granular state of every paginated window. The <code>status</code> transitions are:</p>
+<div class="highlight"><pre><span></span><code>(not yet started) → running → completed
+                            ↘ failed
+</code></pre></div>
+<p>A <code>running</code> checkpoint with a non-null <code>next_cursor</code> represents an interrupted or in-progress window. The cursor value needed to resume pagination is preserved.</p>
+<div class="admonition note">
+<p class="admonition-title">Resume is not yet wired</p>
+<p>Checkpoint writes are implemented, but the resume reader (which would look up the last <code>running</code> cursor and skip already-completed slices) is not yet implemented. Each CLI invocation starts a fresh <code>ingestion_run</code> and re-fetches from the beginning of the 72-hour window.</p>
+</div>
+<hr />
+<h2 id="data-flow-per-tweet">Data flow per tweet<a class="headerlink" href="#data-flow-per-tweet" title="Permanent link">&para;</a></h2>
+<p>Every tweet API response passes through this pipeline:</p>
+<pre class="mermaid"><code>flowchart TD
+    api["Raw API response\n{id, full_text, user, entities, ...}"]
+    raw["raw_data.raw_post_ingestion\nstores JSONB payload\nkeyed by (post_id, endpoint)"]
+    norm["mindshare.mindshare_post\nnormalized columns\nproject_keywords merged"]
+    skip{post_id and\nuser_x_id and\ncreated_at present?}
+
+    api --&gt; skip
+    skip --&gt;|Yes| raw
+    skip --&gt;|Yes| norm
+    skip --&gt;|No| drop["Silently skipped\n(no DB write)"]</code></pre>
+<p>Both writes happen for every tweet in every phase (search, comments, user-tweets). The raw write happens first, then the normalized upsert.</p>
+<hr />
+<h2 id="run-outcome-states">Run outcome states<a class="headerlink" href="#run-outcome-states" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th><code>ingestion_run.run_status</code></th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>All phases complete</td>
+<td><code>completed</code></td>
+<td>Normal exit</td>
+</tr>
+<tr>
+<td>Any slice in Phase 1 fails</td>
+<td><code>failed</code></td>
+<td><code>error_summary</code> contains exception string</td>
+</tr>
+<tr>
+<td>All of Phase 1 succeeds but a comment/timeline/score call fails</td>
+<td><code>completed</code></td>
+<td>Per-item errors in aux phases are swallowed; run still completes</td>
+</tr>
+<tr>
+<td>Unexpected exception escapes the orchestrator</td>
+<td><code>failed</code></td>
+<td>Covers programming errors, DB connection loss, etc.</td>
+</tr>
+</tbody>
+</table>
 
 
 

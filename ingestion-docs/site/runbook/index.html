@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -391,44 +391,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#build-docs-site" class="md-nav__link">
+  <a href="#running-the-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Build docs site
+        Running the pipeline
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-runtime-checks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common runtime checks
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sql-checks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SQL checks
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="SQL checks">
+    <nav class="md-nav" aria-label="Running the pipeline">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#last-runs" class="md-nav__link">
+  <a href="#local-run" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Last runs
+        Local run
       
     </span>
   </a>
@@ -436,10 +414,49 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#failed-windows" class="md-nav__link">
+  <a href="#running-with-custom-tuning" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Failed windows
+        Running with custom tuning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-and-serving-the-docs-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building and serving the docs site
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-a-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring a run
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring a run">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-check-run-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Check run status
       
     </span>
   </a>
@@ -447,10 +464,148 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#verify-keyword-merge-on-duplicate-post" class="md-nav__link">
+  <a href="#2-check-all-checkpoints-for-a-run" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Verify keyword merge on duplicate post
+        2. Check all checkpoints for a run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-check-failed-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Check failed windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-count-ingested-posts-for-a-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Count ingested posts for a run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-inspect-raw-payload-for-a-specific-post" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Inspect raw payload for a specific post
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-verify-project-keyword-merge-on-a-known-post" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Verify project keyword merge on a known post
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-count-posts-per-keyword" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Count posts per keyword
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-check-user-scores-populated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Check user scores populated
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagnosing-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnosing failures
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagnosing failures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-marked-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run marked failed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checkpoint-table-missing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checkpoint table missing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rate-limit-errors-sorsaratelimiterror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rate limit errors (SorsaRateLimitError)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#db-connection-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DB connection errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#posts-missing-after-a-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Posts missing after a run
       
     </span>
   </a>
@@ -471,13 +626,146 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Tuning guidance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#increase-throughput" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Increase throughput
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduce-rate-limit-pressure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reduce rate-limit pressure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduce-db-pressure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reduce DB pressure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#known-limitations-in-current-implementation" class="md-nav__link">
+  <a href="#known-limitations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Known limitations in current implementation
+        Known limitations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Known limitations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checkpoint-resume-not-wired" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checkpoint resume not wired
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-api-key-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single API key only
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequential-aux-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sequential aux phases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-tweet-db-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-tweet DB transactions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source_m-source_n-source_u-flags-not-populated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        source_m / source_n / source_u flags not populated
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ingestioncontext-dataclass-unused" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IngestionContext dataclass unused
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#re-running-after-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Re-running after failure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended next steps
       
     </span>
   </a>
@@ -519,44 +807,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#build-docs-site" class="md-nav__link">
+  <a href="#running-the-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Build docs site
+        Running the pipeline
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-runtime-checks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common runtime checks
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sql-checks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SQL checks
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="SQL checks">
+    <nav class="md-nav" aria-label="Running the pipeline">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#last-runs" class="md-nav__link">
+  <a href="#local-run" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Last runs
+        Local run
       
     </span>
   </a>
@@ -564,10 +830,49 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#failed-windows" class="md-nav__link">
+  <a href="#running-with-custom-tuning" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Failed windows
+        Running with custom tuning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-and-serving-the-docs-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building and serving the docs site
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-a-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring a run
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring a run">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-check-run-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Check run status
       
     </span>
   </a>
@@ -575,10 +880,148 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#verify-keyword-merge-on-duplicate-post" class="md-nav__link">
+  <a href="#2-check-all-checkpoints-for-a-run" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Verify keyword merge on duplicate post
+        2. Check all checkpoints for a run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-check-failed-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Check failed windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-count-ingested-posts-for-a-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Count ingested posts for a run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-inspect-raw-payload-for-a-specific-post" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Inspect raw payload for a specific post
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-verify-project-keyword-merge-on-a-known-post" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Verify project keyword merge on a known post
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-count-posts-per-keyword" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Count posts per keyword
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-check-user-scores-populated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Check user scores populated
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagnosing-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnosing failures
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagnosing failures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-marked-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run marked failed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checkpoint-table-missing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checkpoint table missing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rate-limit-errors-sorsaratelimiterror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rate limit errors (SorsaRateLimitError)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#db-connection-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DB connection errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#posts-missing-after-a-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Posts missing after a run
       
     </span>
   </a>
@@ -599,13 +1042,146 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Tuning guidance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#increase-throughput" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Increase throughput
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduce-rate-limit-pressure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reduce rate-limit pressure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduce-db-pressure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reduce DB pressure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#known-limitations-in-current-implementation" class="md-nav__link">
+  <a href="#known-limitations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Known limitations in current implementation
+        Known limitations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Known limitations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checkpoint-resume-not-wired" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checkpoint resume not wired
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-api-key-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single API key only
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequential-aux-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sequential aux phases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-tweet-db-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-tweet DB transactions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source_m-source_n-source_u-flags-not-populated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        source_m / source_n / source_u flags not populated
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ingestioncontext-dataclass-unused" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IngestionContext dataclass unused
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#re-running-after-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Re-running after failure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended next steps
       
     </span>
   </a>
@@ -630,55 +1206,201 @@
 
 
 <h1 id="operations-runbook">Operations Runbook<a class="headerlink" href="#operations-runbook" title="Permanent link">&para;</a></h1>
-<h2 id="build-docs-site">Build docs site<a class="headerlink" href="#build-docs-site" title="Permanent link">&para;</a></h2>
-<p>From <code>Sorsa/ingestion-docs</code>:</p>
-<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>serve
+<p>This page covers how to run, monitor, debug, and tune the ingestion pipeline.</p>
+<hr />
+<h2 id="running-the-pipeline">Running the pipeline<a class="headerlink" href="#running-the-pipeline" title="Permanent link">&para;</a></h2>
+<h3 id="local-run">Local run<a class="headerlink" href="#local-run" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># From the repository root</span>
+python<span class="w"> </span>main.py<span class="w"> </span>--project-keyword<span class="w"> </span>&lt;keyword&gt;
 </code></pre></div>
-<p>or</p>
-<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>build
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>main.py<span class="w"> </span>--project-keyword<span class="w"> </span>Acurast
 </code></pre></div>
-<h2 id="common-runtime-checks">Common runtime checks<a class="headerlink" href="#common-runtime-checks" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Confirm run record exists in <code>mindshare.ingestion_run</code>.</li>
-<li>Inspect checkpoint table for stalled/failed windows.</li>
-<li>Check recent rows in <code>raw_data.raw_post_ingestion</code>.</li>
-<li>Verify merged keyword behavior in <code>mindshare.mindshare_post</code>.</li>
-</ol>
-<h2 id="sql-checks">SQL checks<a class="headerlink" href="#sql-checks" title="Permanent link">&para;</a></h2>
-<h3 id="last-runs">Last runs<a class="headerlink" href="#last-runs" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">run_id</span><span class="p">,</span><span class="w"> </span><span class="n">project_keyword</span><span class="p">,</span><span class="w"> </span><span class="n">run_status</span><span class="p">,</span><span class="w"> </span><span class="n">started_at</span><span class="p">,</span><span class="w"> </span><span class="n">finished_at</span>
+<p>On success:</p>
+<div class="highlight"><pre><span></span><code>Ingestion completed. run_id=3fa85f64-5717-4562-b3fc-2c963f66afa6
+</code></pre></div>
+<p>On failure, a Python traceback is printed and the process exits non-zero.</p>
+<h3 id="running-with-custom-tuning">Running with custom tuning<a class="headerlink" href="#running-with-custom-tuning" title="Permanent link">&para;</a></h3>
+<p>Override any setting via environment variable:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">SEARCH_SLICE_COUNT</span><span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="nv">SORSA_PER_KEY_RPS</span><span class="o">=</span><span class="m">10</span><span class="w"> </span>python<span class="w"> </span>main.py<span class="w"> </span>--project-keyword<span class="w"> </span>Acurast
+</code></pre></div>
+<p>Or set them all in <code>.env</code> before running.</p>
+<hr />
+<h2 id="building-and-serving-the-docs-site">Building and serving the docs site<a class="headerlink" href="#building-and-serving-the-docs-site" title="Permanent link">&para;</a></h2>
+<p>From <code>ingestion-docs/</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Live preview (watches for changes)</span>
+mkdocs<span class="w"> </span>serve
+
+<span class="c1"># Build static site to ingestion-docs/site/</span>
+mkdocs<span class="w"> </span>build
+</code></pre></div>
+<hr />
+<h2 id="monitoring-a-run">Monitoring a run<a class="headerlink" href="#monitoring-a-run" title="Permanent link">&para;</a></h2>
+<h3 id="1-check-run-status">1. Check run status<a class="headerlink" href="#1-check-run-status" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">run_id</span><span class="p">,</span><span class="w"> </span><span class="n">project_keyword</span><span class="p">,</span><span class="w"> </span><span class="n">run_status</span><span class="p">,</span><span class="w"> </span><span class="n">started_at</span><span class="p">,</span><span class="w"> </span><span class="n">finished_at</span><span class="p">,</span>
+<span class="w">       </span><span class="n">finished_at</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">started_at</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">duration</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">ingestion_run</span>
 <span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">started_at</span><span class="w"> </span><span class="k">DESC</span>
 <span class="k">LIMIT</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
 </code></pre></div>
-<h3 id="failed-windows">Failed windows<a class="headerlink" href="#failed-windows" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">run_id</span><span class="p">,</span><span class="w"> </span><span class="n">endpoint</span><span class="p">,</span><span class="w"> </span><span class="n">window_id</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">error_message</span><span class="p">,</span><span class="w"> </span><span class="n">updated_at</span>
+<p>Possible <code>run_status</code> values: <code>running</code>, <code>completed</code>, <code>failed</code>.</p>
+<p>A run stuck in <code>running</code> with an old <code>started_at</code> and no <code>finished_at</code> indicates the process was killed or crashed without updating the record.</p>
+<h3 id="2-check-all-checkpoints-for-a-run">2. Check all checkpoints for a run<a class="headerlink" href="#2-check-all-checkpoints-for-a-run" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">window_id</span><span class="p">,</span><span class="w"> </span><span class="n">endpoint</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">next_cursor</span><span class="p">,</span><span class="w"> </span><span class="n">error_message</span><span class="p">,</span><span class="w"> </span><span class="n">updated_at</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">ingestion_window_checkpoint</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">run_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;run_id&gt;&#39;</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">updated_at</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="3-check-failed-windows">3. Check failed windows<a class="headerlink" href="#3-check-failed-windows" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">run_id</span><span class="p">,</span><span class="w"> </span><span class="n">project_keyword</span><span class="p">,</span><span class="w"> </span><span class="n">window_id</span><span class="p">,</span><span class="w"> </span><span class="n">endpoint</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">error_message</span><span class="p">,</span><span class="w"> </span><span class="n">updated_at</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">ingestion_window_checkpoint</span>
 <span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;failed&#39;</span>
 <span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">updated_at</span><span class="w"> </span><span class="k">DESC</span>
 <span class="k">LIMIT</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span>
 </code></pre></div>
-<h3 id="verify-keyword-merge-on-duplicate-post">Verify keyword merge on duplicate post<a class="headerlink" href="#verify-keyword-merge-on-duplicate-post" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">post_id</span><span class="p">,</span><span class="w"> </span><span class="n">project_keywords</span><span class="p">,</span><span class="w"> </span><span class="n">last_seen_at</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">mindshare_post</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">post_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="n">tweet_id</span><span class="o">&gt;</span><span class="p">;</span>
+<p>Failed windows in Phase 1 (<code>endpoint = '/search-tweets'</code>) indicate the run itself failed. Failed windows in aux phases indicate per-item failures that were silently swallowed.</p>
+<h3 id="4-count-ingested-posts-for-a-run">4. Count ingested posts for a run<a class="headerlink" href="#4-count-ingested-posts-for-a-run" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">raw_data</span><span class="p">.</span><span class="n">raw_post_ingestion</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">run_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;run_id&gt;&#39;</span><span class="p">;</span>
 </code></pre></div>
+<h3 id="5-inspect-raw-payload-for-a-specific-post">5. Inspect raw payload for a specific post<a class="headerlink" href="#5-inspect-raw-payload-for-a-specific-post" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">run_id</span><span class="p">,</span><span class="w"> </span><span class="n">project_keyword</span><span class="p">,</span><span class="w"> </span><span class="n">endpoint</span><span class="p">,</span><span class="w"> </span><span class="n">raw_json</span><span class="p">,</span><span class="w"> </span><span class="n">fetched_at</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">raw_data</span><span class="p">.</span><span class="n">raw_post_ingestion</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">post_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;post_id&gt;&#39;</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">fetched_at</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="6-verify-project-keyword-merge-on-a-known-post">6. Verify project keyword merge on a known post<a class="headerlink" href="#6-verify-project-keyword-merge-on-a-known-post" title="Permanent link">&para;</a></h3>
+<p>If the same post was ingested by two different keyword runs, its <code>project_keywords</code> array should contain both keywords:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">post_id</span><span class="p">,</span><span class="w"> </span><span class="n">project_keywords</span><span class="p">,</span><span class="w"> </span><span class="n">last_seen_at</span><span class="p">,</span><span class="w"> </span><span class="n">last_ingested_run_id</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">mindshare_post</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">post_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="n">tweet_id_as_integer</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="7-count-posts-per-keyword">7. Count posts per keyword<a class="headerlink" href="#7-count-posts-per-keyword" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">unnest</span><span class="p">(</span><span class="n">project_keywords</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">keyword</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">post_count</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">mindshare_post</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">keyword</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">post_count</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="8-check-user-scores-populated">8. Check user scores populated<a class="headerlink" href="#8-check-user-scores-populated" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">x_id</span><span class="p">,</span><span class="w"> </span><span class="n">x_username</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="p">,</span><span class="w"> </span><span class="n">followers_count</span><span class="p">,</span><span class="w"> </span><span class="n">last_score_fetched_at</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">mindshare_user</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">last_score_fetched_at</span><span class="w"> </span><span class="k">DESC</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h2 id="diagnosing-failures">Diagnosing failures<a class="headerlink" href="#diagnosing-failures" title="Permanent link">&para;</a></h2>
+<h3 id="run-marked-failed">Run marked <code>failed</code><a class="headerlink" href="#run-marked-failed" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Query <code>error_summary</code> in <code>ingestion_run</code>:
+   <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">error_summary</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">ingestion_run</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">run_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;run_id&gt;&#39;</span><span class="p">;</span>
+</code></pre></div></li>
+<li>Find the failing search slice checkpoint:
+   <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">window_id</span><span class="p">,</span><span class="w"> </span><span class="n">error_message</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">mindshare</span><span class="p">.</span><span class="n">ingestion_window_checkpoint</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">run_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;run_id&gt;&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;failed&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/search-tweets&#39;</span><span class="p">;</span>
+</code></pre></div></li>
+<li>The error message is the Python exception string from <code>SorsaClient</code> — typically a Sorsa API error response or a network timeout.</li>
+</ol>
+<h3 id="checkpoint-table-missing">Checkpoint table missing<a class="headerlink" href="#checkpoint-table-missing" title="Permanent link">&para;</a></h3>
+<p>If you see errors like:
+<div class="highlight"><pre><span></span><code>relation &quot;mindshare.ingestion_window_checkpoint&quot; does not exist
+</code></pre></div></p>
+<p>Apply the DDL from the <a href="../data-model/#mindshareingestion_window_checkpoint">Data Model</a> page.</p>
+<h3 id="rate-limit-errors-sorsaratelimiterror">Rate limit errors (<code>SorsaRateLimitError</code>)<a class="headerlink" href="#rate-limit-errors-sorsaratelimiterror" title="Permanent link">&para;</a></h3>
+<p>If the run fails with a <code>SorsaRateLimitError</code>, the Sorsa API returned HTTP 429 on all retry attempts. Solutions:</p>
+<ul>
+<li>Lower <code>SORSA_PER_KEY_RPS</code> to reduce the burst rate.</li>
+<li>Increase <code>SORSA_RETRY_429_SLEEP_SECONDS</code>.</li>
+<li>Lower <code>SEARCH_SLICE_COUNT</code> to reduce total concurrent requests.</li>
+</ul>
+<h3 id="db-connection-errors">DB connection errors<a class="headerlink" href="#db-connection-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Confirm <code>COCKROACH_DATABASE_URL</code> is correct.</li>
+<li>Verify the CockroachDB cluster is reachable from your host.</li>
+<li>Check that SSL mode is set correctly (<code>sslmode=require</code> or <code>sslmode=disable</code> for local dev).</li>
+<li>The engine uses <code>pool_pre_ping=True</code>, so stale connections are caught early.</li>
+</ul>
+<h3 id="posts-missing-after-a-run">Posts missing after a run<a class="headerlink" href="#posts-missing-after-a-run" title="Permanent link">&para;</a></h3>
+<p>Check the raw table first — if the post is there but not in <code>mindshare_post</code>, the normalized upsert likely skipped it due to missing fields. The <code>upsert_mindshare_post</code> method silently skips rows where <code>post_id</code>, <code>user_x_id</code>, or <code>created_at</code> are absent/empty:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Check if raw payload has the expected id field</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">raw_json</span><span class="o">-&gt;&gt;</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">raw_json</span><span class="o">-&gt;&gt;</span><span class="s1">&#39;created_at&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">raw_json</span><span class="o">-&gt;</span><span class="s1">&#39;user&#39;</span><span class="o">-&gt;&gt;</span><span class="s1">&#39;id&#39;</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">raw_data</span><span class="p">.</span><span class="n">raw_post_ingestion</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">post_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;post_id&gt;&#39;</span><span class="p">;</span>
+</code></pre></div>
+<hr />
 <h2 id="tuning-guidance">Tuning guidance<a class="headerlink" href="#tuning-guidance" title="Permanent link">&para;</a></h2>
+<h3 id="increase-throughput">Increase throughput<a class="headerlink" href="#increase-throughput" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Lever</th>
+<th>Effect</th>
+<th>Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Increase <code>SEARCH_SLICE_COUNT</code></td>
+<td>More parallel slice workers, smaller per-slice time window</td>
+<td>Diminishing returns above <code>SORSA_PER_KEY_RPS</code>; more connections to DB</td>
+</tr>
+<tr>
+<td>Increase <code>SEARCH_MAX_CONCURRENCY</code></td>
+<td>Raises the ceiling on concurrent tasks</td>
+<td>No effect if already limited by <code>SEARCH_SLICE_COUNT</code> or <code>SORSA_PER_KEY_RPS</code></td>
+</tr>
+<tr>
+<td>Increase <code>SORSA_PER_KEY_RPS</code></td>
+<td>More requests per second to Sorsa</td>
+<td>Will trigger 429s if set above actual API quota</td>
+</tr>
+</tbody>
+</table>
+<p>Effective concurrency is always:
+<div class="highlight"><pre><span></span><code>min(SEARCH_SLICE_COUNT, SEARCH_MAX_CONCURRENCY, SORSA_PER_KEY_RPS)
+</code></pre></div></p>
+<p>So all three levers must be raised together to increase effective concurrency.</p>
+<h3 id="reduce-rate-limit-pressure">Reduce rate-limit pressure<a class="headerlink" href="#reduce-rate-limit-pressure" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Increase throughput:</li>
-<li>add more API keys to <code>SORSA_API_KEYS</code></li>
-<li>increase <code>SEARCH_SLICE_COUNT</code> cautiously</li>
-<li>Reduce rate-limit pressure:</li>
-<li>lower <code>SORSA_PER_KEY_RPS</code></li>
-<li>increase retry sleep values</li>
+<li>Lower <code>SORSA_PER_KEY_RPS</code> to stay within Sorsa's quota.</li>
+<li>Increase <code>SORSA_RETRY_429_SLEEP_SECONDS</code> to back off more gently on 429s.</li>
+<li>Lower <code>SEARCH_SLICE_COUNT</code> to reduce the number of concurrent outstanding requests.</li>
 </ul>
-<h2 id="known-limitations-in-current-implementation">Known limitations in current implementation<a class="headerlink" href="#known-limitations-in-current-implementation" title="Permanent link">&para;</a></h2>
+<h3 id="reduce-db-pressure">Reduce DB pressure<a class="headerlink" href="#reduce-db-pressure" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Resume-from-checkpoint reader is not yet fully wired (checkpoints are written, but restart flow currently begins a fresh run).</li>
-<li>Auxiliary endpoint phases currently run through a single selected key alias.</li>
-<li>Batch write optimization can be improved for higher-volume ingest.</li>
+<li>The current implementation issues one DB call per tweet per phase (not batched). For high-volume keywords, this results in many small transactions. Future optimization: batch upserts.</li>
 </ul>
-<p>These are next recommended hardening steps.</p>
+<hr />
+<h2 id="known-limitations">Known limitations<a class="headerlink" href="#known-limitations" title="Permanent link">&para;</a></h2>
+<h3 id="checkpoint-resume-not-wired">Checkpoint resume not wired<a class="headerlink" href="#checkpoint-resume-not-wired" title="Permanent link">&para;</a></h3>
+<p>Checkpoints are written after every page fetch. The cursor value is stored and could be used to resume interrupted windows. However, the <strong>resume reader is not implemented</strong> — every CLI run creates a brand new <code>ingestion_run</code> and re-fetches the full 72-hour window from scratch. If a run is interrupted halfway through, re-running it will re-fetch everything from the start (safely, due to upsert idempotency), not from the last successful checkpoint.</p>
+<p><strong>Impact:</strong> no data loss, but duplicated API calls on re-runs.</p>
+<h3 id="single-api-key-only">Single API key only<a class="headerlink" href="#single-api-key-only" title="Permanent link">&para;</a></h3>
+<p><code>Settings.api_keys</code> always returns a single-element list (<code>[SORSA_API_KEY.strip()]</code>). The round-robin key assignment in <code>build_time_slices</code> and the <code>PerKeyRateLimiter</code> are already designed for multiple keys, but <code>config.py</code> does not parse a comma-separated key list. All slices and aux calls use <code>key_1</code>.</p>
+<h3 id="sequential-aux-phases">Sequential aux phases<a class="headerlink" href="#sequential-aux-phases" title="Permanent link">&para;</a></h3>
+<p>Phases 2, 3, and 4 iterate their input sets with a plain <code>for</code> loop — no concurrency within each phase. For large result sets (many posts or users), this can be slow. Future work: async task pool for aux phases mirroring the slice concurrency in Phase 1.</p>
+<h3 id="per-tweet-db-transactions">Per-tweet DB transactions<a class="headerlink" href="#per-tweet-db-transactions" title="Permanent link">&para;</a></h3>
+<p>Each <code>upsert_post_raw</code> and <code>upsert_mindshare_post</code> call opens, executes, commits, and closes its own session. For high-volume ingestion, bulk/batched upserts would significantly reduce DB round trips.</p>
+<h3 id="source_m-source_n-source_u-flags-not-populated"><code>source_m / source_n / source_u</code> flags not populated<a class="headerlink" href="#source_m-source_n-source_u-flags-not-populated" title="Permanent link">&para;</a></h3>
+<p><code>mindshare_post</code> has three source flag columns (<code>source_m</code>, <code>source_n</code>, <code>source_u</code>). These are not written by the ingestion pipeline and always default to <code>false</code>. Their intended semantics are not defined in this codebase.</p>
+<h3 id="ingestioncontext-dataclass-unused"><code>IngestionContext</code> dataclass unused<a class="headerlink" href="#ingestioncontext-dataclass-unused" title="Permanent link">&para;</a></h3>
+<p><code>app/models.py</code> defines <code>IngestionContext</code> (run_id, project_keyword, slice_id, endpoint, api_key_alias). It is not referenced anywhere in the current implementation. It was likely intended for structured context propagation to the repository layer.</p>
+<hr />
+<h2 id="re-running-after-failure">Re-running after failure<a class="headerlink" href="#re-running-after-failure" title="Permanent link">&para;</a></h2>
+<p>Because all writes are idempotent upserts, re-running the same keyword is always safe:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>main.py<span class="w"> </span>--project-keyword<span class="w"> </span>Acurast
+</code></pre></div>
+<p>This creates a new <code>ingestion_run</code> row and re-fetches the 72-hour window. Existing posts in <code>mindshare_post</code> will have their engagement counts refreshed and their <code>project_keywords</code> left unchanged (the keyword is already in the array). The <code>raw_post_ingestion</code> table will have its <code>raw_json</code> updated to the latest payload.</p>
+<hr />
+<h2 id="recommended-next-steps">Recommended next steps<a class="headerlink" href="#recommended-next-steps" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Create <code>mindshare.ingestion_window_checkpoint</code></strong> in <code>ddl/ddl_mindshare_ingestion.sql</code> (see <a href="../data-model/#mindshareingestion_window_checkpoint">Data Model</a>).</li>
+<li><strong>Implement checkpoint resume</strong> — on start, look up the last <code>running</code> or <code>failed</code> checkpoint for each slice/window and skip already-completed windows or resume from stored cursor.</li>
+<li><strong>Add multi-key support</strong> — parse <code>SORSA_API_KEY</code> as a comma-separated list in <code>Settings.api_keys</code>.</li>
+<li><strong>Batch DB writes</strong> — accumulate tweets per page and issue a single multi-row upsert instead of one per tweet.</li>
+<li><strong>Add concurrency to aux phases</strong> — use an <code>asyncio.Semaphore</code>-bounded task pool similar to Phase 1's slice workers.</li>
+</ol>
 
 
 
