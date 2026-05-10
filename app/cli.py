@@ -82,6 +82,7 @@ async def _run(
     settings = Settings()
     pool = await build_pool(settings)
     orchestrator = IngestionOrchestrator(settings, pool)
+    pipeline_start = datetime.now(timezone.utc)
     try:
         run_id = await orchestrator.run_project_ingestion(
             project_keyword,
@@ -89,8 +90,16 @@ async def _run(
             since=since,
             until=until,
         )
-        logger.info("Ingestion completed. run_id=%s", run_id)
-        print(f"Ingestion completed. run_id={run_id}")
+        elapsed = datetime.now(timezone.utc) - pipeline_start
+        total_minutes = elapsed.total_seconds() / 60
+        logger.info(
+            "Ingestion completed — run_id=%s | elapsed=%.1f min (%dm %ds)",
+            run_id,
+            total_minutes,
+            int(total_minutes),
+            int(elapsed.total_seconds() % 60),
+        )
+        print(f"Ingestion completed. run_id={run_id}  elapsed={total_minutes:.1f} min")
     finally:
         await orchestrator.close()
 

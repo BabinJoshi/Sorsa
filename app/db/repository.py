@@ -234,8 +234,9 @@ class IngestionRepository:
                         await conn.executemany(sql, records)
                 break
             except (
-                asyncpg.PostgresConnectionStatusError,
+                asyncpg.PostgresConnectionError,
                 asyncpg.ConnectionDoesNotExistError,
+                asyncpg.InterfaceError,
                 OSError,
             ) as exc:
                 if attempt >= _DB_WRITE_RETRIES:

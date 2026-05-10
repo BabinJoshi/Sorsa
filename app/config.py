@@ -64,6 +64,21 @@ class Settings(BaseSettings):
         ),
         alias="DB_WRITE_BATCH_SIZE",
     )
+    skip_user_tweets: bool = Field(
+        default=False,
+        description="Set to true to skip Phase 3 (user timelines) entirely.",
+        alias="SKIP_USER_TWEETS",
+    )
+    skip_comments: bool = Field(
+        default=False,
+        description="Set to true to skip Phase 2 (comments) entirely.",
+        alias="SKIP_COMMENTS",
+    )
+    skip_scores: bool = Field(
+        default=False,
+        description="Set to true to skip Phase 4 (user scores) entirely.",
+        alias="SKIP_SCORES",
+    )
 
     @property
     def api_keys(self) -> list[str]:

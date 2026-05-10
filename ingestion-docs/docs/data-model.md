@@ -10,7 +10,7 @@ One schema is used:
 
 | Schema | Purpose |
 |---|---|
-| `mindshare` | Normalized production data — posts, users, run tracking, checkpoints |
+| `mindshare` | Normalized production data — posts, users, run tracking |
 
 ```sql
 CREATE SCHEMA IF NOT EXISTS mindshare;
@@ -49,7 +49,7 @@ CREATE INDEX IF NOT EXISTS idx_mindshare_user_x_username
 |---|---|
 | `x_id` | The numeric X/Twitter user ID (INT8). Primary key. |
 | `x_username` | Twitter handle without `@`. |
-| `score` | Influence score from `/score-id/{x_id}`. Stored as `DECIMAL(10,2)`. |
+| `score` | Influence score from `GET /score?user_id=<x_id>`. Stored as `DECIMAL(10,2)`. |
 | `adjustment_config` | Initialized to `{"default": 1}` on insert. Not written by the ingestion pipeline beyond that default. |
 | `verified` | Inserted as `false`; not populated from API data in current implementation. |
 | `last_score_fetched_at` | Updated every time `upsert_user_score` runs for this user. |
@@ -193,55 +193,6 @@ CREATE INDEX IF NOT EXISTS idx_ingestion_run_status
 
 ---
 
-### `mindshare.ingestion_window_checkpoint`
-
-!!! warning "Missing from DDL file"
-    This table is written to by `IngestionRepository.upsert_window_checkpoint()` but is **not** defined in `ddl/ddl_mindshare_ingestion.sql`. You must create it manually.
-
-Recommended DDL:
-
-```sql
-CREATE TABLE IF NOT EXISTS mindshare.ingestion_window_checkpoint (
-    run_id          UUID        NOT NULL,
-    project_keyword TEXT        NOT NULL,
-    window_id       TEXT        NOT NULL,
-    endpoint        TEXT        NOT NULL,
-    api_key_alias   TEXT        NOT NULL,
-    next_cursor     TEXT        NULL,
-    status          TEXT        NOT NULL,
-    error_message   TEXT        NULL,
-    updated_at      TIMESTAMPTZ NOT NULL DEFAULT current_timestamp(),
-    PRIMARY KEY (run_id, project_keyword, window_id, endpoint)
-);
-
-CREATE INDEX IF NOT EXISTS idx_ingestion_window_checkpoint_status
-    ON mindshare.ingestion_window_checkpoint (status, updated_at DESC);
-```
-
-**Column notes:**
-
-| Column | Description |
-|---|---|
-| `run_id` | Links to `mindshare.ingestion_run.run_id` |
-| `project_keyword` | The keyword being ingested |
-| `window_id` | Identifies the specific paginated window — format varies by phase (see below) |
-| `endpoint` | API endpoint path: `/search-tweets`, `/comments`, `/user-tweets`, `/score-id` |
-| `api_key_alias` | Which key alias (`key_1`, etc.) was used for this window |
-| `next_cursor` | The cursor value to resume pagination from; `NULL` when the window is complete |
-| `status` | `'running'`, `'completed'`, or `'failed'` |
-| `error_message` | Exception message on failure; `NULL` otherwise |
-
-**`window_id` naming conventions:**
-
-| Phase | Format | Example |
-|---|---|---|
-| Search slice | `slice_{slice_id}` | `slice_3` |
-| Comments per post | `comments_{post_id}` | `comments_1234567890` |
-| User timeline | `user_{user_id}` | `user_9876543210` |
-| Score fetch | `score_{user_id}` | `score_9876543210` |
-
----
-
 ## Upsert conflict behavior summary
 
 ```mermaid
@@ -288,7 +239,3 @@ flowchart LR
 | `followers_count` | `COALESCE(incoming, existing)` |
 | `last_score_fetched_at` | Always set to `now()` |
 | `updated_at` | Always set to `now()` |
-
-### `ingestion_window_checkpoint` conflict rules
-
-`api_key_alias`, `next_cursor`, `status`, `error_message`, `updated_at` are always overwritten — the latest page fetch state replaces the previous.
