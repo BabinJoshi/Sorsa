@@ -124,10 +124,12 @@ class AuxiliaryIngestors:
                 )
 
         failed = len(failed_ids)
+        elapsed_secs = (datetime.now(timezone.utc) - t0).total_seconds()
         logger.info(
             "[comments] Phase complete — %d comment(s) ingested | %d post(s) ok, %d permanently failed | elapsed=%s",
             total, len(post_list) - failed, failed, _fmt_elapsed(t0),
         )
+        return elapsed_secs
 
     # ------------------------------------------------------------------ #
     # Phase 3 — user timelines                                            #
@@ -226,10 +228,12 @@ class AuxiliaryIngestors:
                 )
 
         failed = len(failed_ids)
+        elapsed_secs = (datetime.now(timezone.utc) - t0).total_seconds()
         logger.info(
             "[user-tweets] Phase complete — %d tweet(s) ingested | %d user(s) ok, %d permanently failed | elapsed=%s",
             total, len(user_list) - failed, failed, _fmt_elapsed(t0),
         )
+        return elapsed_secs
 
     # ------------------------------------------------------------------ #
     # Phase 4 — user scores                                               #
@@ -283,7 +287,9 @@ class AuxiliaryIngestors:
         )
         succeeded = sum(1 for ok in results if ok)
         failed = len(results) - succeeded
+        elapsed_secs = (datetime.now(timezone.utc) - t0).total_seconds()
         logger.info(
             "[scores] Phase complete — %d scored, %d failed out of %d user(s) | elapsed=%s",
             succeeded, failed, len(user_list), _fmt_elapsed(t0),
         )
+        return elapsed_secs

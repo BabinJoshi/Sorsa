@@ -84,22 +84,33 @@ async def _run(
     orchestrator = IngestionOrchestrator(settings, pool)
     pipeline_start = datetime.now(timezone.utc)
     try:
-        run_id = await orchestrator.run_project_ingestion(
+        run_id, phase_timings = await orchestrator.run_project_ingestion(
             project_keyword,
             hours=hours,
             since=since,
             until=until,
         )
         elapsed = datetime.now(timezone.utc) - pipeline_start
-        total_minutes = elapsed.total_seconds() / 60
-        logger.info(
-            "Ingestion completed — run_id=%s | elapsed=%.1f min (%dm %ds)",
-            run_id,
-            total_minutes,
-            int(total_minutes),
-            int(elapsed.total_seconds() % 60),
-        )
-        print(f"Ingestion completed. run_id={run_id}  elapsed={total_minutes:.1f} min")
+        total_secs = elapsed.total_seconds()
+        total_minutes = total_secs / 60
+
+        # ── Phase timing summary ─────────────────────────────────────────
+        summary_lines = ["", "=" * 52, "  PHASE TIMING SUMMARY", "=" * 52]
+        for phase, secs in phase_timings.items():
+            mins = secs / 60
+            bar = "█" * min(int(mins), 40)
+            summary_lines.append(
+                f"  {phase:<26} {mins:6.1f} min  {bar}"
+            )
+        summary_lines += [
+            "-" * 52,
+            f"  {'TOTAL':<26} {total_minutes:6.1f} min",
+            "=" * 52,
+        ]
+        summary = "\n".join(summary_lines)
+        logger.info(summary)
+        print(summary)
+        print(f"\nIngestion completed. run_id={run_id}")
     finally:
         await orchestrator.close()
 

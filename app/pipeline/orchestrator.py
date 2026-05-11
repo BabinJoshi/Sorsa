@@ -45,7 +45,7 @@ class IngestionOrchestrator:
         hours: int = 72,
         since: datetime | None = None,
         until: datetime | None = None,
-    ) -> str:
+    ) -> tuple[str, dict[str, float]]:
         # Split on commas to get individual search terms.
         # project_label = first term, used as the DB identifier.
         # search_query  = Twitter OR syntax: single words unquoted, multi-word phrases quoted.
@@ -80,9 +80,13 @@ class IngestionOrchestrator:
         all_keys = self._api_keys()
         aux_concurrency = self._settings.aux_max_concurrency
 
-        def _elapsed(t0: datetime) -> str:
-            secs = (datetime.now(timezone.utc) - t0).total_seconds()
+        def _elapsed_secs(t0: datetime) -> float:
+            return (datetime.now(timezone.utc) - t0).total_seconds()
+
+        def _fmt(secs: float) -> str:
             return f"{secs / 60:.1f}min ({int(secs // 60)}m {int(secs % 60)}s)"
+
+        phase_timings: dict[str, float] = {}
 
         try:
             logger.info("Phase 1 — search (/search-tweets) starting")
@@ -99,11 +103,12 @@ class IngestionOrchestrator:
                 since=effective_since,
                 until=effective_until,
             )
+            phase_timings["Phase 1 (search)"] = _elapsed_secs(t0_phase1)
             logger.info(
                 "Phase 1 complete — posts_found=%d users_found=%d | elapsed=%s",
                 len(post_ids),
                 len(user_ids),
-                _elapsed(t0_phase1),
+                _fmt(phase_timings["Phase 1 (search)"]),
             )
             self._limiter.log_counts("After phase 1:")
 
@@ -129,9 +134,11 @@ class IngestionOrchestrator:
                     f" | skipped: {', '.join(skipped)}" if skipped else "",
                 )
 
-                aux_tasks = []
+                # Build (phase_label, coroutine) pairs so we can map results back to names.
+                aux_pairs: list[tuple[str, object]] = []
                 if not skip_comments:
-                    aux_tasks.append(
+                    aux_pairs.append((
+                        "Phase 2 (comments)",
                         self._aux_ingestors.ingest_comments_for_posts(
                             run_id=run_id,
                             project_keyword=project_label,
@@ -139,10 +146,11 @@ class IngestionOrchestrator:
                             keys=all_keys,
                             max_concurrency=aux_concurrency,
                             filter_terms=terms,
-                        )
-                    )
+                        ),
+                    ))
                 if not skip_user_tweets:
-                    aux_tasks.append(
+                    aux_pairs.append((
+                        "Phase 3 (user-tweets)",
                         self._aux_ingestors.ingest_user_tweets(
                             run_id=run_id,
                             project_keyword=project_label,
@@ -150,32 +158,36 @@ class IngestionOrchestrator:
                             keys=all_keys,
                             max_concurrency=aux_concurrency,
                             filter_terms=terms,
-                        )
-                    )
+                        ),
+                    ))
                 if not skip_scores:
-                    aux_tasks.append(
+                    aux_pairs.append((
+                        "Phase 4 (scores)",
                         self._aux_ingestors.ingest_scores(
                             run_id=run_id,
                             project_keyword=project_label,
                             user_ids=user_ids,
                             keys=all_keys,
                             max_concurrency=aux_concurrency,
-                        )
-                    )
+                        ),
+                    ))
 
-                if aux_tasks:
+                if aux_pairs:
                     t0_aux = datetime.now(timezone.utc)
-                    await asyncio.gather(*aux_tasks)
+                    elapsed_results = await asyncio.gather(*(coro for _, coro in aux_pairs))
+                    for (label, _), secs in zip(aux_pairs, elapsed_results):
+                        phase_timings[label] = secs
+                    phase_timings["Phases 2+3+4 (combined)"] = _elapsed_secs(t0_aux)
                     logger.info(
                         "Phases 2+3+4 complete — elapsed=%s",
-                        _elapsed(t0_aux),
+                        _fmt(phase_timings["Phases 2+3+4 (combined)"]),
                     )
                 self._limiter.log_counts("After phases 2+3+4:")
 
             await self._repo.mark_run_finished(run_id, "completed")
             self._limiter.log_counts("Final totals:")
             logger.info("Ingestion completed — run_id=%s", run_id)
-            return run_id
+            return run_id, phase_timings
         except Exception as exc:
             await self._repo.mark_run_finished(run_id, "failed", str(exc))
             self._limiter.log_counts("Counts at failure:")
