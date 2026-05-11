@@ -69,7 +69,9 @@ ddl/
 - **`project_keywords` merge** — a post seen by multiple keyword runs accumulates all keywords in a `TEXT[]` array rather than clobbering earlier writes.
 - **Ingestion run lifecycle** — every pipeline execution creates an `ingestion_run` record: `running` → `completed` or `running` → `failed`.
 - **Structured logging** — every significant event is logged at `INFO`/`WARNING`/`ERROR`. Logs go to both console and daily partitioned files (`logs/YYYY-MM-DD/run_HHMMSS_<id>.log`). Request counts per API key are logged after every phase.
-- **Elapsed time tracking** — total pipeline duration (in minutes) is logged and printed at the end of every run.
+- **Client-side keyword filtering** — in Phases 2 and 3, each fetched tweet is matched against the search terms (case-insensitive substring match) before DB write. Unrelated tweets from comment threads and full user timelines are discarded automatically.
+- **Phase skip flags** — `SKIP_COMMENTS`, `SKIP_USER_TWEETS`, and `SKIP_SCORES` env vars allow any auxiliary phase to be disabled without code changes (useful for test runs or debugging Phase 1 in isolation).
+- **Per-phase elapsed time** — each phase records its own wall-clock duration and returns it to the orchestrator. A formatted timing summary table (with proportional bar chart) is printed to the terminal and log file at the end of every run.
 
 ---
 

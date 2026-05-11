@@ -40,7 +40,19 @@ uv run main.py --project-keyword "quipnetwork,Quip Network,quip_network,Quip" \
 ### On success
 
 ```
-Ingestion completed. run_id=3fa85f64-5717-4562-b3fc-2c963f66afa6  elapsed=19.7 min
+====================================================
+  PHASE TIMING SUMMARY
+====================================================
+  Phase 1 (search)           0.8 min  
+  Phase 2 (comments)         2.1 min  ██
+  Phase 3 (user-tweets)     19.4 min  ███████████████████
+  Phase 4 (scores)           1.3 min  █
+  Phases 2+3+4 (combined)   19.4 min  ███████████████████
+----------------------------------------------------
+  TOTAL                      20.2 min
+====================================================
+
+Ingestion completed. run_id=3fa85f64-5717-4562-b3fc-2c963f66afa6
 ```
 
 The `run_id` corresponds to a row in `mindshare.ingestion_run`. Log output is also written to `logs/YYYY-MM-DD/run_HHMMSS_<id>.log`.
@@ -52,6 +64,23 @@ On failure, a Python traceback is printed, the run is marked `failed` in the dat
 ```bash
 SEARCH_SLICE_COUNT=10 SORSA_PER_KEY_RPS=10 uv run main.py --project-keyword Acurast
 ```
+
+### Disabling phases temporarily
+
+To run Phase 1 only (search + DB write, no aux fetching):
+
+```bash
+SKIP_COMMENTS=true SKIP_USER_TWEETS=true SKIP_SCORES=true \
+    uv run main.py --project-keyword "quipnetwork,Quip Network" --since "..." --until "..."
+```
+
+To skip just the slowest phase (user timelines):
+
+```bash
+SKIP_USER_TWEETS=true uv run main.py --project-keyword "quipnetwork,Quip Network"
+```
+
+These can also be set permanently in `.env`. Phase 1 always runs; at least search results are ingested regardless of which skip flags are set.
 
 ---
 

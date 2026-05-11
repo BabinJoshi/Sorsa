@@ -184,7 +184,7 @@ The Sorsa/Twitter search API returns relevance-ranked results, not an exhaustive
 
 ## Phase 2 — Comments (`/comments`)
 
-`ingest_comments_for_posts(run_id, project_label, post_ids, keys, max_concurrency)`:
+`ingest_comments_for_posts(run_id, project_label, post_ids, keys, max_concurrency, filter_terms)`:
 
 Creates one async task per `post_id`. Up to `aux_max_concurrency` tasks run simultaneously:
 
@@ -198,6 +198,11 @@ async def _fetch_post(idx, post_id):
         while True:
             data = POST /comments (tweet_link=post_id, cursor=cursor)
             tweets = [t for t in data["tweets"] if isinstance(t, dict)]
+
+            # Keyword filter — drop tweets not mentioning any search term
+            if filter_terms:
+                tweets = [t for t in tweets if _matches_any_term(t.get("full_text",""), filter_terms)]
+
             upsert_mindshare_posts_batch(tweets, project_label)
             cursor = data.get("next_cursor")
             if not cursor: break
@@ -209,13 +214,14 @@ results = await asyncio.gather(*[_fetch_post(i, pid) for i, pid in enumerate(pos
 
 After the main pass, failed posts are re-queued for **one retry pass**. Posts still failing after the retry are logged as `ERROR` with their IDs and counted as `permanently failed`.
 
-Final log line: `[comments] Phase complete — N comment(s) ingested | M post(s) ok, K permanently failed`
+Returns elapsed seconds as `float`. Final log line:
+`[comments] Phase complete — N comment(s) ingested | M post(s) ok, K permanently failed | elapsed=2.1min`
 
 ---
 
 ## Phase 3 — User timelines (`/user-tweets`)
 
-`ingest_user_tweets(run_id, project_label, user_ids, keys, max_concurrency)`:
+`ingest_user_tweets(run_id, project_label, user_ids, keys, max_concurrency, filter_terms)`:
 
 Identical structure to Phase 2, but paginates `POST /user-tweets` per user:
 
@@ -227,17 +233,24 @@ async def _fetch_user(idx, user_id):
         while True:
             data = POST /user-tweets (user_id=user_id, cursor=cursor)
             tweets = [t for t in data["tweets"] if isinstance(t, dict)]
+
+            # Keyword filter — only store tweets containing a search term
+            if filter_terms:
+                tweets = [t for t in tweets if _matches_any_term(t.get("full_text",""), filter_terms)]
+
             upsert_mindshare_posts_batch(tweets, project_label)
             cursor = data.get("next_cursor")
             if not cursor: break
         return (count, True)
 ```
 
-Same retry pass: failed users after the main gather are re-queued once. Retry starts from page 1 (fresh cursor) — tweets already written are upserted again (idempotent).
+**Why filtering matters here:** the `/user-tweets` endpoint has no server-side keyword filter — it returns a user's full unfiltered tweet history. Without `filter_terms`, unrelated personal tweets (e.g. "iam very sad!!!:(") would be stored under `project_keywords=['quipnetwork']`. The filter ensures only project-relevant tweets are persisted.
 
-Final log line: `[user-tweets] Phase complete — N tweet(s) ingested | M user(s) ok, K permanently failed`
+The `/user-tweets` API also has no date/time bound — it paginates until the user's entire history is exhausted. Combined with thousands of users, this makes Phase 3 the dominant cost of a full run.
 
-**Note on data volume:** user timeline fetches can be very deep. A user with 800+ tweets will require 40+ pages. With thousands of users, Phase 3 typically dominates total run time. The OR-keyword query exacerbates this — broader search → more unique users found → more timelines to fetch.
+Same retry pass: failed users after the main gather are re-queued once. Returns elapsed seconds as `float`.
+
+Final log line: `[user-tweets] Phase complete — N tweet(s) ingested | M user(s) ok, K permanently failed | elapsed=19.4min`
 
 ---
 
@@ -256,7 +269,9 @@ async def _score_user(idx, user_id):
         return True   # success / False on exception
 ```
 
-Per-user failures are logged as `WARNING` and do not trigger a retry (score fetches are cheap to re-run on the next full pipeline run). Final log: `[scores] Phase complete — N scored, K failed out of M user(s)`.
+Per-user failures are logged as `WARNING` and do not trigger a retry (score fetches are cheap to re-run on the next full pipeline run). Returns elapsed seconds as `float`.
+
+Final log: `[scores] Phase complete — N scored, K failed out of M user(s) | elapsed=1.3min`
 
 ---
 
@@ -317,7 +332,27 @@ Format: `YYYY-MM-DD HH:MM:SS [LEVEL] logger.name: message`
 | Level | Event | Example |
 |---|---|---|
 | INFO | Log file created | `Log file: logs/2026-05-09/run_103915_9b402f04.log` |
-| INFO | Run completes | `Ingestion completed — run_id=... \| elapsed=19.7 min (19m 42s)` |
+| INFO | Phase timing summary | *(formatted table — see below)* |
+
+The phase timing summary is printed at the end of every successful run:
+
+```
+====================================================
+  PHASE TIMING SUMMARY
+====================================================
+  Phase 1 (search)           0.8 min  
+  Phase 2 (comments)         2.1 min  ██
+  Phase 3 (user-tweets)     19.4 min  ███████████████████
+  Phase 4 (scores)           1.3 min  █
+  Phases 2+3+4 (combined)   19.4 min  ███████████████████
+----------------------------------------------------
+  TOTAL                      20.2 min
+====================================================
+
+Ingestion completed. run_id=3fa85f64-...
+```
+
+Skipped phases (via `SKIP_*` flags) are omitted from the table.
 
 ### `app.pipeline.orchestrator` — run lifecycle
 
@@ -326,9 +361,11 @@ Format: `YYYY-MM-DD HH:MM:SS [LEVEL] logger.name: message`
 | INFO | Run starts | `Starting ingestion — label='quipnetwork' search_query='quipnetwork OR "Quip Network"' window=2026-05-06 08:01 UTC → 2026-05-09 08:01 UTC` |
 | INFO | Run record created | `Run created — run_id=3fa85f64-...` |
 | INFO | Phase 1 starts | `Phase 1 — search (/search-tweets) starting` |
-| INFO | Phase 1 complete | `Phase 1 complete — posts_found=969 users_found=384` |
+| INFO | Phase 1 complete | `Phase 1 complete — posts_found=969 users_found=384 \| elapsed=0.8min (0m 49s)` |
 | INFO | Request counts | `After phase 1: Request counts — total=71 \| key_1=26, key_2=45` |
-| INFO | Aux phases start | `Phases 2+3+4 — starting concurrently (posts=969 users=384 concurrency=100)` |
+| INFO | Phases skipped | `Skipping phase(s): USER-TWEETS, SCORES` *(only when SKIP_* flags are set)* |
+| INFO | Aux phases start | `Phases 2+3+4 — starting concurrently (posts=969 users=384 concurrency=100 \| skipped: user-tweets, scores)` |
+| INFO | Aux phases complete | `Phases 2+3+4 complete — elapsed=19.4min (19m 24s)` |
 | INFO | Request counts | `After phases 2+3+4: Request counts — total=15357 \| key_1=7708, key_2=7649` |
 | INFO | Final totals | `Final totals: Request counts — total=15357 \| key_1=7708, key_2=7649` |
 | INFO | Run completes | `Ingestion completed — run_id=...` |
@@ -353,25 +390,27 @@ Format: `YYYY-MM-DD HH:MM:SS [LEVEL] logger.name: message`
 
 | Level | Event | Example |
 |---|---|---|
-| INFO | Phase starts | `[comments] Starting — 969 post(s) \| keys=2 \| concurrency=100` |
+| INFO | Phase starts | `[comments] Starting — 969 post(s) \| keys=2 \| concurrency=100 \| filter_terms=['quipnetwork', ...]` |
 | INFO | Post task starts | `[comments] (1/969) post_id=2052175009779708147 key=key_1` |
 | INFO | Post done | `[comments] post_id=... done — 3 comment(s) across 1 page(s)` |
+| INFO | Irrelevant filtered | `[comments] post_id=... filtered out 12 irrelevant tweet(s)` |
 | WARNING | Post failed | `[comments] post_id=... failed on page 2 after 20 comment(s): <error>` |
 | WARNING | Retry pass | `[comments] 3 post(s) failed — retrying once: [pid1, pid2, ...]` |
 | ERROR | Still failing | `[comments] 1 post(s) still failed after retry: [pid1]` |
-| INFO | Phase done | `[comments] Phase complete — 325 comment(s) ingested \| 968 post(s) ok, 1 permanently failed` |
+| INFO | Phase done | `[comments] Phase complete — 325 comment(s) ingested \| 968 post(s) ok, 1 permanently failed \| elapsed=2.1min (2m 6s)` |
 
 **User timelines:**
 
 | Level | Event | Example |
 |---|---|---|
-| INFO | Phase starts | `[user-tweets] Starting — 384 user(s) \| keys=2 \| concurrency=100` |
+| INFO | Phase starts | `[user-tweets] Starting — 384 user(s) \| keys=2 \| concurrency=100 \| filter_terms=['quipnetwork', ...]` |
 | INFO | User task starts | `[user-tweets] (1/384) user_id=1234567890 key=key_1` |
 | INFO | User done | `[user-tweets] user_id=... done — 850 tweet(s) across 44 page(s)` |
+| INFO | Irrelevant filtered | `[user-tweets] user_id=... filtered out 34 irrelevant tweet(s)` |
 | WARNING | User failed | `[user-tweets] user_id=... failed on page 16 after 298 tweet(s): <error>` |
 | WARNING | Retry pass | `[user-tweets] 40 user(s) failed — retrying once: [uid1, uid2, ...]` |
 | ERROR | Still failing | `[user-tweets] 3 user(s) still failed after retry: [uid1, uid2, uid3]` |
-| INFO | Phase done | `[user-tweets] Phase complete — 256172 tweet(s) ingested \| 381 user(s) ok, 3 permanently failed` |
+| INFO | Phase done | `[user-tweets] Phase complete — 256172 tweet(s) ingested \| 381 user(s) ok, 3 permanently failed \| elapsed=19.4min (19m 24s)` |
 
 **Scores:**
 
@@ -380,7 +419,7 @@ Format: `YYYY-MM-DD HH:MM:SS [LEVEL] logger.name: message`
 | INFO | Phase starts | `[scores] Starting — 384 user(s) \| keys=2 \| concurrency=100` |
 | INFO | Score fetched | `[scores] (1/384) user_id=... username=alice score=8.45` |
 | WARNING | Score failed | `[scores] (2/384) user_id=... failed: <error>` |
-| INFO | Phase done | `[scores] Phase complete — 383 scored, 1 failed out of 384 user(s)` |
+| INFO | Phase done | `[scores] Phase complete — 383 scored, 1 failed out of 384 user(s) \| elapsed=1.3min (1m 18s)` |
 
 ### `app.clients.sorsa_client`
 

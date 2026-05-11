@@ -76,6 +76,8 @@ No business logic. Exists purely to allow `python main.py` invocation from the r
 
 **Log file location:** `logs/YYYY-MM-DD/run_HHMMSS_<uuid8>.log` — created at the start of every run. Both `INFO` and `WARNING`/`ERROR` go to both console and file.
 
+**Phase timing summary:** at the end of every successful run, a formatted table is printed to both console and log file showing each phase's elapsed time and a proportional bar chart. See [Pipeline Behavior — Logging](pipeline-behavior.md#appcli--startup-and-completion) for an example.
+
 ---
 
 ### `app/config.py` — Settings
@@ -103,6 +105,11 @@ No business logic. Exists purely to allow `python main.py` invocation from the r
 | `retry_429_sleep_seconds` | `SORSA_RETRY_429_SLEEP_SECONDS` | `1.0` | `float` |
 | `retry_5xx_sleep_seconds` | `SORSA_RETRY_5XX_SLEEP_SECONDS` | `2.0` | `float` |
 | `db_write_batch_size` | `DB_WRITE_BATCH_SIZE` | `1000` | `int` |
+| `skip_comments` | `SKIP_COMMENTS` | `False` | `bool` |
+| `skip_user_tweets` | `SKIP_USER_TWEETS` | `False` | `bool` |
+| `skip_scores` | `SKIP_SCORES` | `False` | `bool` |
+
+The three skip flags allow any combination of aux phases to be disabled without code changes — useful for test runs or debugging Phase 1 alone. When a flag is `True`, the orchestrator omits that phase's coroutine from the `asyncio.gather` call entirely.
 
 **Computed properties:**
 
@@ -288,25 +295,36 @@ All three methods receive `keys: list[ApiKeyState]` and `max_concurrency: int`. 
 
 **Important:** all three phases are called concurrently by the orchestrator via `asyncio.gather`. They each enforce their own semaphore internally, so the total in-flight requests across all three phases at peak is up to `3 × aux_max_concurrency`, capped by the `PerKeyRateLimiter` at `len(keys) × per_key_rps` per second.
 
-#### `ingest_comments_for_posts(run_id, project_keyword, posts, keys, max_concurrency)`
+**Keyword filtering:** both `ingest_comments_for_posts` and `ingest_user_tweets` accept an optional `filter_terms: list[str]` parameter. When provided, each page of results is filtered before writing — only tweets whose `full_text` contains at least one of the terms (case-insensitive substring match) are upserted. The orchestrator always passes `filter_terms=terms` (the parsed list from `--project-keyword`). This prevents irrelevant tweets from a user's full timeline or a comment thread from being stored under the project keyword.
+
+The filter helper:
+```python
+def _matches_any_term(full_text: str, terms: list[str]) -> bool:
+    text_lower = full_text.lower()
+    return any(t.lower() in text_lower for t in terms)
+```
+
+**Elapsed time:** each method records its own start time and returns elapsed seconds to the orchestrator. The orchestrator uses these to build the final phase timing summary.
+
+#### `ingest_comments_for_posts(run_id, project_keyword, posts, keys, max_concurrency, filter_terms=None)`
 
 For each `post_id` in `posts`, creates an async task that:
 - Acquires the semaphore.
 - Paginates `POST /comments` until `next_cursor` is absent.
-- Upserts each page to `mindshare_post` under `project_keyword`.
+- Filters each page by `filter_terms` before upserting to `mindshare_post`.
 - Returns `(count, True)` on success or `(count_so_far, False)` on exception.
 
-After `asyncio.gather`, collects failed `post_id`s and runs **one retry pass** on them. Posts still failing after the retry are logged as `ERROR` and counted as `permanently failed`.
+After `asyncio.gather`, collects failed `post_id`s and runs **one retry pass** on them. Posts still failing after the retry are logged as `ERROR` and counted as `permanently failed`. Returns elapsed seconds as `float`.
 
-#### `ingest_user_tweets(run_id, project_keyword, user_ids, keys, max_concurrency)`
+#### `ingest_user_tweets(run_id, project_keyword, user_ids, keys, max_concurrency, filter_terms=None)`
 
-Same pattern as comments but paginates `POST /user-tweets`. Same retry mechanism — failed `user_id`s after the main pass are re-queued once. Users still failing after the retry are logged as `ERROR`.
+Same pattern as comments but paginates `POST /user-tweets`. Applies `filter_terms` filtering per page — unrelated tweets from a user's full history are discarded before the DB write. Same retry mechanism. Returns elapsed seconds as `float`.
 
 Note: the retry restarts the user's timeline fetch from page 1 (fresh cursor), not from the failed page. Tweets already written in the first pass are upserted again (idempotent).
 
 #### `ingest_scores(run_id, project_keyword, user_ids, keys, max_concurrency)`
 
-One `GET /score?user_id=<x_id>` per user (not paginated). On success, calls `repo.upsert_user_score(...)`. Per-user failures are logged as `WARNING` and do not abort the phase.
+One `GET /score?user_id=<x_id>` per user (not paginated). On success, calls `repo.upsert_user_score(...)`. Per-user failures are logged as `WARNING` and do not abort the phase. Returns elapsed seconds as `float`.
 
 ---
 
@@ -336,23 +354,30 @@ effective_until = until or datetime.now(timezone.utc)
 effective_since = since or (effective_until - timedelta(hours=hours))
 ```
 
+**Phase skip flags:** before launching aux tasks, the orchestrator reads `settings.skip_comments`, `settings.skip_user_tweets`, and `settings.skip_scores`. Any combination of phases can be omitted — only tasks for enabled phases are added to the `asyncio.gather` call. If all three are skipped, the gather is not called at all.
+
+**Elapsed time tracking:** the orchestrator records `t0` before Phase 1 and before the aux gather. Each aux method returns its own elapsed seconds. After the gather, results are matched to phase names and stored in `phase_timings: dict[str, float]`. This dict is returned to `cli.py` alongside `run_id` for the final summary.
+
 Execution flow:
 ```
 run_id = repo.create_run(project_label, effective_since, effective_until)
 
-Phase 1: post_ids, user_ids = search_ingestor.ingest_window(project_label, search_query, ...)
-limiter.log_counts("After phase 1:")
+t0_phase1 = now()
+Phase 1: post_ids, user_ids = search_ingestor.ingest_window(...)
+phase_timings["Phase 1 (search)"] = elapsed
 
-# Phases 2, 3, 4 run concurrently:
-await asyncio.gather(
-    aux_ingestors.ingest_comments_for_posts(project_label, post_ids, ...),
-    aux_ingestors.ingest_user_tweets(project_label, user_ids, ...),
-    aux_ingestors.ingest_scores(project_label, user_ids, ...),
+# Phases 2, 3, 4 run concurrently (skippable via SKIP_* env flags):
+t0_aux = now()
+elapsed_results = await asyncio.gather(
+    aux_ingestors.ingest_comments_for_posts(..., filter_terms=terms),  # if not SKIP_COMMENTS
+    aux_ingestors.ingest_user_tweets(..., filter_terms=terms),          # if not SKIP_USER_TWEETS
+    aux_ingestors.ingest_scores(...),                                   # if not SKIP_SCORES
 )
-limiter.log_counts("After phases 2+3+4:")
+# each returns its own elapsed seconds → phase_timings["Phase N (...)"]
+phase_timings["Phases 2+3+4 (combined)"] = elapsed since t0_aux
 
 repo.mark_run_finished(run_id, "completed")
-limiter.log_counts("Final totals:")
+return run_id, phase_timings
 ```
 
 Any uncaught exception marks the run `failed`, logs counts at the point of failure, and propagates to the CLI.

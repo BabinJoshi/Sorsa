@@ -85,6 +85,28 @@ cp .env.example .env
 | `SORSA_RETRY_429_SLEEP_SECONDS` | `1.0` | Sleep between retries on HTTP 429 |
 | `SORSA_RETRY_5XX_SLEEP_SECONDS` | `2.0` | Sleep between retries on HTTP 5xx, network error, or empty/non-JSON body |
 | `DB_WRITE_BATCH_SIZE` | `1000` | Tweets accumulated in-memory per slice before a DB flush is triggered |
+| `SKIP_COMMENTS` | `false` | Set to `true` to skip Phase 2 (comments) entirely |
+| `SKIP_USER_TWEETS` | `false` | Set to `true` to skip Phase 3 (user timelines) entirely |
+| `SKIP_SCORES` | `false` | Set to `true` to skip Phase 4 (user scores) entirely |
+
+### Disabling phases temporarily
+
+Any aux phase can be disabled without code changes by setting its flag in `.env`:
+
+```env
+SKIP_USER_TWEETS=true   # skip Phase 3 — useful when testing search-only runs
+SKIP_COMMENTS=true      # skip Phase 2
+SKIP_SCORES=true        # skip Phase 4
+```
+
+All three can be combined freely. The log will clearly indicate which phases were skipped:
+
+```
+[INFO] Skipping phase(s): USER-TWEETS, SCORES
+[INFO] Phases 2+3+4 — starting concurrently (...  | skipped: user-tweets, scores)
+```
+
+Phase 1 always runs regardless of these flags.
 
 ### Adding more API keys
 
@@ -209,10 +231,22 @@ uv run main.py --project-keyword Acurast --since "2026-05-08 00:00"
 ### On success
 
 ```
-Ingestion completed. run_id=3fa85f64-5717-4562-b3fc-2c963f66afa6  elapsed=19.7 min
+====================================================
+  PHASE TIMING SUMMARY
+====================================================
+  Phase 1 (search)           0.8 min  
+  Phase 2 (comments)         2.1 min  ██
+  Phase 3 (user-tweets)     19.4 min  ███████████████████
+  Phase 4 (scores)           1.3 min  █
+  Phases 2+3+4 (combined)   19.4 min  ███████████████████
+----------------------------------------------------
+  TOTAL                      20.2 min
+====================================================
+
+Ingestion completed. run_id=3fa85f64-5717-4562-b3fc-2c963f66afa6
 ```
 
-Log output is also written to `logs/YYYY-MM-DD/run_HHMMSS_<id>.log`.
+The phase timing summary is printed to the terminal and also written to the log file. Skipped phases are omitted from the table. Log output is also written to `logs/YYYY-MM-DD/run_HHMMSS_<id>.log`.
 
 ---
 
